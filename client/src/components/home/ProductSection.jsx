@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import ProductCard from "./ProductCard";
-import products from "../../data/products";
 
 export default function ProductSection() {
 
