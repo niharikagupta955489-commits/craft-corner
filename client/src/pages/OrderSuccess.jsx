@@ -37,8 +37,8 @@ export default function OrderSuccess() {
 
         <div className="flex flex-col sm:flex-row gap-4 mt-8">
 
-          <Link
-            to="/orders"
+         <Link
+  to="/my-orders"
             className="flex-1 bg-[#556B2F] text-white py-3 rounded-xl hover:bg-[#445625]"
           >
             View Orders
