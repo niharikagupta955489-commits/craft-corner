@@ -12,23 +12,25 @@ export const placeOrder = async (req, res) => {
     } = req.body;
 
 
-    const userId = req.user._id;
+    const userId = req.user.id;
+
 
 
     if (!items || items.length === 0) {
 
       return res.status(400).json({
-        success:false,
-        message:"Cart is empty",
+        success: false,
+        message: "Cart is empty",
       });
 
     }
 
 
 
+
     const order = await Order.create({
 
-      user:userId,
+      user: userId,
 
       items,
 
@@ -42,38 +44,45 @@ export const placeOrder = async (req, res) => {
 
 
 
+
+
     await Cart.deleteMany({
-      user:userId
+      user: userId
     });
+
+
 
 
 
     res.status(201).json({
 
-      success:true,
+      success: true,
 
-      message:"Order placed successfully",
+      message: "Order placed successfully",
 
       order,
 
     });
 
 
-  } catch(error) {
+
+  } catch (error) {
+
+
+    console.log("ORDER ERROR:", error);
 
 
     res.status(500).json({
 
-      success:false,
+      success: false,
 
-      message:error.message,
+      message: error.message,
 
     });
 
 
   }
 };
-
 export const getMyOrders = async (req, res) => {
   try {
 
