@@ -1,10 +1,27 @@
 import { Link } from "react-router-dom";
 import { FaHeart, FaStar } from "react-icons/fa";
 import { useCart } from "../../context/CartContext";
+import { useWishlist } from "../../context/WishlistProvider";
 
 export default function ProductCard({ product }) {
 
   const { addToCart } = useCart();
+const {
+  addToWishlist,
+  removeFromWishlist,
+  isWishlisted,
+} = useWishlist();
+
+const handleWishlist = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (isWishlisted(product._id)) {
+    removeFromWishlist(product._id);
+  } else {
+    addToWishlist(product);
+  }
+};
 
   return (
     <Link to={`/product/${product._id}`}>
@@ -13,27 +30,30 @@ export default function ProductCard({ product }) {
 
         <div className="relative h-56 flex items-center justify-center">
 
- <div
-  className="w-[85%] h-44 rounded-2xl overflow-hidden shadow-[0_6px_18px_rgba(0,0,0,0.25)]"
->
-  <img
-    src={product.images?.[0]}
-    alt={product.name}
-    className="w-full h-full object-cover rounded-2xl"
-  />
-</div>
+  <div className="w-[85%] h-44 rounded-2xl overflow-hidden shadow-[0_6px_18px_rgba(0,0,0,0.25)]">
+    <img
+      src={product.images?.[0]}
+      alt={product.name}
+      className="w-full h-full object-cover rounded-2xl"
+    />
+  </div>
 
   <button
-    className="absolute top-3 right-3 bg-white p-2 rounded-full shadow"
+    onClick={handleWishlist}
+    className="absolute top-3 right-3 bg-white p-2 rounded-full shadow hover:scale-110 transition"
   >
-    <FaHeart className="text-gray-400" />
+    <FaHeart
+      className={
+        isWishlisted(product._id)
+          ? "text-red-500"
+          : "text-gray-400"
+      }
+    />
   </button>
 
 </div>
 
-
-        <div className="p-5 text-center">
-
+<div className="p-5 text-center">
           <h3 className="font-bold text-lg text-[#2F3A2D]">
             {product.name}
           </h3>

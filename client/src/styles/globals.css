@@ -1,70 +1,177 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+/* Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-  margin:0;
-  padding:0;
-  font-family:'Poppins',sans-serif;
-  background:#FAF7F0;
-  color:#2F3A2D;
-  overflow-x:hidden;
+body {
+  font-family: "Poppins", sans-serif;
+  background: #F8F2E8;
+  color: #2F2A24;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Typography */
 
 h1,
 h2,
 h3,
 h4,
 h5,
-h6{
-  font-family:'Poppins',sans-serif;
-  font-weight:700;
-  line-height:1.2;
+h6 {
+  color: #2F2A24;
+  line-height: 1.2;
 }
 
-p{
-  line-height:1.7;
+.heading-font {
+  font-family: "Cormorant Garamond", serif;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+/* Paragraph */
+
+p {
+  line-height: 1.7;
+  color: #6A645B;
 }
+
+/* Links */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Lists */
 
 ul,
-ol{
-  list-style:none;
+ol {
+  list-style: none;
 }
 
-button{
-  cursor:pointer;
-  transition:0.3s ease;
-  font-family:'Poppins',sans-serif;
+/* Images */
+
+img {
+  display: block;
+  max-width: 100%;
+  user-select: none;
 }
 
-img{
-  width:100%;
-  display:block;
-  user-select:none;
+/* Buttons */
+
+button {
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  transition: all .3s ease;
 }
+
+/* Inputs */
 
 input,
 textarea,
-select{
-  font-family:'Poppins',sans-serif;
-  outline:none;
+select {
+  font-family: "Poppins", sans-serif;
+  outline: none;
 }
 
-::selection{
-  background:#6E8B3D;
-  color:white;
+input::placeholder,
+textarea::placeholder {
+  color: #A19A90;
+}
+
+/* Selection */
+
+::selection {
+  background: #6B7B3F;
+  color: white;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4EEE4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6B7B3F;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #556633;
+}
+
+/* Floating Animation */
+
+@keyframes floating {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+.floating {
+  animation: floating 5s ease-in-out infinite;
+}
+
+/* Fade Up Animation */
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.fade-up {
+  animation: fadeUp .8s ease forwards;
+}
+
+/* Glass Effect */
+
+.glass {
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,.45);
+}
+
+/* Smooth Hover */
+
+.hover-lift {
+  transition: all .35s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
 }

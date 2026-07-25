@@ -39,7 +39,7 @@ router.get("/:id", getProductById);
 
 
 // Update Product
-router.put("/:id", protect, isAdmin, updateProduct);
+router.put("/:id", protect, isAdmin, upload.array("images",5), updateProduct);
 
 
 // Delete Product

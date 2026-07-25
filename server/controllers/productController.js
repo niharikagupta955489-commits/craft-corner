@@ -79,38 +79,78 @@ export const getProductById = async (req, res) => {
 
 // Update Product
 export const updateProduct = async (req, res) => {
+
   try {
 
-    const product = await Product.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-      }
-    );
+    console.log("BODY:", req.body);
+    console.log("FILES:", req.files);
 
-    if (!product) {
-      return res.status(404).json({
-        success: false,
-        message: "Product not found",
-      });
+
+    const updateData = {
+      ...req.body
+    };
+
+
+    if(req.files && req.files.length > 0){
+
+      updateData.images = req.files.map(
+        file => file.path
+      );
+
     }
 
+
+    const product = await Product.findByIdAndUpdate(
+
+      req.params.id,
+
+      updateData,
+
+      {
+        new:true
+      }
+
+    );
+
+
+    if(!product){
+
+      return res.status(404).json({
+
+        success:false,
+
+        message:"Product not found"
+
+      });
+
+    }
+
+
     res.status(200).json({
-      success: true,
-      message: "Product Updated Successfully",
-      product,
+
+      success:true,
+
+      message:"Product Updated Successfully",
+
+      product
+
     });
 
-  } catch (error) {
+
+  }catch(error){
 
     res.status(500).json({
-      success: false,
-      message: error.message,
+
+      success:false,
+
+      message:error.message
+
     });
 
   }
+
 };
+
 
 // Delete Product
 export const deleteProduct = async (req, res) => {

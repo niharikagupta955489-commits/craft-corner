@@ -1,4 +1,5 @@
 import logo from "../../assets/logo.png";
+import { useWishlist } from "../../context/WishlistProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
@@ -16,6 +17,7 @@ const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const { user, isLoggedIn, logout } = useAuth();
+const { wishlist } = useWishlist();
 
   const handleLogout = () => {
     logout();
@@ -70,15 +72,42 @@ const handleSearch = (e) => {
         <div className="flex items-center gap-6">
 
           <Link
-            to="/wishlist"
-            className="flex items-center gap-2 hover:text-[#556B2F]"
-          >
-            <FaHeart size={20} />
-            <span className="hidden lg:block">
-              Wishlist
-            </span>
-          </Link>
+  to="/wishlist"
+  className="relative flex items-center gap-2 hover:text-[#556B2F]"
+>
+  <FaHeart
+    size={20}
+    className="text-red-500"
+  />
 
+  <span className="hidden lg:block">
+    Wishlist
+  </span>
+
+  {wishlist.length > 0 && (
+
+    <span
+      className="
+      absolute
+      -top-2
+      -right-3
+      bg-red-500
+      text-white
+      w-5
+      h-5
+      rounded-full
+      text-xs
+      flex
+      items-center
+      justify-center
+      "
+    >
+      {wishlist.length}
+    </span>
+
+  )}
+
+</Link>
           <Link
             to="/cart"
             className="flex items-center gap-2 hover:text-[#556B2F]"
