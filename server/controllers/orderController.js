@@ -4,50 +4,72 @@ import Cart from "../models/Cart.js";
 export const placeOrder = async (req, res) => {
   try {
 
-    const { userId, shippingAddress, paymentMethod } = req.body;
-
-    const cart = await Cart.find({ user: userId }).populate("product");
-
-    if (cart.length === 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Cart is empty",
-      });
-    }
-
-    const items = cart.map((item) => ({
-      product: item.product._id,
-      quantity: item.quantity,
-      price: item.product.price,
-    }));
-
-    const totalPrice = items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-
-    const order = await Order.create({
-      user: userId,
+    const {
       items,
       totalPrice,
       shippingAddress,
+      paymentMethod
+    } = req.body;
+
+
+    const userId = req.user._id;
+
+
+    if (!items || items.length === 0) {
+
+      return res.status(400).json({
+        success:false,
+        message:"Cart is empty",
+      });
+
+    }
+
+
+
+    const order = await Order.create({
+
+      user:userId,
+
+      items,
+
+      totalPrice,
+
+      shippingAddress,
+
       paymentMethod,
+
     });
 
-    await Cart.deleteMany({ user: userId });
+
+
+    await Cart.deleteMany({
+      user:userId
+    });
+
+
 
     res.status(201).json({
-      success: true,
-      message: "Order placed successfully",
+
+      success:true,
+
+      message:"Order placed successfully",
+
       order,
+
     });
 
-  } catch (error) {
+
+  } catch(error) {
+
 
     res.status(500).json({
-      success: false,
-      message: error.message,
+
+      success:false,
+
+      message:error.message,
+
     });
+
 
   }
 };

@@ -1,0 +1,522 @@
+.checkout-page {
+  min-height: 100vh;
+  background: #f6f0e5;
+  padding: 40px;
+  font-family: "Poppins", sans-serif;
+}
+
+
+/* Header */
+
+.checkout-header {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+
+.checkout-header h1 {
+  font-size: 42px;
+  color: #34452f;
+}
+
+
+.back-btn {
+  text-decoration: none;
+  color: #34452f;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+
+
+
+
+
+/* Main layout */
+
+.checkout-container {
+
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+
+  grid-template-columns: 1.5fr 0.9fr;
+
+  gap: 30px;
+
+}
+
+
+
+
+
+.checkout-left {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 25px;
+
+}
+
+
+
+
+
+/* Cards */
+
+.checkout-card {
+
+  background: rgba(255,255,255,0.75);
+
+  backdrop-filter: blur(15px);
+
+  border-radius: 25px;
+
+  padding: 30px;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+
+}
+
+
+
+
+.checkout-title {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+
+}
+
+
+.title-icon {
+
+  width: 45px;
+
+  height: 45px;
+
+  border-radius: 50%;
+
+  background: #dfe8cf;
+
+  color: #405238;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+.checkout-title h2 {
+
+  margin: 0;
+
+  color: #34452f;
+
+}
+
+
+.checkout-title p {
+
+  margin: 5px 0;
+
+  color: #777;
+
+}
+
+
+
+
+/* Address */
+
+.address-grid {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 18px;
+
+}
+
+
+.input-box {
+
+  height: 55px;
+
+  background: #fff;
+
+  border-radius: 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 18px;
+
+  border: 1px solid #eee;
+
+}
+
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+
+  border: none;
+
+  outline: none;
+
+  width: 100%;
+
+  font-size: 15px;
+
+  background: transparent;
+
+}
+
+
+
+.textarea-box {
+
+  grid-column: span 2;
+
+  height: 100px;
+
+  align-items: flex-start;
+
+  padding-top: 30px;
+
+}
+
+
+.textarea-box textarea {
+
+  height: 20px;
+
+  resize: none;
+
+}
+
+
+
+
+
+/* Payment */
+
+
+.payment-options {
+
+  display: grid;
+
+  grid-template-columns: repeat(3,1fr);
+
+  gap: 15px;
+
+}
+
+
+.payment-box {
+
+  background: white;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  border: 2px solid transparent;
+
+  cursor: pointer;
+
+}
+
+
+
+.payment-box.active {
+
+  border-color: #71894d;
+
+  background: #f3f7eb;
+
+}
+
+
+.payment-icon {
+
+  font-size: 25px;
+
+  color: #71894d;
+
+}
+
+
+.payment-box h3 {
+
+  font-size: 16px;
+
+  color: #34452f;
+
+}
+
+
+.payment-box p {
+
+  color: #777;
+
+  font-size: 13px;
+
+}
+
+
+
+
+
+/* Order Summary */
+
+
+.product-box {
+
+  display: flex;
+
+  gap: 15px;
+
+  align-items: center;
+
+}
+
+
+.product-box img {
+
+  width: 85px;
+
+  height: 85px;
+
+  object-fit: cover;
+
+  border-radius: 15px;
+
+}
+
+
+.product-info h3 {
+
+  color:#34452f;
+
+  font-size:16px;
+
+}
+
+
+.product-info span {
+
+  color:#71894d;
+
+  font-weight:700;
+
+}
+
+
+
+
+.price-row {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin:15px 0;
+
+}
+
+
+.price-row p {
+
+  color:#777;
+
+}
+
+
+.green {
+
+  color:#71894d;
+
+  font-weight:700;
+
+}
+
+
+
+.total-box {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-top:20px;
+
+  padding-top:20px;
+
+  border-top:1px solid #ddd;
+
+}
+
+
+
+
+.secure-box {
+
+  margin-top:25px;
+
+  background:#f1f6e9;
+
+  border-radius:18px;
+
+  padding:18px;
+
+  display:flex;
+
+  gap:15px;
+
+  align-items:center;
+
+}
+
+
+.secure-box h3 {
+
+  margin:0;
+
+  color:#34452f;
+
+}
+
+
+.secure-box p {
+
+  margin:5px 0;
+
+  color:#777;
+
+}
+
+
+
+
+
+.place-order {
+
+  margin-top:25px;
+
+  width:100%;
+
+  height:55px;
+
+  border:none;
+
+  border-radius:15px;
+
+  background:linear-gradient(
+    135deg,
+    #71894d,
+    #405238
+  );
+
+  color:white;
+
+  font-size:18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:10px;
+
+  cursor:pointer;
+
+}
+
+
+
+.secure-payment {
+
+  text-align:center;
+
+  margin-top:15px;
+
+  color:#71894d;
+
+  font-weight:600;
+
+}
+
+
+
+
+
+/* Responsive */
+
+
+@media(max-width:900px){
+
+.checkout-container{
+
+grid-template-columns:1fr;
+
+}
+
+
+.payment-options{
+
+grid-template-columns:1fr;
+
+}
+
+
+.address-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.textarea-box{
+
+grid-column:auto;
+
+}
+
+
+.checkout-page{
+
+padding:20px;
+
+}
+
+
+.checkout-header h1{
+
+font-size:32px;
+
+}
+
+}
