@@ -35,10 +35,10 @@ export default function Cart() {
 
 
   const subtotal = cart.reduce(
-    (total, item) =>
-      total + item.product.price * item.quantity,
-    0
-  );
+  (total, item) =>
+    total + (item.product?.price || 0) * item.quantity,
+  0
+);
 
 
   const shipping = subtotal >= 499 ? 0 : 49;
@@ -283,7 +283,7 @@ export default function Cart() {
 
                   <img
                     src={item.product.images?.[0]}
-                    alt={item.product.name}
+                    alt={item.product?.name}
                     className="
   w-30
   h-20
@@ -303,7 +303,7 @@ export default function Cart() {
   text-[#20311E]
   whitespace-nowrap
 ">
-  {item.product.name}
+  {item.product?.name}
 </h2>
 
 
@@ -347,7 +347,7 @@ export default function Cart() {
                   text-xl
                 ">
 
-                  ₹{item.product.price}
+                  ₹{item.product?.price || 0}
 
                 </div>
 
@@ -433,7 +433,7 @@ export default function Cart() {
                   text-[#556B2F]
                 ">
 
-                  ₹{item.product.price * item.quantity}
+                  ₹{(item.product?.price || 0) * item.quantity}
 
                 </div>
 
