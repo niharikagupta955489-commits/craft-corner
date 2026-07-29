@@ -4,6 +4,7 @@ import {
   placeOrder,
   getMyOrders,
   getAllOrders,
+  getSingleOrder,
   updateOrderStatus,
 } from "../controllers/orderController.js";
 
@@ -23,6 +24,14 @@ router.get("/user/:userId", protect, getMyOrders);
 
 // Admin All Orders
 router.get("/", protect, isAdmin, getAllOrders);
+
+// Admin Single Order Details
+router.get(
+  "/:id",
+  protect,
+  isAdmin,
+  getSingleOrder
+);
 
 
 // Admin Update Order Status

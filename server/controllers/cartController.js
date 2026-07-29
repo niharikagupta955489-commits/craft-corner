@@ -60,22 +60,22 @@ export const getCart = async (req, res) => {
 
     const { userId } = req.params;
 
-    const cart = await Cart.find({ user: userId })
+    const cart = await Cart.find({ user:userId })
       .populate("product");
 
 
     const validCart = cart.filter(
-      item => item.product !== null
+      item => item.product
     );
 
 
     res.status(200).json({
-      success: true,
-      cart: validCart,
+      success:true,
+      cart:validCart,
     });
 
 
-  } catch (error) {
+  } catch(error){
 
     res.status(500).json({
       success:false,

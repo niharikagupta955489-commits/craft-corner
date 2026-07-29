@@ -83,6 +83,31 @@ export const placeOrder = async (req, res) => {
 
   }
 };
+
+export const getSingleOrder = async(req,res)=>{
+
+try{
+
+const order = await Order.findById(req.params.id)
+.populate("user")
+.populate("items.product");
+
+
+res.json({
+success:true,
+order
+});
+
+
+}catch(error){
+
+res.status(500).json({
+message:error.message
+})
+
+}
+
+}
 export const getMyOrders = async (req, res) => {
   try {
 
