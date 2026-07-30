@@ -1,321 +1,504 @@
 import { useState } from "react";
 import {
-  FaStar,
   FaBolt,
   FaMapMarkerAlt,
   FaCheckCircle,
   FaFire,
   FaTruck,
+  FaStar
 } from "react-icons/fa";
 
-export default function ProductInfo({ product }) {
 
-  const [pincode, setPincode] = useState("");
+export default function ProductInfo({product}){
 
-  const [deliveryMessage, setDeliveryMessage] = useState("");
 
-  if (!product) return null;
+const [pincode,setPincode]=useState("");
+const [message,setMessage]=useState("");
 
-  const discount = 20;
 
-  const originalPrice = Math.round(product.price / (1 - discount / 100));
 
-  const saveAmount = originalPrice - product.price;
+if(!product) return null;
 
-  const checkDelivery = () => {
 
-    if (pincode.length !== 6) {
 
-      setDeliveryMessage("Please enter a valid pincode.");
+const oldPrice=Math.round(product.price/0.8);
+const save=oldPrice-product.price;
 
-      return;
 
-    }
 
-    setDeliveryMessage("✓ Delivery available within 3-5 business days.");
+const checkDelivery=()=>{
 
-  };
+if(pincode.length!==6){
 
-  return (
+setMessage("Enter valid pincode");
 
-    <div>
+return;
 
-      {/* Category + Bestseller */}
+}
 
-      <div className="flex items-center gap-3 flex-wrap">
+setMessage("✓ Delivery available");
 
-        <span className="bg-[#E8F3D6] text-[#556B2F] px-4 py-2 rounded-full font-semibold">
+};
 
-          {product.category}
 
-        </span>
 
-        <span className="bg-orange-500 text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2">
+return(
 
-          <FaFire />
+<div className="flex flex-col gap-8">
 
-          Bestseller
 
-        </span>
 
-      </div>
+{/* CATEGORY */}
 
-      {/* Product Name */}
+<div className="flex gap-2">
 
-      <h1 className="text-4xl font-bold text-[#2F3A2D] mt-6 leading-tight">
+<span className="
+bg-[#eaf4dd]
+text-[#556B2F]
+px-3 py-1
+rounded-full
+font-semibold
+text-sm
+">
 
-        {product.name}
+{product.category}
 
-      </h1>
+</span>
 
-      {/* Rating */}
 
-      <div className="flex items-center gap-4 mt-5">
+<span className="
+bg-orange-500
+text-white
+px-3 py-1
+rounded-full
+font-semibold
+flex items-center gap-1
+text-sm
+">
 
-        <div className="bg-green-600 text-white px-3 py-1 rounded-lg flex items-center gap-2">
+<FaFire/>
+Bestseller
 
-          <FaStar />
+</span>
 
-          {product.rating > 0 ? product.rating.toFixed(1) : "New"}
 
-        </div>
+</div>
 
-        <span className="text-gray-500">
 
-          {product.numReviews > 0
-            ? `${product.numReviews} Reviews`
-            : "No Reviews Yet"}
 
-        </span>
 
-      </div>
 
-      {/* Price */}
 
-      <div className="mt-8">
+{/* TITLE */}
 
-        <div className="flex items-center gap-4 flex-wrap">
+<h1 className="
+text-4xl
+font-bold
+text-[#222]
+">
 
-          <h2 className="text-5xl font-bold text-[#556B2F]">
+{product.name}
 
-            ₹{product.price}
+</h1>
 
-          </h2>
 
-          <span className="text-2xl text-gray-400 line-through">
 
-            ₹{originalPrice}
 
-          </span>
 
-          <span className="text-green-600 font-bold">
 
-            {discount}% OFF
+<div className="flex gap-3 items-center">
 
-          </span>
 
-        </div>
+<span className="
+bg-green-600
+text-white
+px-3 py-1
+rounded-lg
+flex items-center gap-1
+">
 
-        <p className="text-green-600 mt-2 font-medium">
+<FaStar/>
 
-          You save ₹{saveAmount}
+New
 
-        </p>
+</span>
 
-      </div>
 
-      {/* Stock */}
+<span className="text-gray-500">
 
-      <div className="mt-8">
+No Reviews Yet
 
-        <div className="flex justify-between">
+</span>
 
-          <span className="font-semibold">
 
-            Stock
+</div>
 
-          </span>
 
-          <span>
 
-            {product.stock} Available
 
-          </span>
 
-        </div>
 
-        <div className="w-full bg-gray-200 rounded-full h-3 mt-3">
 
-          <div
+{/* PRICE */}
 
-            className="bg-[#556B2F] h-3 rounded-full"
 
-            style={{
+<div>
 
-              width: `${Math.min(product.stock,100)}%`
+<div className="
+flex
+items-center
+gap-3
+">
 
-            }}
 
-          />
+<h2 className="
+text-5xl
+font-bold
+">
 
-        </div>
+₹{product.price}
 
-      </div>
+</h2>
 
-      {/* Description */}
 
-      <div className="mt-10">
+<span className="
+line-through
+text-gray-400
+text-xl
+">
 
-        <h2 className="text-2xl font-bold text-[#2F3A2D]">
+₹{oldPrice}
 
-          Description
+</span>
 
-        </h2>
 
-        <p className="mt-4 text-gray-600 leading-8">
+<span className="
+text-green-600
+font-bold
+">
 
-          {product.description}
+20% OFF
 
-        </p>
+</span>
 
-      </div>
 
-      {/* Delivery */}
+</div>
 
-      <div className="bg-white rounded-2xl shadow-md p-6 mt-10">
 
-        <h3 className="font-bold text-xl flex items-center gap-3">
+<p className="text-gray-600 mt-3">
 
-          <FaMapMarkerAlt />
+You save ₹{save}
 
-          Check Delivery
+</p>
 
-        </h3>
 
-        <div className="flex gap-3 mt-5">
+</div>
 
-          <input
 
-            value={pincode}
 
-            onChange={(e)=>setPincode(e.target.value)}
 
-            placeholder="Enter Pincode"
 
-            className="flex-1 border rounded-xl px-4 py-3 outline-none"
 
-          />
 
-          <button
+{/* STOCK */}
 
-            onClick={checkDelivery}
 
-            className="bg-[#556B2F] text-white px-6 rounded-xl"
+<div>
 
-          >
 
-            Check
+<div className="
+flex justify-between
+font-semibold
+">
 
-          </button>
+<span>Stock</span>
 
-        </div>
+<span>{product.stock} Available</span>
 
-        {deliveryMessage && (
+</div>
 
-          <p className="text-green-600 mt-4">
 
-            {deliveryMessage}
+<div className="
+h-2
+bg-gray-200
+rounded-full
+mt-2
+">
 
-          </p>
 
-        )}
+<div className="
+h-2
+bg-[#556B2F]
+rounded-full
+w-[15%]
+"/>
 
-      </div>
 
-      {/* Offers */}
+</div>
 
-      <div className="mt-10">
 
-        <h2 className="text-2xl font-bold mb-5">
+</div>
 
-          Available Offers
 
-        </h2>
 
-        <div className="space-y-4">
 
-          <div className="flex gap-3">
 
-            <FaBolt className="text-green-600 mt-1"/>
 
-            <span>
 
-              10% Instant Discount on prepaid orders
 
-            </span>
+{/* DESCRIPTION */}
 
-          </div>
 
-          <div className="flex gap-3">
 
-            <FaBolt className="text-green-600 mt-1"/>
+<div>
 
-            <span>
 
-              Free Delivery on orders above ₹499
+<h2 className="
+text-2xl
+font-bold
+mb-3
+">
 
-            </span>
+Description
 
-          </div>
+</h2>
 
-          <div className="flex gap-3">
 
-            <FaBolt className="text-green-600 mt-1"/>
+<p className="
+text-gray-600
+leading-8
+">
 
-            <span>
+{product.description}
 
-              Buy 2 products & get 15% OFF
+</p>
 
-            </span>
 
-          </div>
+</div>
 
-        </div>
 
-      </div>
 
-      {/* Trust */}
 
-      <div className="grid grid-cols-2 gap-4 mt-10">
 
-        <div className="bg-white rounded-xl shadow p-5 flex gap-3 items-center">
 
-          <FaTruck className="text-[#556B2F] text-2xl"/>
 
-          <span>
 
-            Free Shipping
 
-          </span>
+{/* DELIVERY */}
 
-        </div>
 
-        <div className="bg-white rounded-xl shadow p-5 flex gap-3 items-center">
 
-          <FaCheckCircle className="text-[#556B2F] text-2xl"/>
+<div className="
+bg-[#fffdf8]
+border
+rounded-2xl
+p-5
+">
 
-          <span>
 
-            Quality Assured
+<h2 className="
+text-xl
+font-bold
+flex
+items-center
+gap-2
+">
 
-          </span>
+<FaMapMarkerAlt/>
 
-        </div>
+Check Delivery
 
-      </div>
+</h2>
 
-    </div>
 
-  );
+
+<div className="
+flex
+gap-3
+mt-4
+">
+
+
+<input
+
+value={pincode}
+
+onChange={(e)=>setPincode(e.target.value)}
+
+placeholder="Enter Pincode"
+
+className="
+flex-1
+border
+rounded-xl
+px-4
+py-2
+"
+
+/>
+
+
+
+<button
+
+onClick={checkDelivery}
+
+className="
+bg-[#556B2F]
+text-white
+px-6
+rounded-xl
+font-semibold
+">
+
+Check
+
+</button>
+
+
+</div>
+
+
+
+{
+message &&
+
+<p className="
+text-green-600
+mt-3
+">
+
+{message}
+
+</p>
+
+}
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* OFFERS */}
+
+
+
+<div className="
+bg-white
+border
+rounded-2xl
+p-5
+">
+
+
+<h2 className="
+text-2xl
+font-bold
+mb-4
+">
+
+Available Offers
+
+</h2>
+
+
+
+<div className="
+flex
+flex-col
+gap-3
+">
+
+
+<p>
+⚡ 10% Instant Discount on prepaid orders
+</p>
+
+
+<p>
+⚡ Free Delivery on orders above ₹499
+</p>
+
+
+<p>
+⚡ Buy 2 products & get 15% OFF
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{/* BENEFITS */}
+
+
+
+<div className="
+grid
+grid-cols-2
+gap-4
+">
+
+
+<div className="
+bg-[#f3f8ea]
+rounded-xl
+p-4
+flex
+items-center
+gap-2
+font-semibold
+">
+
+<FaTruck/>
+
+Free Shipping
+
+</div>
+
+
+
+<div className="
+bg-[#f3f8ea]
+rounded-xl
+p-4
+flex
+items-center
+gap-2
+font-semibold
+">
+
+
+<FaCheckCircle/>
+
+Quality Assured
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+)
 
 }

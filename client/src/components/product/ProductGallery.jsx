@@ -1,394 +1,161 @@
-import { useRef, useState } from "react";
-import {
-  FaChevronLeft,
-  FaChevronRight,
-  FaHeart,
-  FaExpand,
-} from "react-icons/fa";
+import { useState } from "react";
+import "./ProductGallery.css";
 
-export default function ProductGallery({ product }) {
 
-  const [selectedImage, setSelectedImage] = useState(0);
+export default function ProductGallery({product}){
 
-  const [zoomStyle, setZoomStyle] = useState({});
 
-  const imageRef = useRef(null);
+const images = product?.images?.length
+? product.images
+: [product?.image];
 
-  if (!product) return null;
 
-  const nextImage = () => {
 
-    if (selectedImage < product.images.length - 1) {
+const [activeImage,setActiveImage] = useState(images[0]);
 
-      setSelectedImage(selectedImage + 1);
+const [zoom,setZoom] = useState(false);
 
-    }
 
-  };
 
-  const previousImage = () => {
 
-    if (selectedImage > 0) {
+return(
 
-      setSelectedImage(selectedImage - 1);
+<div className="gallery-container">
 
-    }
 
-  };
 
-  const handleMouseMove = (e) => {
 
-    const { left, top, width, height } =
-      imageRef.current.getBoundingClientRect();
 
-    const x = ((e.clientX - left) / width) * 100;
+<div 
+className={
+zoom
+?
+"main-gallery zoom-box"
+:
+"main-gallery"
+}
 
-    const y = ((e.clientY - top) / height) * 100;
+onMouseEnter={()=>setZoom(true)}
 
-    setZoomStyle({
+onMouseLeave={()=>setZoom(false)}
 
-      transformOrigin: `${x}% ${y}%`,
+>
 
-      transform: "scale(2)",
 
-    });
 
-  };
 
-  const handleMouseLeave = () => {
-
-    setZoomStyle({
-
-      transform: "scale(1)",
-
-    });
-
-  };
-
-  return (
-
-<div className="w-[500px] shrink-0 flex items-start gap-5">
-
-{/* Thumbnails */}
-
-<div className="flex flex-col gap-4">
-
-{product.images?.map((image,index)=>(
 
 <img
 
-key={index}
+src={activeImage}
 
-src={image}
+alt="product"
 
-alt={product.name}
-
-onClick={()=>setSelectedImage(index)}
-
-className={`
-
-w-20
-
-h-20
-
-rounded-xl
-
-object-cover
-
-cursor-pointer
-
-border-2
-
-transition-all
-
-duration-300
-
-${
-selectedImage===index
+className={
+zoom
 ?
-
-"border-[#556B2F] scale-105"
-
+"main-gallery-image zoom-image"
 :
-
-"border-gray-300 hover:border-[#556B2F]"
-
+"main-gallery-image"
 }
-
-`}
 
 />
 
-))}
+
+
+
+
+<button className="gallery-heart">
+
+❤
+
+</button>
+
+
+
+
+
+
+<button
+
+className="gallery-zoom"
+
+onClick={()=>setZoom(!zoom)}
+
+>
+
+⛶
+
+</button>
+
+
+
+
 
 </div>
 
-{/* Main Image */}
 
-<div className="relative w-full max-w-[500px]">
 
-<div className="w-[500px] h-[500px] bg-white rounded-3xl shadow-xl overflow-hidden flex items-center justify-center p-6">
 
-<img
 
-ref={imageRef}
 
-src={product.images?.[selectedImage]}
 
-alt={product.name}
 
-style={zoomStyle}
 
-onMouseMove={handleMouseMove}
+<div className="gallery-thumbnails">
 
-onMouseLeave={handleMouseLeave}
 
-className="
+{
 
-w-full
-max-w-[420px]
-max-h-[420px]
-object-contain
+images.map((img,index)=>(
 
-transition-all
-
-duration-300
-
-cursor-crosshair
-
-"
-/>
-
-{/* Previous Button */}
-
-<button
-
-onClick={previousImage}
-
-disabled={selectedImage===0}
-
-className="
-
-absolute
-
-left-5
-
-top-1/2
-
--translate-y-1/2
-
-w-12
-
-h-12
-
-rounded-full
-
-bg-white
-
-shadow-lg
-
-flex
-
-items-center
-
-justify-center
-
-hover:bg-[#556B2F]
-
-hover:text-white
-
-transition
-
-disabled:opacity-40
-
-"
-
->
-
-<FaChevronLeft />
-
-</button>
-
-
-
-{/* Next Button */}
-
-<button
-
-onClick={nextImage}
-
-disabled={selectedImage===product.images.length-1}
-
-className="
-
-absolute
-
-right-5
-
-top-1/2
-
--translate-y-1/2
-
-w-12
-
-h-12
-
-rounded-full
-
-bg-white
-
-shadow-lg
-
-flex
-
-items-center
-
-justify-center
-
-hover:bg-[#556B2F]
-
-hover:text-white
-
-transition
-
-disabled:opacity-40
-
-"
-
->
-
-<FaChevronRight />
-
-</button>
-
-
-
-{/* Wishlist */}
-
-<button
-
-className="
-
-absolute
-
-top-5
-
-right-5
-
-w-12
-
-h-12
-
-rounded-full
-
-bg-white
-
-shadow-lg
-
-text-red-500
-
-flex
-
-items-center
-
-justify-center
-
-hover:scale-110
-
-transition
-
-"
-
->
-
-<FaHeart />
-
-</button>
-
-
-
-{/* Full Screen */}
-
-<button
-
-className="
-
-absolute
-
-bottom-5
-
-right-5
-
-w-12
-
-h-12
-
-rounded-full
-
-bg-white
-
-shadow-lg
-
-flex
-
-items-center
-
-justify-center
-
-hover:bg-[#556B2F]
-
-hover:text-white
-
-transition
-
-"
-
->
-
-<FaExpand />
-
-</button>
-
-
-
-{/* Image Counter */}
 
 <div
 
-className="
+key={index}
 
-absolute
+className={
+activeImage===img
+?
+"thumbnail active-thumb"
+:
+"thumbnail"
+}
 
-bottom-5
 
-left-5
-
-bg-black/70
-
-text-white
-
-px-4
-
-py-2
-
-rounded-full
-
-text-sm
-
-"
+onClick={()=>setActiveImage(img)}
 
 >
 
-{selectedImage+1} / {product.images.length}
+
+<img
+
+src={img}
+
+alt="thumbnail"
+
+/>
+
 
 </div>
 
-</div>
+
+))
+
+}
+
+
 
 </div>
 
+
+
+
+
+
 </div>
 
-);
+
+)
 
 }

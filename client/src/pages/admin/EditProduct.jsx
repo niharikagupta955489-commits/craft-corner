@@ -95,10 +95,21 @@ setProduct({
 
 const handleImage=(e)=>{
 
-setNewImages(e.target.files);
+const files = Array.from(e.target.files);
+
+
+if(files.length > 5){
+
+toast.error("Maximum 5 images allowed");
+
+return;
+
+}
+
+
+setNewImages(files);
 
 };
-
 
 
 

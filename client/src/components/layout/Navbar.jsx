@@ -10,6 +10,8 @@ import {
   FaUserCircle,
   FaBox,
   FaUserShield,
+  FaStore,
+  FaRocket,
 } from "react-icons/fa";
 
 export default function Navbar() {
@@ -68,6 +70,19 @@ const handleSearch = (e) => {
 />
 
 </div>
+
+<Link
+  to="/marketplace"
+  className="flex items-center gap-2 hover:text-[#556B2F]"
+>
+
+  <FaStore size={20}/>
+
+  <span className="hidden lg:block">
+    Marketplace
+  </span>
+
+</Link>
 
         <div className="flex items-center gap-6">
 
@@ -137,19 +152,19 @@ const handleSearch = (e) => {
 
           {isLoggedIn &&
             user?.role === "admin" && (
+ <>
+   
+    <Link
+      to="/admin-v2"
+     className="flex items-center gap-3 text-[#556B2F] bg-[#EEF3E8] w-44 justify-center px-5 py-2.5 rounded-xl border border-[#D6E2C8] hover:bg-[#E2EBCF] transition"
+    >
 
-           <Link
-  to="/admin/dashboard"
-  className="flex items-center gap-3 text-[#556B2F] bg-[#EEF3E8] w-44 justify-center px-5 py-2.5 rounded-xl border border-[#D6E2C8] hover:bg-[#E2EBCF] transition"
->
-  <FaUserShield />
+      <FaRocket />
+      <span>Admin Portal</span>
+    </Link>
+  </>
 
-  <span className="whitespace-nowrap">
-    Admin Portal
-  </span>
-</Link>
-
-          )}
+)}
 
           {isLoggedIn ? (
 

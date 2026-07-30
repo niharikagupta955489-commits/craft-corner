@@ -1,45 +1,18 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import { Outlet } from "react-router-dom";
 
 
 export default function UserLayout(){
 
-const location = useLocation();
 
-const navigate = useNavigate();
+  return (
 
+    <div>
 
-return(
+      <Outlet />
 
-<div>
+    </div>
 
+  );
 
-{
-location.pathname !== "/" && (
-
-<button
-
-onClick={()=>navigate(-1)}
-
-className="m-5 flex items-center gap-2 bg-white px-5 py-3 rounded-xl shadow"
-
->
-
-<FaArrowLeft/>
-
-Back
-
-</button>
-
-)
-}
-
-
-<Outlet/>
-
-
-</div>
-
-)
 
 }

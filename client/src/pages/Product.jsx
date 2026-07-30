@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+
 
 import api from "../services/api";
 
@@ -11,238 +10,179 @@ import SellerInfo from "../components/product/SellerInfo";
 import ProductSpecifications from "../components/product/ProductSpecifications";
 import ReviewSection from "../components/product/ReviewSection";
 import RelatedProducts from "../components/product/RelatedProducts";
+import { useParams, Link } from "react-router-dom";
 
-export default function Product() {
 
-  const { id } = useParams();
+export default function Product(){
 
-  const [product, setProduct] = useState(null);
+const {id}=useParams();
 
-  const [relatedProducts, setRelatedProducts] = useState([]);
+const [product,setProduct]=useState(null);
+const [loading,setLoading]=useState(true);
 
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
 
-    fetchProduct();
+useEffect(()=>{
 
-  }, [id]);
+api.get(`/products/${id}`)
+.then(res=>{
 
-  const fetchProduct = async () => {
+setProduct(res.data.product);
 
-    try {
+})
+.catch(err=>console.log(err))
+.finally(()=>setLoading(false));
 
-      setLoading(true);
 
-      const res = await api.get(`/products/${id}`);
+},[id]);
 
-      const currentProduct = res.data.product;
 
-      setProduct(currentProduct);
 
-      if (currentProduct.category) {
+if(loading)
+return <div>Loading...</div>
 
-        const related = await api.get(
 
-          `/products/category/${currentProduct.category}`
 
-        );
+return(
 
-        setRelatedProducts(
+<div style={{
+width:"100%",
+background:"#faf7f0",
+padding:"30px"
+}}>
 
-          related.data.products.filter(
+<Link
 
-            (item) => item._id !== currentProduct._id
+to="/marketplace"
 
-          )
+style={{
+display:"inline-flex",
+alignItems:"center",
+gap:"8px",
+color:"#556B2F",
+fontSize:"18px",
+fontWeight:"600",
+marginBottom:"20px",
+textDecoration:"none",
+transform:"translate(10px,5px)"
+}}
 
-        );
+>
 
-      }
+← Back
 
-    }
+</Link>
 
-    catch (err) {
 
-      console.log(err);
+<div style={{
+maxWidth:"1300px",
+margin:"auto"
+}}>
 
-    }
 
-    finally {
 
-      setLoading(false);
+<div style={{
+display:"flex",
+gap:"30px",
+alignItems:"flex-start",
+flexWrap:"wrap"
+}}>
 
-    }
 
-  };
 
-  if (loading) {
 
-    return (
+<div style={{
+width:"420px",
+maxWidth:"100%"
+}}>
 
-      <div className="min-h-screen flex items-center justify-center bg-[#F8F6F3]">
 
-        <h1 className="text-3xl font-bold text-[#556B2F]">
+<ProductGallery product={product}/>
 
-          Loading Product...
 
-        </h1>
 
-      </div>
+<div style={{
+marginTop:"35px"
+}}>
 
-    );
+<SellerInfo/>
 
-  }
-
-  if (!product) {
-
-    return (
-
-      <div className="min-h-screen flex items-center justify-center bg-[#F8F6F3]">
-
-        <h1 className="text-3xl font-bold">
-
-          Product Not Found
-
-        </h1>
-
-      </div>
-
-    );
-
-  }
-
-  return (
-
-    <div className="min-h-screen bg-[#F8F6F3] py-10 px-4 lg:px-8">
-
-<div className="max-w-[1500px] mx-auto">
-
-        
-        {/* Main Product Card */}
-
-     <div className="px-4 lg:px-6">
-  <div
-    style={{
-      display: "grid",
-      gridTemplateColumns: "520px 1fr",
-      gap: "40px",
-      alignItems: "start",
-    }}
-  >
-    <ProductGallery product={product} />
-
-    <div>
-      <ProductInfo product={product} />
-
-      <div style={{ marginTop: "30px" }}>
-        <ProductActions product={product} />
-      </div>
-    </div>
-  </div>
 </div>
 
-        {/* Seller Card */}
 
-<div className="mt-8 bg-white rounded-3xl shadow-sm border border-gray-200 p-8 lg:p-10">
-          <SellerInfo />
+</div>
 
-        </div>
 
-        {/* Specifications */}
 
-<div className="mt-8 bg-white rounded-3xl shadow-sm border border-gray-200 p-8">
 
-          <h2 className="text-3xl font-bold text-[#2F3A2D] mb-8">
 
-            Product Specifications
+<div style={{
+flex:"1",
+minWidth:"400px"
+}}>
 
-          </h2>
 
-          <ProductSpecifications product={product} />
+<ProductInfo product={product}/>
 
-        </div>
 
-        {/* Reviews */}
+<ProductActions product={product}/>
 
-<div className="mt-8 mx-4 lg:mx-6 bg-white rounded-3xl border border-gray-200 shadow-sm p-8">
 
-          <div className="flex items-center justify-between mb-8">
+</div>
 
-            <h2 className="text-3xl font-bold text-[#2F3A2D]">
 
-              Customer Reviews
 
-            </h2>
+</div>
 
-            <button
 
-              className="
 
-              bg-[#556B2F]
 
-              hover:bg-[#445625]
 
-              text-white
 
-              px-6
+<div style={{
+marginTop:"40px"
+}}>
 
-              py-3
 
-              rounded-xl
+<ProductSpecifications product={product}/>
 
-              font-semibold
 
-              transition
+</div>
 
-              "
 
-            >
 
-              Write Review
 
-            </button>
+<div style={{
+marginTop:"40px"
+}}>
 
-          </div>
 
-          <ReviewSection reviews={product.reviews} />
+<ReviewSection reviews={product.reviews}/>
 
-        </div>
 
-        {/* Related Products */}
+</div>
 
-     <div className="mt-8 mx-4 lg:mx-6 bg-white rounded-3xl border border-gray-200 shadow-sm p-8">
 
-          <div className="flex items-center justify-between mb-8">
 
-            <h2 className="text-3xl font-bold text-[#2F3A2D]">
 
-              Related Products
+<div style={{
+marginTop:"40px"
+}}>
 
-            </h2>
 
-            <Link
+<RelatedProducts/>
 
-              to="/marketplace"
 
-              className="text-[#556B2F] font-semibold hover:underline"
+</div>
 
-            >
 
-              View All →
 
-            </Link>
+</div>
 
-          </div>
 
-          <RelatedProducts products={relatedProducts} />
+</div>
 
-        </div>
 
-      </div>
-
-    </div>
-
-  );
+)
 
 }

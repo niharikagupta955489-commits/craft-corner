@@ -1,78 +1,387 @@
 import { Link } from "react-router-dom";
-import { FaHeart, FaTrash } from "react-icons/fa";
-import { useWishlist } from "../context/WishlistProvider";
+import { useEffect, useState } from "react";
+import api from "../services/api";
+import toast from "react-hot-toast";
+import "../styles/wishlist.css";
+
 
 export default function Wishlist() {
-  const { wishlist, removeFromWishlist } = useWishlist();
+
+
+  const [wishlist, setWishlist] = useState([]);
+
+
+  useEffect(() => {
+
+    fetchWishlist();
+
+  }, []);
+
+
+
+
+
+  const fetchWishlist = async () => {
+
+    try {
+
+      const res = await api.get("/wishlist");
+
+
+      console.log(
+        "WISHLIST DATA:",
+        res.data
+      );
+
+
+      setWishlist(
+        res.data.wishlist || []
+      );
+
+
+    } catch (error) {
+
+
+      console.log(
+        "WISHLIST ERROR:",
+        error
+      );
+
+
+    }
+
+  };
+
+
+
+
+
+
+
+  const removeWishlist = async (id) => {
+
+
+    try {
+
+
+      await api.delete(
+        `/wishlist/${id}`
+      );
+
+
+      setWishlist(
+        wishlist.filter(
+          item => item._id !== id
+        )
+      );
+
+
+      toast.success(
+        "Removed from wishlist"
+      );
+
+
+    } catch (error) {
+
+
+      toast.error(
+        "Failed to remove"
+      );
+
+
+    }
+
+  };
+
+
+
+
+
+
+
 
   return (
-    <div className="min-h-screen bg-[#F8F6F3] py-10">
-      <div className="max-w-7xl mx-auto px-6">
 
-        <h1 className="text-4xl font-bold text-[#556B2F] flex items-center gap-3 mb-8">
-          <FaHeart className="text-red-500" />
-          My Wishlist
-        </h1>
 
-        {wishlist.length === 0 ? (
-          <div className="bg-white rounded-2xl p-12 text-center shadow">
-            <h2 className="text-2xl font-semibold mb-3">
-              Your wishlist is empty
-            </h2>
+    <div className="wishlist-page">
 
-            <Link
-              to="/marketplace"
-              className="inline-block mt-4 bg-[#556B2F] text-white px-6 py-3 rounded-xl"
-            >
-              Continue Shopping
-            </Link>
-          </div>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-            {wishlist.map((product) => (
+      <div className="wishlist-container">
 
-              <div
-                key={product._id}
-                className="bg-white rounded-2xl shadow overflow-hidden"
+
+
+        <Link
+          to="/"
+          className="wishlist-back"
+        >
+          ← Back
+        </Link>
+
+
+
+
+
+        <div className="wishlist-header">
+
+
+          <h1>
+            ❤️ My Wishlist
+          </h1>
+
+
+          <p>
+            All your favourite handmade items, saved in one place.
+          </p>
+
+
+        </div>
+
+
+
+
+
+
+
+        {
+          wishlist.length === 0 ?
+
+
+          (
+
+            <div className="wishlist-bottom">
+
+
+              <h2>
+                This is the only item in your wishlist!
+              </h2>
+
+
+              <p>
+                Explore more beautiful handmade products and add them to your wishlist.
+              </p>
+
+
+
+              <Link
+                to="/"
+                className="continue-btn"
               >
 
-                <Link to={`/product/${product._id}`}>
+                Continue Shopping →
+
+              </Link>
+
+
+            </div>
+
+
+          )
+
+
+          :
+
+
+
+          (
+
+
+          <>
+
+
+          <div className="wishlist-list">
+
+
+          {
+            wishlist.map((item)=>(
+
+
+              <div
+                className="wishlist-card"
+                key={item._id}
+              >
+
+
+
+                <div className="wishlist-image">
+
+
                   <img
-                    src={product.images?.[0]}
-                    alt={product.name}
-                    className="w-full h-64 object-cover"
+
+                    src={
+                      item.images?.[0] ||
+                      item.image
+                    }
+
+                    alt={item.name}
+
                   />
-                </Link>
 
-                <div className="p-4">
 
-                  <h2 className="font-bold text-lg">
-                    {product.name}
-                  </h2>
 
-                  <p className="text-[#556B2F] text-2xl font-bold mt-2">
-                    ₹{product.price}
-                  </p>
+                  <span>
+                    ❤️
+                  </span>
 
-                  <button
-                    onClick={() => removeFromWishlist(product._id)}
-                    className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl flex justify-center items-center gap-2"
-                  >
-                    <FaTrash />
-                    Remove
-                  </button>
 
                 </div>
 
+
+
+
+
+
+
+                <div className="wishlist-info">
+
+
+                  <div className="tag">
+                    🌿 Handmade
+                  </div>
+
+
+
+                  <h2>
+                    {item.name}
+                  </h2>
+
+
+
+                  <p className="desc">
+                    Beautiful handmade product for your home.
+                  </p>
+
+
+
+
+                  <h3>
+                    ₹{item.price}
+                  </h3>
+
+
+
+                  <div className="stock">
+                    ● In Stock
+                  </div>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div className="wishlist-actions">
+
+
+
+                  <button
+
+                    className="delete-btn"
+
+                    onClick={
+                      ()=>removeWishlist(item._id)
+                    }
+
+                  >
+
+                    🗑
+
+                  </button>
+
+
+
+
+
+                  <button
+                    className="cart-btn"
+                  >
+
+                    🛍 Add to Cart
+
+                  </button>
+
+
+
+
+
+                  <Link
+
+                    to={`/product/${item._id}`}
+
+                    className="view-btn"
+
+                  >
+
+                    ◉ View Product
+
+                  </Link>
+
+
+
+                </div>
+
+
+
               </div>
 
-            ))}
+
+            ))
+          }
+
 
           </div>
-        )}
+
+
+
+
+
+
+          <div className="wishlist-bottom">
+
+
+            <h2>
+              This is the only item in your wishlist!
+            </h2>
+
+
+            <p>
+              Explore more beautiful handmade products and add them to your wishlist.
+            </p>
+
+
+
+            <Link
+              to="/"
+              className="continue-btn"
+            >
+
+              Continue Shopping →
+
+            </Link>
+
+
+          </div>
+
+
+          </>
+
+
+          )
+
+        }
+
+
+
 
       </div>
+
+
     </div>
+
+
   );
+
+
 }

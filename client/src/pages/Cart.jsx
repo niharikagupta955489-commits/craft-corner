@@ -34,7 +34,7 @@ export default function Cart() {
   const [discount, setDiscount] = useState(0);
 
 
-  const subtotal = cart.reduce(
+ const subtotal = cart.reduce(
   (total, item) =>
     total + (item.product?.price || 0) * item.quantity,
   0
@@ -58,6 +58,8 @@ export default function Cart() {
       toast.error("Enter coupon code");
       return;
     }
+
+
 
 
     if (code === "SAVE10") {
@@ -96,6 +98,8 @@ export default function Cart() {
 
     return (
 
+
+
       <div className="
         min-h-screen
         bg-[#FAF8F3]
@@ -103,6 +107,7 @@ export default function Cart() {
         items-center
         justify-center
       ">
+
 
         <div className="text-center">
 
@@ -158,11 +163,40 @@ export default function Cart() {
 
   return (
 
-    <div className="
-      min-h-screen
-      bg-[#FAF8F3]
-      py-10
-    ">
+<div className="
+min-h-screen
+bg-[#FAF8F3]
+py-10
+">
+
+
+<Link
+to="/"
+className="
+text-[#556B2F]
+text-lg
+font-semibold
+flex
+items-center
+gap-2
+mb-4
+relative
+z-50
+translate-x-2
+translate-y-3
+
+"
+>
+
+<FaArrowLeft/>
+
+Back
+
+</Link>
+
+
+
+
 
 
       <div className="
@@ -174,14 +208,17 @@ export default function Cart() {
 
 
         <h1 className="
-          text-2xl
-          font-extrabold
-          text-[#20311E]
-          mt-12
-          flex
-          items-center
-          gap-4
-        ">
+text-2xl
+font-extrabold
+text-[#20311E]
+mt-12
+flex
+items-center
+gap-4
+translate-x-12
+translate-y-4
+scale-105
+">
 
           Shopping Cart
 
@@ -207,16 +244,18 @@ export default function Cart() {
         {/* Cart Header */}
 
         <div className="
-          hidden
-          lg:grid
-          grid-cols-12
-          bg-[#EEF5E5]
-          rounded-2xl
-          px-6
-          py-4
-          font-semibold
-          text-[#355E3B]
-        ">
+hidden
+lg:grid
+grid-cols-12
+bg-[#EEF5E5]
+rounded-2xl
+px-6
+py-4
+font-semibold
+text-[#355E3B]
+translate-y-10
+translate-x-3
+">
 
           <div className="col-span-5">
             Product
@@ -230,7 +269,8 @@ export default function Cart() {
             Quantity
           </div>
 
-          <div className="col-span-2 text-center">
+          <div className="col-span-2 text-center
+">
             Total
           </div>
 
@@ -248,17 +288,16 @@ export default function Cart() {
         {
           cart.map((item)=>(
 
-            <div
-              key={item._id}
-              className="
-                bg-white
-                rounded-3xl
-                border
-                border-[#ECE6D8]
-                shadow-sm
-                p-6
-              "
-            >
+            <div className="
+bg-white
+rounded-3xl
+border
+shadow-sm
+p-6
+translate-y-10
+translate-x-1
+">
+           
 
 
               <div className="
@@ -282,14 +321,18 @@ export default function Cart() {
 
 
                   <img
-                    src={item.product.images?.[0]}
-                    alt={item.product?.name}
+ src={item.product?.images?.[0]}
+ alt={item.product?.name || "Product"}
                     className="
-  w-30
-  h-20
-  rounded-2xl
-  object-cover
-  
+w-30
+h-20
+rounded-2xl
+object-cover
+p-1
+translate-x-2
+translate-y1
+scale-90
+drop shadow 80 px
 "
                   />
 
@@ -297,11 +340,14 @@ export default function Cart() {
                   <div>
 
 
-                    <h2 className="
-  text-x2
-  font-bold
-  text-[#20311E]
-  whitespace-nowrap
+  <h2 className="
+text-xl
+font-bold
+text-[#20311E]
+whitespace-nowrap
+-translate-x-3
+translate-y-1
+scale-100
 ">
   {item.product?.name}
 </h2>
@@ -316,6 +362,9 @@ export default function Cart() {
                       bg-[#EEF5E5]
                       text-[#556B2F]
                       text-sm
+translate-x-9
+translate-y-1
+scale-90
                     ">
                       Handmade
                     </span>
@@ -325,6 +374,9 @@ export default function Cart() {
                       text-gray-500
                       mt-2
                       text-sm
+translate-x-3
+translate-y-1
+scale-90
                     ">
                       🌿 Natural Craft
                     </p>
@@ -345,6 +397,9 @@ export default function Cart() {
                   text-center
                   font-bold
                   text-xl
+translate-x-0
+translate-y3
+scale-90
                 ">
 
                   ₹{item.product?.price || 0}
@@ -431,6 +486,7 @@ export default function Cart() {
                   font-bold
                   text-xl
                   text-[#556B2F]
+
                 ">
 
                   ₹{(item.product?.price || 0) * item.quantity}
@@ -524,7 +580,12 @@ export default function Cart() {
                 border
                 rounded-l-xl
                 outline-none
+translate-x-2
+translate-y-115
+scale-100
               "
+
+
             />
 
 
@@ -535,6 +596,9 @@ export default function Cart() {
                 text-white
                 px-5
                 rounded-r-xl
+translate-x-2
+translate-y-115
+scale-100
               "
             >
 
@@ -549,20 +613,29 @@ export default function Cart() {
 
 
           <button
-            onClick={clearCart}
-            className="
-              px-7
-              py-3
-              rounded-xl
-              border
-              border-red-300
-              text-red-600
-            "
-          >
+onClick={clearCart}
+className="
+px-7
+py-3
+rounded-xl
+border
+border-red-300
+text-red-600
+text-base
+-translate-x-2
+translate-y-12
+scale-100
+"
+>
 
-            Clear Cart
+<span className="text-sm">
+Clear Cart
+</span>
 
-          </button>
+</button>
+
+
+           
 
 
         </div>
@@ -573,7 +646,12 @@ export default function Cart() {
           {/* RIGHT SIDE */}
 
 
-          <div className="space-y-6">
+         <div className="
+space-y-7
+translate-x-5
+translate-y-10
+scale-95
+">
 
 
           <div className="
@@ -583,14 +661,18 @@ export default function Cart() {
   border-[#ECE6D8]
   shadow-lg
   p-8
+
 ">
 
 
               <h2 className="
                 text-2xl
-                font-semi bold
+                font-bold
                 text-[#20311E]
                 mb-8
+translate-x-1
+translate-y-1
+scale-95
               ">
 
                 Order Summary
@@ -602,11 +684,19 @@ export default function Cart() {
               <div className="space-y-4">
 
 
-                <div className="flex justify-between">
+                <div className="flex justify-between
+scale-90
+translate-x-1
+translate-y-1
+scale-95 "
+>
 
                   <span className="text-gray-600">
+
                     Subtotal
+
                   </span>
+
 
 
                   <span className="font-semibold">
@@ -621,16 +711,26 @@ export default function Cart() {
 
                 <div className="flex justify-between">
 
-                  <span className="text-gray-600">
+                  <span className="text-gray-600
+scale-90
+translate-x-3.5
+-translate-y-0
+scale-95 
+">
                     Shipping
                   </span>
 
 
-                  <span className="text-green-600 font-semibold">
+                  <span className="text-green-600 font-semibold
+scale-90
+-translate-x-3
+translate-y-1
+scale-95 ">
 
                     {
                       shipping === 0
                       ? "FREE"
+
                       : `₹${shipping}`
                     }
 
@@ -643,12 +743,22 @@ export default function Cart() {
 
                 <div className="flex justify-between">
 
-                  <span className="text-gray-600">
+                  <span className="text-gray-600
+
+scale-90
+translate-x-3.5
+-translate-y-1
+scale-95 ">
                     Discount
                   </span>
 
 
-                  <span className="text-green-600">
+                  <span className="text-green-600
+scale-90
+-translate-x-4
+-translate-y-0
+scale-95 
+">
 
                     -₹{discount}
 
@@ -679,6 +789,10 @@ export default function Cart() {
                 <span className="
                   text-2xl
                   font-bold
+scale-90
+translate-x-2
+translate-y-1
+scale-90
                 ">
 
                   Total
@@ -691,7 +805,11 @@ export default function Cart() {
                   text-2xl
                   font-bold
                   text-[#556B2F]
-                ">
+
+scale-85
+-translate-x-1
+translate-y-1
+ ">
 
                   ₹{finalTotal}
 
@@ -723,6 +841,7 @@ export default function Cart() {
                   items-center
                   gap-3
                   transition
+scale-95
                 "
 
               >
@@ -741,6 +860,10 @@ export default function Cart() {
               <div className="
                 mt-8
                 space-y-5
+scale-90
+translate-x-2
+translate-y-1
+scale-95 
               ">
 
 
@@ -748,12 +871,15 @@ export default function Cart() {
                   flex
                   items-center
                   gap-3
+
                 ">
 
-                  <FaTruck className="text-[#556B2F]"/>
+                  <FaTruck className="text-[#556B2F]
+"/>
 
                   <span>
                     Free Shipping Above ₹499
+
                   </span>
 
                 </div>
@@ -832,20 +958,24 @@ export default function Cart() {
 
 
 
-            <div className="
-              rounded-3xl
-              bg-gradient-to-br
-              from-[#556B2F]
-              to-[#445625]
-              text-white
-              p-8
-              shadow-xl
-            ">
+          <div className="
+rounded-3xl
+bg-gradient-to-br
+from-[#556B2F]
+to-[#445625]
+text-white
+p-8
+shadow-xl
+translate-y-10
+">
 
 
               <h3 className="
                 text-2xl
                 font-bold
+translate-y-1
+translate-x-9
+scale-80
               ">
 
                 Why You'll Love Shopping Here
@@ -854,9 +984,14 @@ export default function Cart() {
 
 
               <p className="
-                mt-5
-                leading-8
-                text-white/90
+mt-5
+leading-8
+text-white
+
+
+-translate-y-1
+translate-x-1
+scale-85
               ">
 
                 Every purchase supports skilled artisans.
@@ -875,15 +1010,16 @@ export default function Cart() {
         </div>
         {/* Bottom Features */}
 
-        <div className="
-          mt-16
-          bg-white
-          rounded-3xl
-          border
-          border-[#ECE6D8]
-          shadow-sm
-          p-8
-        ">
+       <div className="
+mt-16
+bg-white
+rounded-3xl
+border
+border-[#ECE6D8]
+shadow-sm
+p-8
+translate-y-60
+">
 
 
           <div className="

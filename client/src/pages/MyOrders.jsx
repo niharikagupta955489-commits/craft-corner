@@ -2,156 +2,309 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
+import "../styles/myOrders.css";
+
 
 export default function MyOrders() {
+
+
   const { user } = useAuth();
 
+
   const [orders, setOrders] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user?._id) {
+
+
+  useEffect(()=>{
+
+    if(user?._id){
+
       fetchOrders();
-    } else {
-      setLoading(false);
+
     }
-  }, [user]);
 
-  const fetchOrders = async () => {
-    try {
-      setLoading(true);
+  },[user]);
 
-      const res = await api.get(`/orders/user/${user._id}`);
 
-      setOrders(res.data.orders || []);
-    } catch (error) {
-      console.log(error);
+
+
+  const fetchOrders = async()=>{
+
+    try{
+
+
+      const res = await api.get(
+        `/orders/user/${user._id}`
+      );
+
+
+      setOrders(
+        res.data.orders || []
+      );
+
+
+    }
+    catch(error){
 
       toast.error(
-        error.response?.data?.message || "Failed to fetch orders"
+        "Failed to fetch orders"
       );
-    } finally {
-      setLoading(false);
+
     }
+    finally{
+
+      setLoading(false);
+
+    }
+
   };
 
-  if (loading) {
+
+
+
+
+  if(loading){
+
     return (
-      <div className="min-h-screen flex justify-center items-center text-2xl">
-        Loading...
+
+      <div className="orders-loading">
+
+        Loading Orders...
+
       </div>
+
     );
+
   }
 
-  return (
-    <div className="min-h-screen bg-[#FAF7F0] py-10">
-      <div className="max-w-6xl mx-auto px-6">
 
-        <h1 className="text-4xl font-bold text-[#2F3A2D] mb-8">
+
+
+  return (
+
+    <div className="my-orders-page">
+
+
+      <div className="my-orders-container">
+
+
+
+        <Link
+          to="/"
+          className="orders-back"
+        >
+          ← Back
+        </Link>
+
+
+
+        <h1>
           My Orders
         </h1>
 
-        {orders.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-md p-10 text-center">
-            <h2 className="text-2xl font-bold">
-              No Orders Found
-            </h2>
 
-            <p className="text-gray-500 mt-3">
-              You haven't placed any orders yet.
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-6">
+        <p className="orders-subtitle">
+          Track and manage all your orders in one place.
+        </p>
 
-            {orders.map((order) => (
 
-              <div
-                key={order._id}
-                className="bg-white rounded-2xl shadow-md p-6"
-              >
 
-                <div className="flex justify-between">
 
-                  <div>
 
-                    <h2 className="font-bold text-lg">
-                      Order ID
-                    </h2>
+        <div className="orders-wrapper">
 
-                    <p className="text-gray-500">
-                      {order._id}
-                    </p>
 
-                    <p className="text-sm text-gray-500 mt-2">
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </p>
 
-                  </div>
+        {
+          orders.map((order)=>(
 
-                  <div className="text-right">
 
-                    <h2 className="font-bold">
-                      Status
-                    </h2>
+            <div
+              className="order-box"
+              key={order._id}
+            >
 
-                    <span
-                      className={`px-3 py-1 rounded-full text-white ${
-                        order.status === "Delivered"
-                          ? "bg-green-600"
-                          : order.status === "Shipped"
-                          ? "bg-blue-600"
-                          : "bg-yellow-500"
-                      }`}
-                    >
-                      {order.status}
-                    </span>
 
-                  </div>
 
+              <div className="order-id-section">
+
+
+                <div className="order-icon">
+                  🧾
                 </div>
 
-                <hr className="my-5" />
 
-                {order.items.map((item) => (
+                <div>
 
-                  <div
-                    key={item._id}
-                    className="flex justify-between py-2"
-                  >
-
-                    <span>
-                      {item.product?.name} × {item.quantity}
-                    </span>
-
-                    <span>
-                      ₹{item.price * item.quantity}
-                    </span>
-
-                  </div>
-
-                ))}
-
-                <hr className="my-5" />
-
-                <div className="flex justify-between text-xl font-bold">
-
-                  <span>Total</span>
-
-                  <span className="text-[#556B2F]">
-                    ₹{order.totalPrice}
+                  <span>
+                    Order ID
                   </span>
 
+
+                  <h3>
+                    #{order._id.slice(-8)}
+                  </h3>
+
+
+                  <p>
+                    📅 {new Date(order.createdAt).toLocaleDateString()}
+                  </p>
+
+
                 </div>
+
 
               </div>
 
-            ))}
+
+
+
+
+              <div className="product-section">
+
+
+              {
+                order.items.map((item)=>(
+
+
+                  <div
+                    className="product-row"
+                    key={item._id}
+                  >
+
+
+                    <img
+                      src={
+                        item.product?.images?.[0]
+                      }
+                      alt=""
+                    />
+
+
+                    <div>
+
+
+                      <h3>
+                        {item.product?.name}
+                      </h3>
+
+
+                      <p>
+                        Qty: {item.quantity}
+                      </p>
+
+
+                      <strong>
+                        ₹{item.price}
+                      </strong>
+
+
+                    </div>
+
+
+                  </div>
+
+
+                ))
+              }
+
+
+              </div>
+
+
+
+
+
+
+
+              <div className="status-section">
+
+
+                <span>
+                  Status
+                </span>
+
+
+                <div className="status">
+
+                  {order.status}
+
+                </div>
+
+
+
+                <p>
+                  Total
+                </p>
+
+
+                <h2>
+                  ₹{order.totalPrice}
+                </h2>
+
+
+
+              </div>
+
+
+
+
+
+            </div>
+
+
+          ))
+        }
+
+
+        </div>
+
+
+
+
+
+        <div className="continue-box">
+
+
+          <div>
+
+            <h2>
+              No more orders?
+            </h2>
+
+
+            <p>
+              Explore our beautiful handmade collection.
+            </p>
+
 
           </div>
-        )}
+
+
+
+
+          <Link
+            to="/marketplace"
+            className="continue-btn"
+          >
+            Continue Shopping
+          </Link>
+
+
+
+        </div>
+
+
+
 
       </div>
+
+
     </div>
+
   );
+
 }

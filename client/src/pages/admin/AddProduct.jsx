@@ -10,6 +10,9 @@ const [categories,setCategories]=useState([]);
 
 const [images,setImages]=useState([]);
 
+const [preview,setPreview]=useState([]);
+
+
 
 const [product,setProduct]=useState({
 
@@ -28,6 +31,7 @@ useEffect(()=>{
 getCategories();
 
 },[]);
+
 
 
 
@@ -51,6 +55,7 @@ console.log(error);
 
 
 
+
 const handleChange=(e)=>{
 
 setProduct({
@@ -67,11 +72,55 @@ setProduct({
 
 
 
+
+
 const handleImage=(e)=>{
 
-setImages(e.target.files);
+
+const files=Array.from(e.target.files);
+
+
+
+if(images.length + files.length > 5){
+
+toast.error("Maximum 5 images allowed");
+
+return;
+
+}
+
+
+
+setImages((prev)=>[
+
+...prev,
+
+...files
+
+]);
+
+
+
+
+const newPreview=files.map((file)=>
+
+URL.createObjectURL(file)
+
+);
+
+
+
+setPreview((prev)=>[
+
+...prev,
+
+...newPreview
+
+]);
+
 
 };
+
 
 
 
@@ -81,6 +130,7 @@ setImages(e.target.files);
 const handleSubmit=async(e)=>{
 
 e.preventDefault();
+
 
 
 try{
@@ -96,10 +146,12 @@ product.name
 );
 
 
+
 formData.append(
 "description",
 product.description
 );
+
 
 
 formData.append(
@@ -107,10 +159,13 @@ formData.append(
 product.price || 0
 );
 
+
+
 formData.append(
 "category",
 product.category
 );
+
 
 
 formData.append(
@@ -119,7 +174,10 @@ product.stock || 0
 );
 
 
-Array.from(images).forEach((image)=>{
+
+
+
+images.forEach((image)=>{
 
 formData.append(
 "images",
@@ -127,6 +185,7 @@ image
 );
 
 });
+
 
 
 
@@ -152,9 +211,9 @@ headers:{
 
 
 
-toast.success(
-res.data.message
-);
+
+toast.success(res.data.message);
+
 
 
 
@@ -170,6 +229,8 @@ description:""
 
 
 setImages([]);
+
+setPreview([]);
 
 
 
@@ -200,10 +261,12 @@ error.response?.data?.message ||
 
 return(
 
+
 <div className="min-h-screen bg-[#F6F7FB] flex items-center justify-center p-8">
 
 
 <div className="w-full max-w-5xl bg-white rounded-3xl shadow-xl p-12">
+
 
 
 <h1 className="text-4xl font-bold text-center text-[#2F3A2D] mb-10">
@@ -272,11 +335,7 @@ className="w-full h-14 border rounded-xl px-5"
 >
 
 
-<option>
-
-Select Category
-
-</option>
+<option>Select Category</option>
 
 
 {
@@ -303,8 +362,6 @@ categories.map(cat=>(
 
 
 
-
-
 <div>
 
 <label className="block text-center font-bold mb-3">
@@ -315,12 +372,21 @@ PRICE
 
 
 <input
+
 type="number"
+
 name="price"
+
 value={product.price}
+
 onChange={handleChange}
+
 required
+
+className="w-full h-14 border rounded-xl px-5"
+
 />
+
 
 </div>
 
@@ -353,8 +419,9 @@ className="w-full h-14 border rounded-xl px-5"
 </div>
 
 
-
 </div>
+
+
 
 
 
@@ -366,9 +433,10 @@ className="w-full h-14 border rounded-xl px-5"
 
 <label className="block text-center font-bold mb-3">
 
-UPLOAD IMAGES
+UPLOAD IMAGES (MAX 5)
 
 </label>
+
 
 
 <input
@@ -386,7 +454,46 @@ className="w-full h-14 border rounded-xl px-5"
 />
 
 
+
+
+
+
+<div className="flex gap-4 mt-5 flex-wrap">
+
+
+{
+
+preview.map((img,index)=>(
+
+
+<img
+
+key={index}
+
+src={img}
+
+className="
+w-24
+h-24
+rounded-xl
+object-cover
+border
+"
+
+/>
+
+
+))
+
+}
+
+
+
 </div>
+
+
+</div>
+
 
 
 
