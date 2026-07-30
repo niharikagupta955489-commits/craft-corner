@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import toast from "react-hot-toast";
-
+import { Link } from "react-router-dom";
 import {
   FaDollarSign,
   FaShoppingBag,
@@ -106,6 +106,29 @@ if (loading) {
           </p>
         </div>
 
+<Link
+  to="/"
+  className="
+  rounded-2xl
+ bg-[#FFD08A]
+  px-6
+  py-3
+  font-semibold
+  text-[#556B2F]
+  border
+  border-[#D6E2C8]
+  hover:bg-[#FFB347]
+  transition
+  "
+style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
+            transform: "translate(-20px,-2px)",
+          }}
+
+>
+  🏠 Visit Website
+</Link>
         <div
           className="rounded-3xl border border-[#E6DAC8] bg-white px-7 py-5 shadow-md"
           style={{
@@ -281,6 +304,8 @@ if (loading) {
       <button
         className="rounded-2xl bg-[#EFE2CB] px-5 py-2 font-semibold text-[#8D6732]"
         style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
           transform: "translate(-40px,0px)",
         }}
       >
@@ -469,6 +494,9 @@ if (loading) {
         <span
           className="font-semibold text-[#9D6C22]"
           style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
+
             transform: "translate(21px,0px) scale(0.9) ",
           }}
         >
@@ -657,6 +685,8 @@ if (loading) {
       <button
         className="rounded-xl bg-[#F3E4CB] px-4 py-2 text-[#8D6835] font-semibold"
         style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
           transform: "translate(-35px,20px)scale(0.91)",
         }}
       >
@@ -676,7 +706,8 @@ if (loading) {
               key={head}
               className="pb-4 text-left text-[#8C7862]"
               style={{
-                transform:"translate(0px,29px) scale(0.95)",
+
+                transform:"translate(15px,29px) scale(0.95)",
               }}
             >
               {head}
@@ -726,6 +757,7 @@ dashboard.recentOrders.map((order) => (
       <td
         className="text-[#6F6252]"
         style={{
+
           transform: "translate(0px,0px)",
         }}
       >
@@ -734,11 +766,19 @@ dashboard.recentOrders.map((order) => (
 
       <td
         style={{
+
           transform: "translate(5px,0px)",
         }}
       >
-        <span className="rounded-full bg-[#EFE4D1] px-4 py-1 text-[#A37430]">
+        <span className="rounded-full bg-[#EFE4D1] px-4 py-1 text-[#A37430]"
+  style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
+          transform: "translate(5px,0px)",
+        }}
+>
           {order.status}
+
         </span>
       </td>
 
@@ -841,14 +881,14 @@ dashboard.recentOrders.map((order) => (
     <div
       className="rounded-[32px] border border-[#E8DDCC] bg-[#FFFDF9] p-7 shadow-sm"
       style={{
-        transform:"translate(0px,35px)",
+        transform:"translate(0px,35px)scale(0.96)",
       }}
     >
 
       <h2
         className="text-2xl font-bold text-[#3D3023]"
         style={{
-          transform:"translate(0px,0px)",
+          transform:"translate(10px,4px) scale(0.8)",
         }}
       >
         Low Stock
@@ -866,7 +906,7 @@ dashboard.recentOrders.map((order) => (
             key={index}
             className="flex items-center justify-between rounded-2xl bg-[#FFF3EE] p-4"
             style={{
-              transform:"translate(0px,0px)",
+              transform:"translate(1px,2px) scale(0.9)",
             }}
           >
 
@@ -889,6 +929,8 @@ dashboard.recentOrders.map((order) => (
             <span
               className="rounded-full bg-red-100 px-3 py-1 text-sm font-bold text-red-600"
               style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
                 transform:"translate(0px,0px)",
               }}
             >
@@ -916,14 +958,14 @@ dashboard.recentOrders.map((order) => (
   <div
     className="col-span-2 rounded-[32px] border border-[#E8DDCC] bg-[#FFFDF9] p-8 shadow-sm"
     style={{
-      transform: "translate(0px,0px)",
+      transform: "translate(32px,0px)",
     }}
   >
 
     <h2
       className="text-3xl font-bold text-[#3D3023]"
       style={{
-        transform: "translate(0px,0px)",
+        transform: "translate(-120px,0px) scale(0.65)",
       }}
     >
       Latest Activity
@@ -937,21 +979,21 @@ dashboard.recentOrders.map((order) => (
           key={index}
           className="flex items-center gap-5 rounded-2xl bg-[#FAF6EE] p-5"
           style={{
-            transform:"translate(0px,0px)",
+            transform:"translate(0px,-1px) scale(0.98)",
           }}
         >
 
           <div
             className="h-4 w-4 rounded-full bg-[#C39A57]"
             style={{
-              transform:"translate(0px,0px)",
+              transform:"translate(10px,-2px) scale(0.8)",
             }}
           />
 
           <div
             className="flex-1"
             style={{
-              transform:"translate(0px,0px)",
+              transform:"translate(-30px,0px) scale(0.9)",
             }}
           >
 
@@ -967,7 +1009,7 @@ dashboard.recentOrders.map((order) => (
             <p
               className="text-[#7A6B59]"
               style={{
-                transform:"translate(0px,0px)",
+                transform:"translate(-30px,0px) scale(0.9)",
               }}
             >
               {order.user?.name}
@@ -978,7 +1020,8 @@ dashboard.recentOrders.map((order) => (
           <span
             className="text-sm text-[#9A8A76]"
             style={{
-              transform:"translate(0px,0px)",
+
+              transform:"translate(-20px,0px)",
             }}
           >
            {order.status}
@@ -999,14 +1042,14 @@ dashboard.recentOrders.map((order) => (
   <div
     className="rounded-[32px] border border-[#E8DDCC] bg-[#FFFDF9] p-7 shadow-sm"
     style={{
-      transform:"translate(0px,45px) scale(0.98)",
+      transform:"translate(5px,35px) scale(0.95)",
     }}
   >
 
     <h2
       className="text-2xl font-bold text-[#3D3023]"
       style={{
-        transform:"translate(0px,3px) scale(0.91)",
+        transform:"translate(10px,8px) scale(0.91)",
       }}
     >
       Reviews
@@ -1024,7 +1067,7 @@ dashboard.recentOrders.map((order) => (
           key={index}
           className="rounded-2xl bg-[#FAF6EE] p-5"
           style={{
-            transform:"translate(-20px,0px) scale(0.81)",
+            transform:"translate(-20px,10px) scale(0.81)",
           }}
         >
 

@@ -13,6 +13,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import homeRoutes from "./routes/homeRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import adminV2Routes from "./routes/adminV2Routes.js";
+import wishlistRoutes from "./routes/wishlistRoutes.js";
 
 
 
@@ -21,20 +22,21 @@ const app = express();
 
 
 app.use(
-cors({
-origin:true,
-credentials:true
-})
+  cors({
+    origin:true,
+    credentials:true
+  })
 );
 
 
 
 app.use(express.json());
 
+
 app.use(
-express.urlencoded({
-extended:true
-})
+  express.urlencoded({
+    extended:true
+  })
 );
 
 
@@ -45,76 +47,91 @@ app.use(cookieParser());
 
 // Routes
 
+
 app.use(
-"/api/admin",
-adminRoutes
+  "/api/admin",
+  adminRoutes
 );
 
 
 app.use(
-"/api/auth",
-authRoutes
+  "/api/auth",
+  authRoutes
 );
 
 
 app.use(
-"/api/products",
-productRoutes
+  "/api/products",
+  productRoutes
 );
 
 
 app.use(
-"/api/cart",
-cartRoutes
+  "/api/cart",
+  cartRoutes
 );
 
 
 app.use(
-"/api/orders",
-orderRoutes
+  "/api/wishlist",
+  wishlistRoutes
 );
 
 
 app.use(
-"/api/dashboard",
-dashboardRoutes
+  "/api/orders",
+  orderRoutes
 );
 
 
 app.use(
-"/api/categories",
-categoryRoutes
+  "/api/dashboard",
+  dashboardRoutes
 );
 
-
-app.use("/api/admin-v2", adminV2Routes);
 
 app.use(
-"/api/home",
-homeRoutes
+  "/api/categories",
+  categoryRoutes
 );
 
+
 app.use(
-"/api/upload",
-uploadRoutes
+  "/api/admin-v2",
+  adminV2Routes
 );
+
+
+app.use(
+  "/api/home",
+  homeRoutes
+);
+
+
+app.use(
+  "/api/upload",
+  uploadRoutes
+);
+
+
 
 
 // Test API
 
+
 app.get(
-"/",
-(req,res)=>{
+  "/",
+  (req,res)=>{
 
-res.json({
+    res.json({
 
-success:true,
+      success:true,
 
-message:"CraftCorner Backend Running"
+      message:"CraftCorner Backend Running"
 
-});
+    });
 
-}
+  }
 
 );
 

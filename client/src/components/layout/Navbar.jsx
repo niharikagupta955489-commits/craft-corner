@@ -168,28 +168,52 @@ const handleSearch = (e) => {
 
           {isLoggedIn ? (
 
-            <div className="flex items-center gap-3">
+<div className="flex items-center gap-3">
 
-              <div className="flex items-center gap-2">
+  <Link
+    to="/profile"
+    className="
+    flex
+    items-center
+    gap-2
+    hover:text-[#556B2F]
+    cursor-pointer
+    "
+  >
 
-                <FaUserCircle size={22} />
+    <FaUserCircle size={22} />
 
-                <span className="hidden lg:block font-semibold">
-                  {user?.name}
-                </span>
+    <span className="hidden lg:block font-semibold">
+      {user?.name}
+    </span>
 
-              </div>
+  </Link>
 
-              <button
-  onClick={handleLogout}
-  className="w-28 flex items-center justify-center text-red-600 bg-red-50 px-5 py-2.5 rounded-xl border border-red-200 hover:bg-red-100 transition"
->
-  Logout
-</button>
 
-            </div>
+  <button
+    onClick={handleLogout}
+    className="
+    w-28
+    flex
+    items-center
+    justify-center
+    text-red-600
+    bg-red-50
+    px-5
+    py-2.5
+    rounded-xl
+    border
+    border-red-200
+    hover:bg-red-100
+    transition
+    "
+  >
+    Logout
+  </button>
 
-          ) : (
+</div>
+
+) : (
 
             <Link
               to="/login"

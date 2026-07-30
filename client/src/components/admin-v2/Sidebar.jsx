@@ -218,6 +218,12 @@ export default function Sidebar() {
 
           <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-white/10 blur-2xl"></div>
 
+
+
+
+
+
+
           {/* Profile */}
 
          <Link
@@ -288,6 +294,8 @@ transform:"translateX(0px) translateY(0px)"
 
 </Link>
 
+
+
           {/* Small Divider */}
 
           <div className="my-5 h-px bg-white/10"></div>
@@ -319,6 +327,9 @@ transform:"translateX(0px) translateY(0px)"
           </button>
 
         </div>
+
+
+
 
         {/* Version */}
 

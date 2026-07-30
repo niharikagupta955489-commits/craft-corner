@@ -255,6 +255,7 @@ export default function AdminManagement() {
 key={item.title}
 className="group rounded-[30px] border border-[#E8DDCC] bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
 style={{
+
  transform:"translate(10px,0px) scale(0.83)",
 }}
 >
@@ -319,6 +320,7 @@ style={{
 <p
 className="mt-3 text-lg text-[#7A6B59]"
 style={{
+
  transform:"translate(90px,-35px) scale(0.9)",
 }}
 >
@@ -366,6 +368,7 @@ transform:"translate(5px,0px)",
 <div
 className="mb-10 rounded-[32px] border border-[#E8DDCC] bg-white p-7 shadow-lg"
 style={{
+
 transform:"translate(10px,0px) scale(0.97)",
 }}
 >
@@ -374,6 +377,7 @@ transform:"translate(10px,0px) scale(0.97)",
 <div
 className="flex items-center justify-between gap-6"
 style={{
+
 transform:"translate(-22px,0px)",
 }}
 >
@@ -382,6 +386,7 @@ transform:"translate(-22px,0px)",
 <div
 className="relative w-[410px]"
 style={{
+
 transform:"translate(10px,0px) scale(0.94)",
 }}
 >
@@ -407,7 +412,9 @@ className="w-full rounded-2xl border border-[#E6DAC8] bg-[#FCFAF7] py- pl-14 pr-
 <button
 className="flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#B6884D] to-[#DDBD83] px-8 py-4 font-bold text-white shadow-lg"
 style={{
-transform:"translate(23px,0px) scale(0.98)",
+paddingLeft:"30px",
+ paddingRight:"30px",
+transform:"translate(22px,0px) scale(0.99)",
 }}
 >
 
@@ -434,6 +441,7 @@ transform:"translate(23px,0px) scale(0.98)",
 <div
 className="col-span-5"
 style={{
+
  transform:"translate(15px,0px)",
 }}
 >
@@ -473,6 +481,7 @@ style={{
 <h2
 className="text-3xl font-black text-[#3D3023]"
 style={{
+
  transform:"translate(10px,5px) scale(0.9)",
 }}
 >
@@ -524,6 +533,8 @@ onChange={handleChange}
 placeholder="Enter admin name"
 className="w-full rounded-2xl border border-[#E6DAC8] bg-[#FCFAF7] px-5 py-4 text-[#3D3023] outline-none transition-all duration-300 focus:border-[#B68B4A] focus:ring-4 focus:ring-[#F8E7C8]"
 style={{
+paddingLeft:"30px",
+ paddingRight:"30px",
   transform:"translate(0px,0px) scale(0.95)",
 }}
 />
@@ -539,6 +550,7 @@ style={{
 <div
 className="mb-6"
 style={{
+
   transform:"translate(5px,0px) scale(0.95)",
 }}
 >
@@ -546,6 +558,7 @@ style={{
 <label
 className="mb-3 block font-semibold text-[#5E503F]"
 style={{
+
  transform:"translate(10px,0px) scale(0.9)",
 }}
 >
@@ -560,7 +573,9 @@ onChange={handleChange}
 placeholder="admin@email.com"
 className="w-full rounded-2xl border border-[#E6DAC8] bg-[#FCFAF7] px-5 py-4 text-[#3D3023] outline-none transition-all duration-300 focus:border-[#B68B4A] focus:ring-4 focus:ring-[#F8E7C8]"
 style={{
- transform:"translate(0px,0px) scale(0.95)",
+paddingLeft:"30px",
+ paddingRight:"30px",
+ transform:"translate(-1px,0px) scale(0.95)",
 }}
 />
 
@@ -597,6 +612,8 @@ onChange={handleChange}
 placeholder="Create secure password"
 className="w-full rounded-2xl border border-[#E6DAC8] bg-[#FCFAF7] px-5 py-4 text-[#3D3023] outline-none transition-all duration-300 focus:border-[#B68B4A] focus:ring-4 focus:ring-[#F8E7C8]"
 style={{
+paddingLeft:"30px",
+ paddingRight:"30px",
  transform:"translate(0px,0px) scale(0.95)",
 }}
 />
@@ -630,6 +647,8 @@ value={form.role}
 onChange={handleChange}
 className="w-full rounded-2xl border border-[#E6DAC8] bg-[#FCFAF7] px-5 py-4 text-[#3D3023] outline-none transition-all duration-300 focus:border-[#B68B4A] focus:ring-4 focus:ring-[#F8E7C8]"
 style={{
+paddingLeft:"30px",
+ paddingRight:"30px",
   transform:"translate(0px,0px) scale(0.95)",
 }}
 >
@@ -684,6 +703,8 @@ form.permissions.includes(item)
 : "border-[#E8DDCC] bg-[#FCFAF7] text-[#3D3023]"
 }`}
 style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
   transform:"scale(0.9)",
 }}
 >
@@ -745,6 +766,7 @@ style={{
 
             <div className="mb-8 flex items-center justify-between"
 style={{
+
   transform:"translate(0px,5px)",
 }}>
 
@@ -752,6 +774,7 @@ style={{
 
                 <h2 className="text-3xl font-black text-[#3D3023]"
 style={{
+
   transform:"translate(30px,-2px) scale(0.9)",
 }}>
                   All Administrators
@@ -759,6 +782,7 @@ style={{
 
                 <p className="mt-2 text-[#7A6B59]"
 style={{
+
   transform:"translate(40px,-10px)",
 }}>
                   Manage all administrator accounts.
@@ -768,11 +792,15 @@ style={{
 
               <div className="rounded-2xl bg-[#F8F3EA] px-6 py-3"
 style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
   transform:"translate(-20px,-8px)",
 }}>
 
                 <span className="font-bold text-[#B6884D]"
 style={{
+paddingLeft:"20px",
+ paddingRight:"20px",
   transform:"translate(1px,5px) scale(0.9)",
 }}>
                   {admins.length} Admins
@@ -784,6 +812,7 @@ style={{
 
             <div className="space-y-6"
 style={{
+
   transform:"translate(5px,-10px)scale(0.96)" ,
 }}>
 
@@ -791,11 +820,14 @@ style={{
 
                 <div className="rounded-[28px] border-2 border-dashed border-[#E7D9C4] py-20 text-center"
 style={{
+
+
   transform:"translate(0px,8px)",
 }} >
 
                   <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-[#F5E7CD] text-5xl text-[#B6884D]"
 style={{
+
   transform:"translate(0px,5px)",
 }}
 >
@@ -806,6 +838,7 @@ style={{
 
                   <h3 className="text-3xl font-bold text-[#3D3023]"
 style={{
+
   transform:"translate(0px,10px)",
 }}
 >
@@ -831,6 +864,7 @@ style={{
                     className="group rounded-[28px] border border-[#E8DDCC] bg-[#FFFEFC] p-6 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
 
 style={{
+
   transform:"translate(0px,5px)",
 }}
                   >
@@ -838,17 +872,20 @@ style={{
                     <div className="flex items-start justify-between"
 
 style={{
+
   transform:"translate(0px,5px)",
 }}
 >
 
                       <div className="flex items-center gap-5"
 style={{
+
   transform:"translate(0px,-8px) scale(0.93)",
 }}>
 
                         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#C89B55] to-[#E6CA91] text-2xl font-bold text-white shadow-lg"
 style={{
+
   transform:"translate(0px,5px)",
 }}>
 
@@ -860,6 +897,7 @@ style={{
 
                           <h3 className="text-2xl font-bold text-[#3D3023]"
 style={{
+
   transform:"translate(0px,5px)",
 }}
 >
@@ -870,6 +908,7 @@ style={{
 
                           <p className="mt-1 text-[#7A6B59]"
 style={{
+
   transform:"translate(0px,5px)",
 }}
 >
@@ -904,6 +943,7 @@ style={{
 
                       <div className="flex gap-3"
 style={{
+
   transform:"translate(-15px,20px)",
 }}
 >
@@ -913,7 +953,9 @@ style={{
                           className="rounded-xl border border-[#D9B77E] bg-white px-5 py-3 font-semibold text-[#B6884D] transition-all hover:bg-[#FFF6E8]"
 
 style={{
-  transform:"translate(0px,5px)",
+paddingLeft:"20px",
+ paddingRight:"20px",
+  transform:"translate(0px,-4px)",
 }}
                         >
 
@@ -925,7 +967,9 @@ style={{
                           onClick={() => deleteAdmin(admin._id)}
                           className="rounded-xl bg-gradient-to-r from-red-500 to-red-400 px-5 py-3 font-semibold text-white transition-all hover:scale-105"
 style={{
-  transform:"translate(0px,4px)",
+paddingLeft:"20px",
+ paddingRight:"10px",
+  transform:"translate(0px,-4px)",
 }}
                         >
 
@@ -950,7 +994,9 @@ style={{
                           key={permission}
                           className="rounded-full bg-gradient-to-r from-[#F7E7C9] to-[#F2D8A3] px-4 py-2 text-sm font-semibold text-[#7B5A28]"
 style={{
-  transform:"translate(150px,-20px)",
+paddingLeft:"10px",
+ paddingRight:"10px",
+  transform:"translate(150px,-20px) scale(0.8)",
 }}
                         >
 
@@ -988,6 +1034,7 @@ style={{
         <div className="flex flex-col md:flex-row items-center justify-between gap-6"
 
 style={{
+
   transform:"translate(0px,-1px) scale(0.9)",
 }}
 >
