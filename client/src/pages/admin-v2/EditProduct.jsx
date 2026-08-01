@@ -81,19 +81,134 @@ setProduct({
 
 const handleImage=(e)=>{
 
-const files=Array.from(e.target.files);
+const files = Array.from(e.target.files);
 
-setNewImages(files);
+
+const previews = files.map((file)=>({
+
+file:file,
+
+url:URL.createObjectURL(file)
+
+}));
+
+
+setNewImages([
+
+...newImages,
+
+...previews
+
+]);
+
 
 };
-
 
 const handleSubmit=async(e)=>{
 
 e.preventDefault();
 
 
-// tumhara existing update code yaha rahega
+try{
+
+
+const formData = new FormData();
+
+
+formData.append(
+"name",
+product.name
+);
+
+
+formData.append(
+"category",
+product.category
+);
+
+
+formData.append(
+"price",
+product.price
+);
+
+
+formData.append(
+"stock",
+product.stock
+);
+
+
+formData.append(
+"description",
+product.description
+);
+
+
+newImages.forEach((img)=>{
+
+formData.append(
+"images",
+img.file
+);
+
+});
+
+newImages.forEach((img)=>{
+
+formData.append(
+"images",
+img
+);
+
+});
+
+
+
+const res = await api.put(
+
+`/products/${id}`,
+
+formData,
+
+{
+
+headers:{
+
+"Content-Type":"multipart/form-data"
+
+}
+
+}
+
+);
+
+
+
+toast.success(
+"Product Updated Successfully"
+);
+
+
+navigate(
+"/admin-v2/products"
+);
+
+
+
+}catch(error){
+
+
+console.log(error);
+
+
+toast.error(
+"Product Update Failed"
+);
+
+
+}
+
 
 };
 return(
@@ -705,6 +820,127 @@ transform:"translateX(0px) translateY(0px)"
 
 </div>
 
+<div className="mt-8">
+
+<label
+className="
+block
+text-sm
+font-semibold
+text-gray-700
+mb-4
+"
+>
+Updated Images
+</label>
+
+
+<div
+className="
+flex
+flex-wrap
+gap-5
+"
+>
+
+
+{
+newImages.map((img,index)=>(
+
+<div
+key={index}
+className="relative"
+>
+
+<img
+
+src={img.url}
+
+alt="new"
+
+className="
+w-28
+h-28
+rounded-2xl
+object-cover
+border
+border-[#556B2F]
+shadow-sm
+"
+
+/>
+
+
+<button
+
+type="button"
+
+onClick={()=>{
+
+setNewImages(
+newImages.filter(
+(_,i)=>i!==index
+)
+);
+
+}}
+
+className="
+absolute
+-top-2
+-right-2
+bg-red-500
+text-white
+w-6
+h-6
+rounded-full
+flex
+items-center
+justify-center
+font-bold
+shadow
+"
+
+>
+
+×
+
+</button>
+
+
+
+<div
+
+className="
+absolute
+bottom-2
+right-2
+bg-[#556B2F]
+text-white
+text-xs
+px-2
+py-1
+rounded-full
+"
+
+>
+
+New
+
+</div>
+
+
+</div>
+
+
+))
+}
+
+
+
+</div>
+
+</div>
 
 </div>
 
