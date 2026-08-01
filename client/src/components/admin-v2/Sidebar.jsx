@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo2.png";
+import { useAuth } from "../../context/AuthContext";
 
 import React from "react";
 import { Link } from "react-router-dom";
@@ -59,6 +60,7 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
+const { user } = useAuth();
   return (
     <aside className="fixed left-0 top-0 z-50 h-screen w-[260px] overflow-hidden bg-gradient-to-b from-[#F7F3E9] via-[#F3EEDF] to-to-[#ECE5D4] text-[#4E4334] shadow-[10px_0_35px_rgba(0,0,0,.35)]">
 
@@ -252,11 +254,50 @@ transform:"translateX(0px) translateY(0px)"
   <div className="relative">
 
 
-    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#F7C44A] to-[#D79B1B] text-xl font-bold text-[#17311A] shadow-lg">
+   <div
+className="
+flex
+h-14
+w-14
+items-center
+justify-center
+overflow-hidden
+rounded-full
+bg-gradient-to-br
+from-[#F7C44A]
+to-[#D79B1B]
+text-xl
+font-bold
+text-[#17311A]
+shadow-lg
+"
+>
 
-      A
+{
+  user?.avatar ? (
 
-    </div>
+    <img
+
+    src={user.avatar}
+
+    alt="admin"
+
+    className="
+    h-full
+    w-full
+    object-cover
+    "
+
+    />
+
+  ) : (
+
+    user?.name?.charAt(0).toUpperCase() || "A"
+
+  )
+}
+
+</div>
 
 
 
@@ -273,9 +314,9 @@ transform:"translateX(0px) translateY(0px)"
 
     <h3 className="font-semibold text-[#4E4334]">
 
-      Admin
+  {user?.name || "Admin"}
 
-    </h3>
+</h3>
 
 
 

@@ -1,27 +1,31 @@
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 
 export default function AdminProfile(){
 
 
+const { user } = useAuth();
+
+
+
 const [admin,setAdmin] = useState({
 
-name:"Admin Name",
+name:user?.name || "",
 
-email:"admin@gmail.com",
+email:user?.email || "",
 
-mobile:"9876543210",
+mobile:user?.phone || "",
 
 password:"",
 
 confirmPassword:"",
 
-role:"Super Admin"
+role:user?.role || "Super Admin",
 
+avatar:user?.avatar || ""
 
 });
-
-
 
 const handleChange=(e)=>{
 
@@ -179,6 +183,7 @@ bg-[#F5E6C8]
 flex
 items-center
 justify-center
+overflow-hidden
 text-5xl
 font-bold
 text-[#C58B45]
@@ -186,7 +191,35 @@ text-[#C58B45]
 
 >
 
-A
+{
+
+admin.avatar ? (
+
+<img
+
+src={admin.avatar}
+
+alt="admin"
+
+className="
+h-full
+w-full
+object-cover
+"
+
+/>
+
+)
+
+:
+
+(
+
+admin.name?.charAt(0).toUpperCase()
+
+)
+
+}
 
 </div>
 
