@@ -12,12 +12,15 @@ import {
 
   getProfile,
 
-  updateProfile
+  updateProfile,
+
+uploadProfilePhoto
 
 } from "../controllers/authController.js";
 
 
 import { protect } from "../middleware/authMiddleware.js";
+import profileUpload from "../middleware/profileUpload.js";
 
 
 const router = express.Router();
@@ -69,6 +72,12 @@ router.put(
   updateProfile
 );
 
+router.put(
+ "/profile/photo",
+ protect,
+ profileUpload.single("avatar"),
+ uploadProfilePhoto
+);
 
 
 export default router;

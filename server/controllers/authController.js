@@ -497,3 +497,79 @@ export const updateProfile = async(req,res)=>{
   }
 
 };
+
+
+// UPDATE PROFILE PHOTO
+
+export const uploadProfilePhoto = async(req,res)=>{
+
+  try{
+
+
+    const user = await User.findById(
+      req.user.id
+    );
+
+
+    if(!user){
+
+      return res.status(404).json({
+
+        success:false,
+
+        message:"User not found"
+
+      });
+
+    }
+
+
+
+    if(!req.file){
+
+      return res.status(400).json({
+
+        success:false,
+
+        message:"Please upload image"
+
+      });
+
+    }
+
+
+
+    user.avatar = req.file.path;
+
+
+    await user.save();
+
+
+
+    res.json({
+
+      success:true,
+
+      message:"Profile photo updated",
+
+      avatar:user.avatar
+
+    });
+
+
+
+  }catch(error){
+
+
+    res.status(500).json({
+
+      success:false,
+
+      message:error.message
+
+    });
+
+
+  }
+
+};

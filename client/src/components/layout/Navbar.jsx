@@ -181,11 +181,37 @@ const handleSearch = (e) => {
     "
   >
 
+    {
+  user?.avatar ? (
+
+    <img
+
+      src={user.avatar}
+
+      alt="profile"
+
+      className="
+      h-10
+      w-10
+      rounded-full
+      object-cover
+      border
+      border-[#C98A3D]
+      "
+
+    />
+
+  ) : (
+
     <FaUserCircle size={22} />
 
-    <span className="hidden lg:block font-semibold">
-      {user?.name}
-    </span>
+  )
+}
+
+
+<span className="hidden lg:block font-semibold">
+  {user?.name}
+</span>
 
   </Link>
 
