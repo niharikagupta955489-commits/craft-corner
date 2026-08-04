@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { registerUser } from "../services/authService";
-
+import { FaHome } from "react-icons/fa";
 import {
   FaUser,
   FaEnvelope,
@@ -199,7 +199,34 @@ overflow-hidden
 
     >
 
-
+ <Link
+      to="/"
+      className="
+      absolute
+      top-6
+      left-6
+      flex
+      items-center
+      gap-2
+      bg-[#FAF7F0]
+      px-4
+      py-2
+      rounded-xl
+      shadow-md
+      hover:bg-gray-100
+      transition
+      "
+      style={{
+        paddingLeft:"20px",
+        paddingRight:"20px",
+        transform: "translateY(6px)"
+      }}
+    >
+      <FaHome className="text-[#556B2F]" />
+      <span className="text-[#556B2F] font-semibold">
+        Home
+      </span>
+    </Link>
 
 
 
