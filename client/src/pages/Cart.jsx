@@ -831,8 +831,8 @@ translate-y-1
                   w-full
                   py-4
                   rounded-2xl
-                  bg-[#556B2F]
-                  hover:bg-[#445625]
+                  bg-[#FFB205]
+                  hover: bg-[#FFA733]
                   text-white
                   font-semibold
                   text-lg
@@ -961,8 +961,8 @@ scale-95
           <div className="
 rounded-3xl
 bg-gradient-to-br
-from-[#556B2F]
-to-[#445625]
+from-bg-[#FFF3E0]
+to-[#FF8A9]
 text-white
 p-8
 shadow-xl
