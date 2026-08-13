@@ -80,7 +80,14 @@ text-4xl
 font-bold
 text-[#35451f]
 mb-10
-">
+"
+style={{
+
+transform:"translate(-70px,-30px) scale(1)"
+
+}}
+
+>
 
 Popular Categories
 

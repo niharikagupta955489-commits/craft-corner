@@ -15,123 +15,123 @@ import api from "../services/api";
 
 
 
-export default function CategoryPage() {
+export default function CategoryPage(){
 
 
-  const category = window.location.pathname.replace("/", "");
-
-
-
-  const [products, setProducts] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
-
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [showFilter, setShowFilter] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("Newest");
-
-
-  useEffect(() => {
-
-
-    const getProducts = async () => {
-
-
-      try {
-
-
-        const res = await api.get(
-
-          `/products/category/${category}`
-
-        );
-
-
-        setProducts(
-
-          res.data.products
-
-        );
-
-        setFilteredProducts(
-          res.data.products
-        );
-
-      }
-
-      catch (error) {
-
-        console.log(error);
-
-      }
-
-
-      finally {
-
-        setLoading(false);
-
-      }
-
-
-    };
+const category = window.location.pathname.replace("/","");
 
 
 
-    getProducts();
+const [products,setProducts] = useState([]);
+
+const [loading,setLoading] = useState(true);
+
+
+const [filteredProducts, setFilteredProducts] = useState([]);
+const [showFilter, setShowFilter] = useState(false);
+const [activeFilter, setActiveFilter] = useState("Newest");
+
+
+useEffect(()=>{
+
+
+const getProducts = async()=>{
+
+
+try{
+
+
+const res = await api.get(
+
+`/products/category/${category}`
+
+);
+
+
+setProducts(
+
+res.data.products
+
+);
+
+setFilteredProducts(
+res.data.products
+);
+
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+
+finally{
+
+setLoading(false);
+
+}
+
+
+};
 
 
 
-  }, [category]);
-
-
-  const handleFilter = (type) => {
-
-    let data = [...products];
-
-    switch (type) {
-
-
-      case "low":
-        data.sort((a, b) => a.price - b.price);
-        setActiveFilter("Price : Low → High");
-        break;
-
-      case "high":
-        data.sort((a, b) => b.price - a.price);
-        setActiveFilter("Price : High → Low");
-        break;
-
-      case "new":
-        data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        setActiveFilter("Newest");
-        break;
-
-      case "old":
-        data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-        setActiveFilter("Oldest");
-        break;
-
-      default:
-        data = [...products];
-        setActiveFilter("Newest");
-    }
-
-    setFilteredProducts(data);
-    setShowFilter(false);
-
-  };
+getProducts();
 
 
 
-  if (loading) {
+},[category]);
 
 
-    return (
+const handleFilter = (type) => {
 
-      <div
+let data = [...products];
 
-        className="
+switch(type){
+
+
+case "low":
+data.sort((a,b)=>a.price-b.price);
+setActiveFilter("Price : Low → High");
+break;
+
+case "high":
+data.sort((a,b)=>b.price-a.price);
+setActiveFilter("Price : High → Low");
+break;
+
+case "new":
+data.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+setActiveFilter("Newest");
+break;
+
+case "old":
+data.sort((a,b)=>new Date(a.createdAt)-new Date(b.createdAt));
+setActiveFilter("Oldest");
+break;
+
+default:
+data = [...products];
+setActiveFilter("Newest");
+}
+
+setFilteredProducts(data);
+setShowFilter(false);
+
+};
+
+
+
+if(loading){
+
+
+return(
+
+<div
+
+className="
 min-h-screen
 flex
 items-center
@@ -139,52 +139,52 @@ justify-center
 text-xl
 "
 
-        style={{
+style={{
 
-          transform: "translateX(0px) translateY(20px)"
+transform:"translateX(0px) translateY(20px)"
 
-        }}
+}}
 
-      >
+>
 
-        Loading...
+Loading...
 
-      </div>
-
-
-    )
-
-  }
+</div>
 
 
+)
+
+}
 
 
 
 
 
-  return (
 
 
-    <div
+return(
 
-      className="
+
+<div
+
+className="
 min-h-screen
 bg-[#F7F2E8]
 py-6
 "
 
-      style={{
+style={{
 
-        transform: "translateX(5px) translateY(10px)"
+transform:"translateX(5px) translateY(10px)"
 
-      }}
+}}
 
-    >
+>
 
 
-      <div
+<div
 
-        className="
+className="
 max-w-[1500px]
 mx-auto
 px-4
@@ -192,27 +192,27 @@ flex
 gap-5
 "
 
-        style={{
+style={{
 
-          transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-        }}
+}}
 
-      >
-
-
+>
 
 
 
 
 
-        {/* LEFT SIDEBAR */}
+
+
+{/* LEFT SIDEBAR */}
 
 
 
-        <div
+<div
 
-          className="
+className="
 hidden
 lg:block
 w-[290px]
@@ -222,98 +222,98 @@ rounded-[35px]
 p-6
 "
 
-          style={{
+style={{
 
 
-            transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-          }}
+}}
 
-        >
+>
 
 
 
-          <div
+<div
 
-            className="
+className="
 h-[340px]
 rounded-[35px]
 overflow-hidden
 bg-[#A7A883]
 "
 
-            style={{
+style={{
 
-              transform: "translateX(-6px) translateY(0px) scale(0.9)"
+transform:"translateX(-6px) translateY(0px) scale(0.9)"
 
-            }}
+}}
 
-          >
+>
 
 
-            <img
-              src={potterySide}
+<img
+  src={potterySide}
 
-              className="
+className="
 w-full
 h-full
 object-cover
 "
-              style={{
+style={{
 
-                transform: "translateX(0px) translateY(0px) scale(0.99)"
+transform:"translateX(0px) translateY(0px) scale(0.99)"
 
-              }}
+}}
 
-            />
-
-
-          </div>
+/>
 
 
+</div>
 
 
 
 
 
-          <div
 
-            className="
+
+<div
+
+className="
 mt-10
 space-y-10
 "
 
-            style={{
+style={{
 
-              transform: "translateX(0px) translateY(20px)"
+transform:"translateX(0px) translateY(20px)"
 
-            }}
+}}
 
-          >
-
-
+>
 
 
 
-            <div
 
-              className="
+
+<div
+
+className="
 flex
 gap-5
 "
 
-              style={{
+style={{
 
-                transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-              }}
+}}
 
-            >
+>
 
 
-              <div
+<div
 
-                className="
+className="
 w-14
 h-14
 rounded-full
@@ -324,87 +324,87 @@ items-center
 justify-center
 "
 
-              >
+>
 
-                <FaLeaf
+<FaLeaf
 
-                  className="
+className="
 text-[#556B2F]
 "
 
-                  size={24}
+size={24}
 
-                />
-
-
-              </div>
+/>
 
 
+</div>
 
 
-              <div>
 
 
-                <h3
+<div>
 
-                  className="
+
+<h3
+
+className="
 font-bold
 text-xl
 text-[#344225]
 "
 
-                >
+>
 
-                  Handmade
+Handmade
 
-                </h3>
+</h3>
 
 
-                <p
+<p
 
-                  className="
+className="
 text-gray-600
 mt-2
 "
 
-                >
+>
 
-                  Crafted with traditional techniques
+Crafted with traditional techniques
 
-                </p>
-
-
-              </div>
+</p>
 
 
-            </div>
+</div>
 
 
+</div>
 
 
 
 
 
 
-            <div
 
-              className="
+
+<div
+
+className="
 flex
 gap-5
 "
 
-              style={{
+style={{
 
-                transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-              }}
+}}
 
-            >
+>
 
 
-              <div
+<div
 
-                className="
+className="
 w-14
 h-14
 rounded-full
@@ -415,86 +415,86 @@ items-center
 justify-center
 "
 
-              >
+>
 
-                <FaShieldAlt
+<FaShieldAlt
 
-                  className="
+className="
 text-[#556B2F]
 "
 
-                  size={24}
+size={24}
 
-                />
-
-
-              </div>
+/>
 
 
+</div>
 
 
-              <div>
 
 
-                <h3
+<div>
 
-                  className="
+
+<h3
+
+className="
 font-bold
 text-xl
 text-[#344225]
 "
 
-                >
+>
 
-                  Premium Quality
+Premium Quality
 
-                </h3>
+</h3>
 
 
-                <p
+<p
 
-                  className="
+className="
 text-gray-600
 mt-2
 "
 
-                >
+>
 
-                  High quality clay and materials
+High quality clay and materials
 
-                </p>
-
-
-              </div>
+</p>
 
 
-            </div>
+</div>
 
 
+</div>
 
 
 
 
 
-            <div
 
-              className="
+
+<div
+
+className="
 flex
 gap-5
 "
 
-              style={{
+style={{
 
-                transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-              }}
+}}
 
-            >
+>
 
 
-              <div
+<div
 
-                className="
+className="
 w-14
 h-14
 rounded-full
@@ -505,163 +505,163 @@ items-center
 justify-center
 "
 
-              >
+>
 
-                <FaTruck
+<FaTruck
 
-                  className="
+className="
 text-[#556B2F]
 "
 
-                  size={24}
+size={24}
 
-                />
-
-
-              </div>
+/>
 
 
+</div>
 
 
-              <div>
 
 
-                <h3
+<div>
 
-                  className="
+
+<h3
+
+className="
 font-bold
 text-xl
 text-[#344225]
 "
 
-                >
+>
 
-                  Safe Delivery
+Safe Delivery
 
-                </h3>
+</h3>
 
 
-                <p
+<p
 
-                  className="
+className="
 text-gray-600
 mt-2
 "
 
-                >
+>
 
-                  Carefully packaged for safe shipping
+Carefully packaged for safe shipping
 
-                </p>
-
-
-              </div>
+</p>
 
 
-            </div>
+</div>
 
 
+</div>
 
 
 
 
-          </div>
+
+
+</div>
 
 
 
 
-        </div>
+</div>
 
 
 
 
-        {/* MAIN CONTENT */}
+{/* MAIN CONTENT */}
 
 
-        <div
+<div
 
-          className="
+className="
 flex-1
 bg-white
 rounded-[40px]
 p-10
 "
 
-          style={{
+style={{
 
-            transform: "translateX(-18px) translateY(0px)"
+transform:"translateX(-18px) translateY(0px)"
 
-          }}
+}}
 
-        >
-
-
+>
 
 
 
-          {/* BREADCRUMB */}
 
 
-          <div
+{/* BREADCRUMB */}
 
-            className="
+
+<div
+
+className="
 flex
 items-center
 gap-3
 text-[#6B6B5E]
 "
 
-            style={{
+style={{
 
-              transform: "translateX(50px) translateY(20px)"
+transform:"translateX(50px) translateY(20px)"
 
-            }}
+}}
 
-          >
-
-
-            <Link to="/" className="flex items-center gap-2 text-[#556B2F] hover:text-[#344225]">
-              <FaHome />
-              <span>Home</span>
-            </Link>
+>
 
 
-            <span>
+<Link to="/" className="flex items-center gap-2 text-[#556B2F] hover:text-[#344225]">
+  <FaHome />
+  <span>Home</span>
+</Link>
 
-              ›
 
-            </span>
+<span>
+
+›
+
+</span>
 
 
-            <span
+<span
 
-              className="
+className="
 capitalize
 "
 
-            >
+>
 
-              {category}
+{category}
 
-            </span>
-
-
-          </div>
+</span>
 
 
+</div>
 
 
 
 
 
 
-          {/* TITLE */}
+
+
+{/* TITLE */}
 
 
 
-          <h1
+<h1
 
-            className="
+className="
 text-[64px]
 font-black
 capitalize
@@ -670,84 +670,84 @@ mt-8
 leading-none
 "
 
-            style={{
+style={{
 
-              transform: "translateX(-250px) translateY(10px) scale(0.5)"
+transform:"translateX(-250px) translateY(10px) scale(0.5)"
 
-            }}
+}}
 
-          >
-
-
-            {category}
+>
 
 
-          </h1>
+{category}
 
 
+</h1>
 
 
 
 
 
-          <div
 
-            className="
+
+<div
+
+className="
 flex
 items-center
 gap-3
 mt-5
 "
 
-            style={{
+style={{
 
-              transform: "translateX(50px) translateY(0px)"
+transform:"translateX(50px) translateY(0px)"
 
-            }}
+}}
 
-          >
+>
 
 
-            <div
+<div
 
-              className="
+className="
 w-10
 h-[3px]
 bg-[#556B2F]
 "
 
-            ></div>
+></div>
 
 
-            <div
+<div
 
-              className="
+className="
 text-[#8C9A70]
 text-2xl
 "
 
-            >
+>
 
-              ❧
+❧
 
-            </div>
-
-
-          </div>
+</div>
 
 
+</div>
 
 
 
 
 
 
-          {/* DESCRIPTION */}
 
 
-          <p
+{/* DESCRIPTION */}
 
-            className="
+
+<p
+
+className="
 mt-8
 text-xl
 text-[#555548]
@@ -755,54 +755,54 @@ max-w-xl
 leading-relaxed
 "
 
-            style={{
+style={{
 
-              transform: "translateX(50px) translateY(0px)"
+transform:"translateX(50px) translateY(0px)"
 
-            }}
+}}
 
-          >
-
-
-            Beautiful handmade {category} items crafted with love and tradition.
+>
 
 
-          </p>
+Beautiful handmade {category} items crafted with love and tradition.
 
 
+</p>
 
 
 
 
 
 
-          {/* COUNT + BUTTONS */}
+
+
+{/* COUNT + BUTTONS */}
 
 
 
-          <div
+<div
 
-            className="
+className="
 flex
 justify-between
 items-center
 mt-10
 "
 
-            style={{
+style={{
 
-              transform: "translateX(-40px) translateY(0px) scale(0.85)"
+transform:"translateX(-40px) translateY(0px) scale(0.85)"
 
-            }}
+}}
 
-          >
-
-
+>
 
 
-            <div
 
-              className="
+
+<div
+
+className="
 bg-[#E8EED8]
 text-[#556B2F]
 px-7
@@ -812,45 +812,43 @@ font-semibold
 text-lg
 "
 
-              style={{
-                paddingLeft: "50px",
-                paddingRight: "50px",
+style={{
+paddingLeft:"50px",
+ paddingRight:"50px",
 
-                transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-              }}
+}}
 
-            >
-
-
-              🛍 {products.length} Products Found
+>
 
 
-            </div>
+🛍 {products.length} Products Found
 
 
+</div>
 
 
 
 
 
 
-            <div
 
-              className="
+
+<div
+
+className="
 flex
 gap-5
 "
 
-              style={{
+style={{
 
-                transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-              }}
+}}
 
-            >
-
-
+>
 
 
 
@@ -863,11 +861,13 @@ gap-5
 
 
 
-              <div className="relative">
 
-                <button
-                  onClick={() => setShowFilter(!showFilter)}
-                  className="
+
+<div className="relative">
+
+<button
+onClick={()=>setShowFilter(!showFilter)}
+className="
 h-14
 px-7
 rounded-2xl
@@ -880,22 +880,22 @@ gap-3
 text-lg
 font-medium
 "
-                  style={{
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
-                    transform: "translateX(-120px) translateY(-180px)"
-                  }}
-                >
+style={{
+paddingLeft:"20px",
+paddingRight:"20px",
+transform:"translateX(-120px) translateY(-180px)"
+}}
+>
 
-                  ☰
+☰
 
-                  Filter
+Filter
 
-                </button>
+</button>
 
-                {showFilter && (
+{showFilter && (
 
-                  <div className="
+<div className="
 absolute
 right-0
 top-16
@@ -908,69 +908,69 @@ border-[#E5E5E5]
 overflow-hidden
 z-50
 "
-                    style={{
-                      paddingLeft: "20px",
-                      paddingRight: "20px",
-                      transform: "translateX(10px) translateY(-170px)"
-                    }}
+style={{
+ paddingLeft:"20px",
+ paddingRight:"20px",
+transform:"translateX(10px) translateY(-170px)"
+}}
 
-                  >
+>
 
-                    <button onClick={() => handleFilter("new")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
-                      Newest
-                    </button>
+<button onClick={()=>handleFilter("new")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
+Newest
+</button>
 
-                    <button onClick={() => handleFilter("old")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
-                      Oldest
-                    </button>
+<button onClick={()=>handleFilter("old")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
+Oldest
+</button>
 
-                    <button onClick={() => handleFilter("low")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
-                      Price : Low → High
-                    </button>
+<button onClick={()=>handleFilter("low")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
+Price : Low → High
+</button>
 
-                    <button onClick={() => handleFilter("high")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
-                      Price : High → Low
-                    </button>
+<button onClick={()=>handleFilter("high")} className="w-full text-left px-5 py-3 hover:bg-[#F2F5E9]">
+Price : High → Low
+</button>
 
-                    <button onClick={() => handleFilter("reset")} className="w-full text-left px-5 py-3 text-red-600 hover:bg-red-50">
-                      Reset
-                    </button>
-
-
-
-                  </div>
-
-                )}
-
-              </div>
+<button onClick={()=>handleFilter("reset")} className="w-full text-left px-5 py-3 text-red-600 hover:bg-red-50">
+Reset
+</button>
 
 
 
+</div>
 
-            </div>
+)}
+
+</div>
 
 
 
 
+</div>
 
 
-          </div>
 
 
 
-          {/* PRODUCT GRID */}
+
+</div>
 
 
-          {
 
-            products.length === 0 ?
+{/* PRODUCT GRID */}
 
 
-              (
+{
 
-                <div
+products.length === 0 ?
 
-                  className="
+
+(
+
+<div
+
+className="
 mt-12
 text-center
 bg-[#FAF7F0]
@@ -978,43 +978,43 @@ rounded-3xl
 p-10
 "
 
-                  style={{
+style={{
 
-                    transform: "translateX(0px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
-                  }}
+}}
 
-                >
+>
 
-                  <h2
+<h2
 
-                    className="
+className="
 text-3xl
 font-bold
 text-[#24331D]
 "
 
-                  >
+>
 
-                    No Products Found
+No Products Found
 
-                  </h2>
-
-
-                </div>
-
-              )
+</h2>
 
 
-              :
+</div>
+
+)
 
 
-              (
+:
 
 
-                <div
+(
 
-                  className="
+
+<div
+
+className="
 grid
 grid-cols-1
 sm:grid-cols-2
@@ -1023,71 +1023,71 @@ gap-6
 mt-10
 "
 
-                  style={{
+style={{
 
-                    transform: "translateX(10px) translateY(10px) scale(0.95)"
+transform:"translateX(10px) translateY(10px) scale(0.95)"
 
-                  }}
+}}
 
-                >
-
-
-                  {
+>
 
 
-                    filteredProducts.map((product) => (
+{
 
 
-                      <div
-
-                        key={product._id}
-
-                        style={{
-
-                          transform: "translateX(0px) translateY(0px)"
-
-                        }}
-
-                      >
+filteredProducts.map((product)=>(
 
 
-                        <ProductCard
+<div
 
-                          product={product}
+key={product._id}
 
-                        />
+style={{
 
+transform:"translateX(0px) translateY(0px)"
 
-                      </div>
+}}
 
-
-                    ))
-
-
-                  }
+>
 
 
+<ProductCard
 
-                </div>
+product={product}
+
+/>
 
 
-              )
+</div>
 
 
-          }
+))
+
+
+}
 
 
 
-
-        </div>
-
-
-      </div>
+</div>
 
 
-    </div>
+)
 
 
-  );
+}
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+);
 
 }

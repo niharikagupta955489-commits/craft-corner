@@ -15,25 +15,25 @@ import {
 } from "react-icons/fa";
 
 export default function Navbar() {
-const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
   const { user, isLoggedIn, logout } = useAuth();
-const { wishlist } = useWishlist();
+  const { wishlist } = useWishlist();
 
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
-const handleSearch = (e) => {
+  const handleSearch = (e) => {
 
-  if(e.key === "Enter" && search.trim()){
+    if (e.key === "Enter" && search.trim()) {
 
-    navigate(`/search?query=${search}`);
+      navigate(`/search?query=${search}`);
 
-  }
+    }
 
-};
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-[#FAF7F0] border-b border-gray-200">
@@ -43,66 +43,66 @@ const handleSearch = (e) => {
         <Link to="/" className="shrink-0">
 
           <img
-  src={logo}
-  alt="Craft Corner"
-  className="h-14 w-14 object-contain"
-/>
+            src={logo}
+            alt="Craft Corner"
+            className="h-14 w-14 object-contain"
+          />
 
         </Link>
 
         <div className="flex-1 relative">
 
-  <FaSearch
-  className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"
-  size={16}
-/>
+          <FaSearch
+            className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"
+            size={16}
+          />
 
-  <input
-  type="text"
-  placeholder="Search handmade products..."
-  value={search}
-  onChange={(e)=>setSearch(e.target.value)}
-  onKeyDown={handleSearch}
-  style={{
-    paddingLeft: "60px"
-  }}
-  className="w-full h-11 rounded-xl border border-gray-200 bg-white pr-4 outline-none shadow-sm focus:border-[#556B2F]"
-/>
+          <input
+            type="text"
+            placeholder="Search handmade products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={handleSearch}
+            style={{
+              paddingLeft: "60px"
+            }}
+            className="w-full h-11 rounded-xl border border-gray-200 bg-white pr-4 outline-none shadow-sm focus:border-[#556B2F]"
+          />
 
-</div>
+        </div>
 
-<Link
-  to="/marketplace"
-  className="flex items-center gap-2 hover:text-[#556B2F]"
->
+        <Link
+          to="/marketplace"
+          className="flex items-center gap-2 hover:text-[#556B2F]"
+        >
 
-  <FaStore size={20}/>
+          <FaStore size={20} />
 
-  <span className="hidden lg:block">
-    Marketplace
-  </span>
+          <span className="hidden lg:block">
+            Marketplace
+          </span>
 
-</Link>
+        </Link>
 
         <div className="flex items-center gap-6">
 
           <Link
-  to="/wishlist"
-  className="relative flex items-center gap-2 hover:text-[#556B2F]"
->
-  <FaHeart
-    size={20}
-    className="text-red-500"
-  />
+            to="/wishlist"
+            className="relative flex items-center gap-2 hover:text-[#556B2F]"
+          >
+            <FaHeart
+              size={20}
+              className="text-red-500"
+            />
 
-  <span className="hidden lg:block">
-    Wishlist
-  </span>
+            <span className="hidden lg:block">
+              Wishlist
+            </span>
 
-  {wishlist.length > 0 && (
+            {wishlist.length > 0 && (
 
-    <span
-      className="
+              <span
+                className="
       absolute
       -top-2
       -right-3
@@ -116,13 +116,13 @@ const handleSearch = (e) => {
       items-center
       justify-center
       "
-    >
-      {wishlist.length}
-    </span>
+              >
+                {wishlist.length}
+              </span>
 
-  )}
+            )}
 
-</Link>
+          </Link>
           <Link
             to="/cart"
             className="flex items-center gap-2 hover:text-[#556B2F]"
@@ -132,65 +132,59 @@ const handleSearch = (e) => {
               Cart
             </span>
           </Link>
-
           {isLoggedIn &&
-            user?.role === "user" && (
+            ["admin", "superadmin"].includes(user?.role) && (
 
-            <Link
-              to="/my-orders"
-              className="flex items-center gap-2 hover:text-[#556B2F]"
-            >
-              <FaBox size={20} />
+              <Link
+                to="/my-orders"
+                className="flex items-center gap-2 hover:text-[#556B2F]"
+              >
+                <FaBox size={20} />
 
-              <span className="hidden lg:block">
-                My Orders
-              </span>
+                <span className="hidden lg:block">
+                  My Orders
+                </span>
 
-            </Link>
+              </Link>
 
-          )}
+            )}
 
-          {isLoggedIn &&
-            user?.role === "admin" && (
- <>
-   
+        {isLoggedIn &&
+  ["admin", "superadmin", "Super Admin"].includes(user?.role) && (
     <Link
       to="/admin-v2"
-     className="flex items-center gap-3 text-[#556B2F] bg-[#EEF3E8] w-44 justify-center px-5 py-2.5 rounded-xl border border-[#D6E2C8] hover:bg-[#E2EBCF] transition"
+      className="flex items-center gap-3 text-[#556B2F] bg-[#EEF3E8] w-44 justify-center px-5 py-2.5 rounded-xl border border-[#D6E2C8] hover:bg-[#E2EBCF] transition"
     >
-
       <FaRocket />
       <span>Admin Portal</span>
     </Link>
-  </>
-
-)}
+  )}
 
           {isLoggedIn ? (
 
-<div className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
 
-  <Link
-    to="/profile"
-    className="
+              <Link
+                to="/profile"
+                className="
     flex
     items-center
     gap-2
     hover:text-[#556B2F]
     cursor-pointer
     "
-  >
+              >
 
-    {
-  user?.avatar ? (
+                {
+                  user?.avatar ? (
 
-    <img
+                    <img
 
-      src={user.avatar}
+                      src={user.avatar}
 
-      alt="profile"
+                      alt="profile"
 
-      className="
+                      className="
       h-10
       w-10
       rounded-full
@@ -199,26 +193,26 @@ const handleSearch = (e) => {
       border-[#C98A3D]
       "
 
-    />
+                    />
 
-  ) : (
+                  ) : (
 
-    <FaUserCircle size={22} />
+                    <FaUserCircle size={22} />
 
-  )
-}
-
-
-<span className="hidden lg:block font-semibold">
-  {user?.name}
-</span>
-
-  </Link>
+                  )
+                }
 
 
-  <button
-    onClick={handleLogout}
-    className="
+                <span className="hidden lg:block font-semibold">
+                  {user?.name}
+                </span>
+
+              </Link>
+
+
+              <button
+                onClick={handleLogout}
+                className="
     w-28
     flex
     items-center
@@ -233,13 +227,13 @@ const handleSearch = (e) => {
     hover:bg-red-100
     transition
     "
-  >
-    Logout
-  </button>
+              >
+                Logout
+              </button>
 
-</div>
+            </div>
 
-) : (
+          ) : (
 
             <Link
               to="/login"

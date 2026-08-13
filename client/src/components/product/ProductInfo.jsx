@@ -44,7 +44,13 @@ setMessage("✓ Delivery available");
 
 return(
 
-<div className="flex flex-col gap-8">
+<div className="flex flex-col gap-8"
+style={{
+
+transform:"translate(40px,0px) scale(01)"
+
+}}
+>
 
 
 
@@ -59,7 +65,14 @@ px-3 py-1
 rounded-full
 font-semibold
 text-sm
-">
+"
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
+
+transform:"translate(0px,0px) scale(01)"
+
+}}>
 
 {product.category}
 
@@ -74,7 +87,15 @@ rounded-full
 font-semibold
 flex items-center gap-1
 text-sm
-">
+"
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
+
+transform:"translate(0px,0px) scale(01)"
+
+}}
+>
 
 <FaFire/>
 Bestseller
@@ -115,7 +136,14 @@ text-white
 px-3 py-1
 rounded-lg
 flex items-center gap-1
-">
+"
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
+
+transform:"translate(0px,0px) scale(01)"
+
+}}>
 
 <FaStar/>
 
@@ -209,7 +237,15 @@ You save ₹{save}
 <div className="
 flex justify-between
 font-semibold
-">
+"
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
+
+transform:"translate(20px,0px) scale(01)"
+
+}}>
+  
 
 <span>Stock</span>
 
@@ -219,18 +255,26 @@ font-semibold
 
 
 <div className="
-h-2
+h-3
 bg-gray-200
 rounded-full
-mt-2
-">
+mt-3
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(20px,0px) scale(01)"
+
+}}
+>
 
 
 <div className="
-h-2
+h-3
 bg-[#556B2F]
 rounded-full
-w-[15%]
+w-[55%]
 "/>
 
 
@@ -257,7 +301,14 @@ w-[15%]
 text-2xl
 font-bold
 mb-3
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(0px,0px) scale(01)"
+
+}}>
 
 Description
 
@@ -267,7 +318,14 @@ Description
 <p className="
 text-gray-600
 leading-8
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(0px,0px) scale(01)"
+
+}}>
 
 {product.description}
 
@@ -289,11 +347,19 @@ leading-8
 
 
 <div className="
-bg-[#fffdf8]
-border
+bg-[#FAF7F0]
+
 rounded-2xl
-p-5
-">
+p-
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(-10px,-10px) scale(01)"
+
+}}
+>
 
 
 <h2 className="
@@ -302,7 +368,14 @@ font-bold
 flex
 items-center
 gap-2
-">
+"
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
+
+transform:"translate(-126px,13px) scale(0.7)"
+
+}}>
 
 <FaMapMarkerAlt/>
 
@@ -316,7 +389,14 @@ Check Delivery
 flex
 gap-3
 mt-4
-">
+"
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
+
+transform:"translate(70px,-10px) scale(0.85)"
+
+}}>
 
 
 <input
@@ -334,7 +414,13 @@ rounded-xl
 px-4
 py-2
 "
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
 
+transform:"translate(0px,0px) scale(01)"
+
+}}
 />
 
 
@@ -349,7 +435,14 @@ text-white
 px-6
 rounded-xl
 font-semibold
-">
+"
+style={{
+  paddingLeft:"20px",
+  paddingRight:"20px",
+
+transform:"translate(0px,0px) scale(01)"
+
+}}>
 
 Check
 
@@ -390,18 +483,32 @@ mt-3
 
 
 <div className="
-bg-white
-border
+bg-[#FAF7F0]
+
 rounded-2xl
 p-5
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(-20px,-30px) scale(01)"
+
+}}>
 
 
 <h2 className="
 text-2xl
 font-bold
 mb-4
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(-60px,2px) scale(0.8)"
+
+}}>
 
 Available Offers
 
@@ -413,7 +520,14 @@ Available Offers
 flex
 flex-col
 gap-3
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(18px,-2px) scale(1)"
+
+}}>
 
 
 <p>
@@ -452,7 +566,15 @@ gap-3
 grid
 grid-cols-2
 gap-4
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(0px,-20px) scale(1)"
+
+}}
+>
 
 
 <div className="
@@ -463,7 +585,15 @@ flex
 items-center
 gap-2
 font-semibold
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(0px,-20px) scale(1)"
+
+}}
+>
 
 <FaTruck/>
 
@@ -481,7 +611,15 @@ flex
 items-center
 gap-2
 font-semibold
-">
+"
+style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(200px,-20px) scale(1)"
+
+}}
+>
 
 
 <FaCheckCircle/>

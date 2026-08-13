@@ -60,7 +60,28 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
-const { user } = useAuth();
+  const { user } = useAuth();
+
+  const permissions = user?.permissions || [];
+
+  const hasPermission = (permission) => {
+    if (user?.role === "superadmin") return true;
+    return permissions.includes(permission);
+  };
+
+  const visibleMenuItems = menuItems.filter((item) => {
+    if (item.title === "Admin Management") {
+      return user?.role === "superadmin";
+    }
+    if (item.title === "Dashboard") return hasPermission("Dashboard");
+    if (item.title === "Products") return hasPermission("Products");
+    if (item.title === "Orders") return hasPermission("Orders");
+    if (item.title === "Customers") return hasPermission("Customers");
+    if (item.title === "Categories") return hasPermission("Categories");
+    if (item.title === "Settings") return user?.role === "superadmin";
+    return false;
+  });
+
   return (
     <aside className="fixed left-0 top-0 z-50 h-screen w-[260px] overflow-hidden bg-gradient-to-b from-[#F7F3E9] via-[#F3EEDF] to-to-[#ECE5D4] text-[#4E4334] shadow-[10px_0_35px_rgba(0,0,0,.35)]">
 
@@ -118,7 +139,7 @@ const { user } = useAuth();
 
         <div className="gap-y-12  translate-y-4" >
 
-          {menuItems.map((item) => {
+          {visibleMenuItems.map((item) => {
             const Icon = item.icon;
 
             return (

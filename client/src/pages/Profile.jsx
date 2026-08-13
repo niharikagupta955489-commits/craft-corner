@@ -455,7 +455,7 @@ mx-auto
 "
 
 style={{
-transform:"translate(110px,40px)"
+transform:"translate(120px,40px)"
 }}
 
 >
@@ -1639,7 +1639,7 @@ translate-y-3
 
 style={{
 
-transform:"translate(-780px,-590px) scale(1)"
+transform:"translate(-790px,-590px) scale(1)"
 
 }}
 
@@ -1708,23 +1708,17 @@ w-full
 
 
 <Cropper
-
-image={imageSrc}
-
-crop={crop}
-
-zoom={zoom}
-
-aspect={1}
-
-cropShape="round"
-
-onCropChange={setCrop}
-
-onZoomChange={setZoom}
-
-onCropComplete={onCropComplete}
-
+  image={imageSrc}
+  crop={crop}
+  zoom={zoom}
+  aspect={1}
+  cropShape="round"
+  onCropChange={setCrop}
+  onZoomChange={setZoom}
+  onCropComplete={onCropComplete}
+  minZoom={0.3}
+  maxZoom={5}
+  restrictPosition={false}
 />
 
 
@@ -1734,62 +1728,66 @@ onCropComplete={onCropComplete}
 
 
 
-
-
-
-<input
-
-type="range"
-
-min="1"
-
-max="3"
-
-step="0.1"
-
-value={zoom}
-
-onChange={(e)=>setZoom(e.target.value)}
-
-style={{
-
-transform:"translate(0px,10px)"
-
+<div className="flex flex-col items-center gap-4 mt-4">
+  <div className="flex items-center justify-center gap-3">
+    <button
+      type="button"
+      onClick={() => setZoom((prev) => Math.max(0.3, Number(prev) - 0.1))}
+      className="w-8 h-8 rounded-full bg-[#C98A3D] text-white text-xl font-bold flex items-center justify-center hover:bg-[#b07833] transition-colors"
+       style={{
+transform:"translate(0px,10px) scale(0.8)"
 }}
+      title="Zoom Out"
+    >
+      −
+    </button>
 
-/>
-
-
-
-
-
-
-
-<button
-
-onClick={uploadCroppedImage}
-
-className="
-mt-5
-bg-[#C98A3D]
-text-white
-px-8
-py-3
-rounded-xl
-"
-
-style={{
-paddingLeft:"30px",
-paddingRight:"30px",
-transform:"translate(80px,15px)"
-
+    <input
+      type="range"
+      min="0.3"
+      max="5"
+      step="0.1"
+      value={zoom}
+      onChange={(e) => setZoom(Number(e.target.value))}
+      className="accent-[#C98A3D] cursor-pointer"
+      style={{
+transform:"translate(0px,10px) scale(1)"
 }}
+    />
 
->
+    <button
+      type="button"
+      onClick={() => setZoom((prev) => Math.min(5, Number(prev) + 0.1))}
+      className="w-8 h-8 rounded-full bg-[#C98A3D] text-white text-xl font-bold flex items-center justify-center hover:bg-[#b07833] transition-colors"
+       style={{
+transform:"translate(0px,10px) scale(0.8)"
+}}
+      title="Zoom In"
+    >
+      +
+    </button>
+  </div>
 
-Save Photo
+  <button
+    onClick={uploadCroppedImage}
+    className="bg-[#C98A3D] text-white px-8 py-3 rounded-xl hover:bg-[#b07833] transition-colors font-medium"
+    style={{
+      
+paddingLeft:"20px",
 
-</button>
+paddingRight:"20px",
+transform:"translate(0px,0px) scale(1)"
+}}
+  >
+    Save Photo
+  </button>
+</div>
+
+
+
+
+
+
 
 
 

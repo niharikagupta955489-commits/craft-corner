@@ -50,6 +50,14 @@ export default function ProductSpecifications({ product }) {
         <div
           key={index}
           className="flex border-b border-gray-200 py-3"
+          style={{
+  paddingLeft:"0px",
+  paddingRight:"0px",
+
+transform:"translate(0px,30px) scale(1)"
+
+}}
+
         >
 
           <div className="w-40 font-semibold text-gray-700">

@@ -3,8 +3,8 @@ export default function Services(){
 return(
 
 <section className="
-mx-8
-mb-8
+mx-10
+mb-10
 bg-[#EEF0D8]
 rounded-3xl
 py-8
@@ -12,7 +12,12 @@ grid
 grid-cols-4
 text-center
 translate-y-40
-">
+"
+style={{
+
+transform:"translate(0px,-40px) scale(0.99)"
+
+}}>
 
 
 <div>

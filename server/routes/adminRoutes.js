@@ -1,47 +1,45 @@
 import express from "express";
 
 import {
-createAdmin,
-getAdmins,
-updateAdmin,
-deleteAdmin
+  createAdmin,
+  getAdmins,
+  updateAdmin,
+  deleteAdmin,
 } from "../controllers/adminController.js";
 
+import {
+  protect,
+  isAdmin,
+} from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-
-
-// Create Admin
 router.post(
-"/create",
-createAdmin
+  "/create",
+  protect,
+  isAdmin,
+  createAdmin
 );
 
-
-
-// Get All Admins
 router.get(
-"/all",
-getAdmins
+  "/all",
+  protect,
+  isAdmin,
+  getAdmins
 );
 
-
-
-// Update Admin
 router.put(
-"/:id",
-updateAdmin
+  "/:id",
+  protect,
+  isAdmin,
+  updateAdmin
 );
 
-
-
-// Delete Admin
 router.delete(
-"/:id",
-deleteAdmin
+  "/:id",
+  protect,
+  isAdmin,
+  deleteAdmin
 );
-
-
 
 export default router;

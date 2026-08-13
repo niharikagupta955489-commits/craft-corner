@@ -1,5 +1,5 @@
-import upload from "../middleware/upload.js";
 import express from "express";
+import upload from "../middleware/upload.js";
 
 import {
   createProduct,
@@ -8,42 +8,49 @@ import {
   updateProduct,
   deleteProduct,
   getProductsByCategory,
-  searchProducts
+  searchProducts,
 } from "../controllers/productController.js";
 
+import {
+  protect,
+  checkPermission,
+} from "../middleware/authMiddleware.js";
 
-import { protect } from "../middleware/authMiddleware.js";
 import { isAdmin } from "../middleware/adminMiddleware.js";
-
 
 const router = express.Router();
 
-
-// Create Product
-router.post("/", protect, isAdmin, upload.array("images",5), createProduct);
-
-// Search Product
+// Public
 router.get("/search", searchProducts);
-
-
-// Get All Products
-router.get("/", getProducts);
-
-
-// Category Products
 router.get("/category/:category", getProductsByCategory);
-
-
-// Single Product
+router.get("/", getProducts);
 router.get("/:id", getProductById);
 
+// Admin + Products permission
+router.post(
+  "/",
+  protect,
+  isAdmin,
+  checkPermission("Products"),
+  upload.array("images", 5),
+  createProduct
+);
 
-// Update Product
-router.put("/:id", protect, isAdmin, upload.array("images",5), updateProduct);
+router.put(
+  "/:id",
+  protect,
+  isAdmin,
+  checkPermission("Products"),
+  upload.array("images", 5),
+  updateProduct
+);
 
-
-// Delete Product
-router.delete("/:id", protect, isAdmin, deleteProduct);
-
+router.delete(
+  "/:id",
+  protect,
+  isAdmin,
+  checkPermission("Products"),
+  deleteProduct
+);
 
 export default router;

@@ -32,7 +32,13 @@ export default function OffersCard() {
 
     <div className="mt-10">
 
-      <h2 className="text-2xl font-bold text-[#2F3A2D] mb-5">
+      <h2 className="text-2xl font-bold text-[#2F3A2D] mb-5"
+      style={{
+
+transform:"translate(0px,0px) scale(1)"
+
+}}
+>
 
         Available Offers
 
@@ -45,9 +51,20 @@ export default function OffersCard() {
           <div
             key={index}
             className="bg-white rounded-xl shadow p-5 flex gap-4 items-start"
+            style={{
+
+transform:"translate(0px,0px) scale(01)"
+
+}}
           >
 
-            <div className="text-[#556B2F] text-xl mt-1">
+            <div className="text-[#556B2F] text-xl mt-1"
+            style={{
+
+transform:"translate(0px,0px) scale(01)"
+
+}}
+>
 
               {offer.icon}
 
@@ -55,7 +72,13 @@ export default function OffersCard() {
 
             <div>
 
-              <h3 className="font-semibold">
+              <h3 className="font-semibold"
+              style={{
+
+transform:"translate(0px,0px) scale(01)"
+
+}}
+>
 
                 {offer.title}
 

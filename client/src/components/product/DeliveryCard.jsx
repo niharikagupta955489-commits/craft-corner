@@ -44,6 +44,7 @@ export default function DeliveryCard() {
         <div
           key={index}
           className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-5 flex items-center gap-5"
+          
         >
 
           <div className="
@@ -66,7 +67,14 @@ export default function DeliveryCard() {
 
           text-xl
 
-          ">
+          "
+          style={{
+  
+
+transform:"translate(10px,0px) scale(01)"
+
+}}
+>
 
             {item.icon}
 

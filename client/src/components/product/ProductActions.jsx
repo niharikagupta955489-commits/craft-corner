@@ -62,7 +62,14 @@ const handleWishlist = () => {
 
       {/* Quantity */}
 
-      <h3 className="text-lg font-semibold">
+      <h3 className="text-lg font-semibold"
+      style={{
+
+transform:"translate(40px,-20px) scale(01)"
+
+}}
+      >
+
 
         Quantity
 
@@ -76,13 +83,24 @@ const handleWishlist = () => {
             setQuantity(quantity - 1)
           }
           className="w-11 h-11 rounded-lg bg-gray-200 text-xl"
+        style={{
+
+transform:"translate(40px,-15px) scale(0.8)"
+
+}}
         >
 
           -
 
         </button>
 
-        <span className="text-xl font-bold">
+        <span className="text-xl font-bold"
+        style={{
+
+
+transform:"translate(40px,-15px) scale(01)"
+
+}}>
 
           {quantity}
 
@@ -93,6 +111,11 @@ const handleWishlist = () => {
             setQuantity(quantity + 1)
           }
           className="w-11 h-11 rounded-lg bg-gray-200 text-xl"
+          style={{
+
+transform:"translate(40px,-15px) scale(0.8)"
+
+}}
         >
 
           +
@@ -134,7 +157,11 @@ const handleWishlist = () => {
           transition
 
           "
+style={{
 
+transform:"translate(30px,15px) scale(01)"
+
+}}
         >
 
           <FaShoppingCart />
@@ -172,7 +199,11 @@ const handleWishlist = () => {
           transition
 
           "
+style={{
 
+transform:"translate(30px,15px) scale(01)"
+
+}}
         >
 
           <FaBolt />
@@ -202,7 +233,11 @@ const handleWishlist = () => {
     hover:text-white
     text-[#556B2F]
   "
->
+style={{
+
+transform:"translate(30px,40px) scale(01)"
+
+}}>
   <FaHeart
     className={
       isWishlisted(product._id)

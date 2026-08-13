@@ -8,34 +8,42 @@ import {
   updateOrderStatus,
 } from "../controllers/orderController.js";
 
-import { protect } from "../middleware/authMiddleware.js";
+import {
+  protect,
+  checkPermission,
+} from "../middleware/authMiddleware.js";
+
 import { isAdmin } from "../middleware/adminMiddleware.js";
 
 const router = express.Router();
 
-
-// Place Order
-router.post("/", protect, placeOrder);
-
-
 // User Orders
+router.post("/", protect, placeOrder);
 router.get("/user/:userId", protect, getMyOrders);
 
+// Admin Orders - Orders permission required
+router.get(
+  "/",
+  protect,
+  isAdmin,
+  checkPermission("Orders"),
+  getAllOrders
+);
 
-// Admin All Orders
-router.get("/", protect, isAdmin, getAllOrders);
-
-// Admin Single Order Details
 router.get(
   "/:id",
   protect,
   isAdmin,
+  checkPermission("Orders"),
   getSingleOrder
 );
 
-
-// Admin Update Order Status
-router.put("/:id", protect, isAdmin, updateOrderStatus);
-
+router.put(
+  "/:id",
+  protect,
+  isAdmin,
+  checkPermission("Orders"),
+  updateOrderStatus
+);
 
 export default router;
