@@ -1,54 +1,47 @@
 import express from "express";
 
 import {
-
   register,
-
   login,
-
+  googleLogin,
   getAllUsers,
-
   deleteUser,
-
   getProfile,
-
   updateProfile,
-
-uploadProfilePhoto
-
+  uploadProfilePhoto,
 } from "../controllers/authController.js";
 
-
 import { protect } from "../middleware/authMiddleware.js";
-import profileUpload from "../middleware/profileUpload.js";
 
+import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
 
-
-// Authentication
+// AUTH
 
 router.post(
   "/register",
   register
 );
 
-
 router.post(
   "/login",
   login
 );
 
+router.post(
+  "/google",
+  googleLogin
+);
 
 
-// Admin Users
+// USERS
 
 router.get(
   "/users",
   getAllUsers
 );
-
 
 router.delete(
   "/users/:id",
@@ -56,15 +49,13 @@ router.delete(
 );
 
 
-
-// User Profile
+// PROFILE
 
 router.get(
   "/profile",
   protect,
   getProfile
 );
-
 
 router.put(
   "/profile",
@@ -73,10 +64,10 @@ router.put(
 );
 
 router.put(
- "/profile/photo",
- protect,
- profileUpload.single("avatar"),
- uploadProfilePhoto
+  "/profile/photo",
+  protect,
+  upload.single("avatar"),
+  uploadProfilePhoto
 );
 
 

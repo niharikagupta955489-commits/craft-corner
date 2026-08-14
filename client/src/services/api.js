@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
- baseURL: "https://craft-corner-yv9v.onrender.com/api",
+ 
+baseURL: "https://craft-corner-yv9v.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
