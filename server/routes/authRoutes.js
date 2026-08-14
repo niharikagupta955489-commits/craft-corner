@@ -8,7 +8,7 @@ import {
   deleteUser,
   getProfile,
   updateProfile,
-  uploadProfilePhoto,
+  uploadProfilePhoto
 } from "../controllers/authController.js";
 
 import { protect } from "../middleware/authMiddleware.js";
@@ -18,38 +18,29 @@ import upload from "../middleware/upload.js";
 const router = express.Router();
 
 
+// ===============================
 // AUTH
+// ===============================
 
-router.post(
-  "/register",
-  register
-);
+router.post("/register", register);
 
-router.post(
-  "/login",
-  login
-);
+router.post("/login", login);
 
-router.post(
-  "/google",
-  googleLogin
-);
+router.post("/google", googleLogin);
 
 
+// ===============================
 // USERS
+// ===============================
 
-router.get(
-  "/users",
-  getAllUsers
-);
+router.get("/users", getAllUsers);
 
-router.delete(
-  "/users/:id",
-  deleteUser
-);
+router.delete("/users/:id", deleteUser);
 
 
+// ===============================
 // PROFILE
+// ===============================
 
 router.get(
   "/profile",
@@ -62,6 +53,11 @@ router.put(
   protect,
   updateProfile
 );
+
+
+// ===============================
+// PROFILE PHOTO
+// ===============================
 
 router.put(
   "/profile/photo",
