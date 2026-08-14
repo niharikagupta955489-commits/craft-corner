@@ -1,10 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { OAuth2Client } from "google-auth-library";
 
 import User from "../models/User.js";
-
-const googleClient = new OAuth2Client();
 
 
 // =====================================================
@@ -265,25 +262,47 @@ export const googleLogin = async (
       });
     }
 
-    // Verify Google ID token
-    const ticket =
-      await googleClient.verifyIdToken({
-        idToken: credential,
 
-        audience:
-          process.env.GOOGLE_CLIENT_ID,
-      });
+    // =================================================
+    // VERIFY GOOGLE ID TOKEN
+    // =================================================
 
-    const payload =
-      ticket.getPayload();
+    const googleResponse = await fetch(
+      `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`
+    );
 
-    if (!payload) {
+    if (!googleResponse.ok) {
       return res.status(401).json({
         success: false,
         message:
           "Invalid Google token",
       });
     }
+
+    const payload =
+      await googleResponse.json();
+
+
+    // =================================================
+    // VERIFY GOOGLE CLIENT ID
+    // =================================================
+
+    if (
+      !payload ||
+      payload.aud !==
+        process.env.GOOGLE_CLIENT_ID
+    ) {
+      return res.status(401).json({
+        success: false,
+        message:
+          "Invalid Google token audience",
+      });
+    }
+
+
+    // =================================================
+    // GET GOOGLE USER DATA
+    // =================================================
 
     const {
       sub,
@@ -292,6 +311,7 @@ export const googleLogin = async (
       name,
       picture,
     } = payload;
+
 
     if (
       !sub ||
@@ -305,8 +325,10 @@ export const googleLogin = async (
       });
     }
 
+
     const normalizedEmail =
       email.trim().toLowerCase();
+
 
     let user =
       await User.findOne({
@@ -375,9 +397,12 @@ export const googleLogin = async (
         });
       }
 
+
       // Link Google account
+
       user.googleId =
         sub;
+
 
       // IMPORTANT:
       // Existing role is NOT changed.
@@ -395,6 +420,7 @@ export const googleLogin = async (
             : "google";
       }
 
+
       if (
         !user.avatar &&
         picture
@@ -403,14 +429,22 @@ export const googleLogin = async (
           picture;
       }
 
+
       user.isVerified =
         true;
+
 
       await user.save();
     }
 
+
+    // =================================================
+    // CREATE JWT
+    // =================================================
+
     const token =
       createToken(user);
+
 
     return res.json({
       success: true,
@@ -585,12 +619,14 @@ export const updateProfile =
         });
       }
 
+
       if (
         req.body.name !== undefined
       ) {
         user.name =
           req.body.name;
       }
+
 
       if (
         req.body.email !== undefined
@@ -601,6 +637,7 @@ export const updateProfile =
             .toLowerCase();
       }
 
+
       if (
         req.body.phone !== undefined
       ) {
@@ -608,12 +645,14 @@ export const updateProfile =
           req.body.phone;
       }
 
+
       if (
         req.body.address !== undefined
       ) {
         user.address =
           req.body.address;
       }
+
 
       // Password is optional.
       // Existing password remains unchanged
@@ -633,7 +672,9 @@ export const updateProfile =
           "local";
       }
 
+
       await user.save();
+
 
       return res.json({
         success: true,
@@ -683,6 +724,7 @@ export const uploadProfilePhoto =
         });
       }
 
+
       if (!req.file) {
         return res.status(400).json({
           success: false,
@@ -691,13 +733,16 @@ export const uploadProfilePhoto =
         });
       }
 
+
       // Cloudinary / upload middleware
       // should provide the final URL in req.file.path
 
       user.avatar =
         req.file.path;
 
+
       await user.save();
+
 
       return res.json({
         success: true,
