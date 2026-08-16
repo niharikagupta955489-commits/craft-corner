@@ -95,6 +95,11 @@ export default function MyOrders() {
         <Link
           to="/"
           className="orders-back"
+style={{
+transform:"translateX(-0px) translateY(0px)"
+
+}}
+
         >
           ← Back
         </Link>
@@ -114,7 +119,12 @@ export default function MyOrders() {
 
 
 
-        <div className="orders-wrapper">
+        <div className="orders-wrapper"
+style={{
+transform:"translateX(0px) translateY(0px)"
+
+}}
+>
 
 
 
@@ -123,7 +133,11 @@ export default function MyOrders() {
 
 
             <div
-              className="order-box"
+              className="order-box"style={{
+transform:"translateX(0px) translateY(0px)"
+
+}}
+
               key={order._id}
             >
 

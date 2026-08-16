@@ -10,6 +10,9 @@ export default function Products(){
 const [products,setProducts] = useState([]);
 
 const [search,setSearch] = useState("");
+const [currentPage,setCurrentPage] = useState(1);
+
+const productsPerPage = 10;
 
 
 
@@ -408,13 +411,12 @@ transform:"translateX(0px) translateY(0px)"
 
 
 <table
-
-className="
-w-full
-"
-
+  className="
+    w-full
+    border-separate
+    border-spacing-y-2
+  "
 >
-
 
 <thead
 
@@ -577,6 +579,11 @@ search.toLowerCase()
 )
 
 
+.slice(
+(currentPage - 1) * productsPerPage,
+currentPage * productsPerPage
+)
+
 .map((product)=>(
 
 
@@ -684,60 +691,27 @@ py-4
 
 
 <span
+  className={`
+    rounded-lg
+    text-sm
+    font-medium
 
-className={`
-
-px-3
-
-py-1
-
-rounded-lg
-
-text-sm
-
-font-medium
-
-
-${
-
-
-
-product.category?.toLowerCase()
-==="painting"
-
-
-?
-
-"bg-[#E8F0FF] text-blue-600"
-
-:
-
-product.category?.toLowerCase()
-==="handloom"
-
-
-?
-
-"bg-[#FFF1D6] text-orange-700"
-
-:
-
-"bg-[#F5E6C8] text-[#A66A20]"
-
-}
-
-`}
-
+    ${
+      product.category?.toLowerCase() === "painting"
+        ? "bg-[#E8F0FF] text-blue-600"
+        : product.category?.toLowerCase() === "handloom"
+        ? "bg-[#FFF1D6] text-orange-700"
+        : "bg-[#F5E6C8] text-[#A66A20]"
+    }
+  `}
+  style={{
+    padding: "3px 14px",
+    transform: "translate(-25px, 0px)",
+    display: "inline-block",
+  }}
 >
-
-
-{product.category}
-
-
-
+  {product.category}
 </span>
-
-
 
 </td>
 
@@ -889,7 +863,7 @@ style={{
 paddingLeft:"20px",
  paddingRight:"20px",
 
-transform:"translateX(40px) translateY(0px)"
+transform:"translateX(0px) translateY(0px)"
 
 }}
 
@@ -963,7 +937,17 @@ text-gray-500
 
 >
 
-Showing 1 to {products.length} products
+Showing{" "}
+{products.length === 0
+? 0
+: (currentPage - 1) * productsPerPage + 1}
+{" to "}
+{Math.min(
+currentPage * productsPerPage,
+products.length
+)}
+{" of "}
+{products.length} products
 
 </p>
 
@@ -980,9 +964,10 @@ gap-2
 
 >
 
-
 <button
-
+type="button"
+onClick={()=>setCurrentPage((page)=>Math.max(page-1,1))}
+disabled={currentPage===1}
 className="
 w-10
 h-10
@@ -991,6 +976,7 @@ border
 border-gray-200
 bg-white
 text-gray-500
+disabled:opacity-40
 "
 
 >
@@ -999,73 +985,79 @@ text-gray-500
 
 </button>
 
-
-
+{Array.from(
+{
+length: Math.max(
+1,
+Math.ceil(
+products.filter((product)=>
+product.name
+?.toLowerCase()
+.includes(
+search.toLowerCase()
+)
+).length / productsPerPage
+)
+)
+},
+(_,index)=>index+1
+).map((page)=>(
 
 <button
-
-className="
+key={page}
+type="button"
+onClick={()=>setCurrentPage(page)}
+className={`
 w-10
 h-10
 rounded-xl
-bg-[#C58B45]
-text-white
 font-semibold
-"
-
+${
+currentPage===page
+? "bg-[#C58B45] text-white"
+: "border border-gray-200 bg-white text-gray-700"
+}
+`}
 >
 
-1
+{page}
 
 </button>
 
-
-
-
-<button
-
-className="
-w-10
-h-10
-rounded-xl
-border
-border-gray-200
-bg-white
-text-gray-700
-"
-
->
-
-2
-
-</button>
-
-
-
+))}
 
 <button
-
-className="
-w-10
-h-10
-rounded-xl
-border
-border-gray-200
-bg-white
-text-gray-700
-"
-
->
-
-3
-
-</button>
-
-
-
-
-<button
-
+type="button"
+onClick={()=>setCurrentPage((page)=>Math.min(
+page+1,
+Math.max(
+1,
+Math.ceil(
+products.filter((product)=>
+product.name
+?.toLowerCase()
+.includes(
+search.toLowerCase()
+)
+).length / productsPerPage
+)
+)
+))}
+disabled={
+currentPage >=
+Math.max(
+1,
+Math.ceil(
+products.filter((product)=>
+product.name
+?.toLowerCase()
+.includes(
+search.toLowerCase()
+)
+).length / productsPerPage
+)
+)
+}
 className="
 w-10
 h-10
@@ -1074,6 +1066,7 @@ border
 border-gray-200
 bg-white
 text-gray-500
+disabled:opacity-40
 "
 
 >
@@ -1081,7 +1074,6 @@ text-gray-500
 ›
 
 </button>
-
 
 </div>
 

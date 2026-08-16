@@ -127,14 +127,16 @@ text-align:center;
 .circle{
 
 background:#eef0d8;
-border-radius:50%;
+border-radius:60%;
 padding:20px;
 
 }
 
 
 
-
+.product-name {
+  transform: translateY(10px);
+}
 
 .title-row{
 

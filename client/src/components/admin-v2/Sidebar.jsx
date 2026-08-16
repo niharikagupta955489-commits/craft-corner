@@ -7,7 +7,8 @@ import {
   FaChartLine,
   FaCog,
   FaUserShield,
-  FaSignOutAlt,
+FaSignOutAlt,
+FaComments,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo2.png";
@@ -41,16 +42,21 @@ const menuItems = [
 
 
 
-  {
-    title: "Customers",
-    icon: FaUsers,
-    path: "/admin-v2/customers",
-  },
-  {
-    title: "Categories",
-    icon: FaTags,
-    path: "/admin-v2/categories",
-  },
+ {
+  title: "Customers",
+  icon: FaUsers,
+  path: "/admin-v2/customers",
+},
+{
+  title: "Complaints",
+  icon: FaComments,
+  path: "/admin-v2/complaints",
+},
+{
+  title: "Categories",
+  icon: FaTags,
+  path: "/admin-v2/categories",
+},
   {
     title: "Settings",
     icon: FaCog,
@@ -77,6 +83,7 @@ export default function Sidebar() {
     if (item.title === "Products") return hasPermission("Products");
     if (item.title === "Orders") return hasPermission("Orders");
     if (item.title === "Customers") return hasPermission("Customers");
+if (item.title === "Complaints") return hasPermission("Complaints");
     if (item.title === "Categories") return hasPermission("Categories");
     if (item.title === "Settings") return user?.role === "superadmin";
     return false;

@@ -101,6 +101,10 @@ text-[#556B2F]
 font-semibold
 hover:underline
 "
+style={{
+transform:"translateX(10px) translateY(-10px)"
+
+}}
 
 >
 
@@ -162,58 +166,6 @@ placeholder="Search products..."
 
 
 
-
-
-<section className="hero">
-
-
-
-<div>
-
-
-<h1>
-
-Discover Beautiful
-
-<br/>
-
-Handmade Creations
-
-</h1>
-
-
-
-<p>
-
-Explore unique handmade products made with love by talented artisans.
-
-</p>
-
-
-
-
-<button>
-
-Shop Now 🌿
-
-</button>
-
-
-
-</div>
-
-
-
-
-<img
-
-src="https://images.unsplash.com/photo-1618220179428-22790b461013"
-
-/>
-
-
-
-</section>
 
 
 
@@ -341,16 +293,18 @@ alt={product.name}
 
 
 
-<h3>
-
-{product.name}
-
+<h3 className="product-name">
+  {product.name}
 </h3>
 
 
 
+<p className="price"
+style={{
+transform:"translateX(0px) translateY(15px)"
 
-<p className="price">
+}}
+>
 
 ₹{product.price}
 
@@ -359,12 +313,6 @@ alt={product.name}
 
 
 
-
-<p className="rating">
-
-⭐ {product.rating || 0}
-
-</p>
 
 
 

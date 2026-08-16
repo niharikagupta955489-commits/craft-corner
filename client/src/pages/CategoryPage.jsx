@@ -169,13 +169,13 @@ return(
 
 className="
 min-h-screen
-bg-[#F7F2E8]
-py-6
+bg-[#EEE6D7]
+py-8
 "
 
 style={{
 
-transform:"translateX(5px) translateY(10px)"
+transform:"translateX(5px) translateY(0px)"
 
 }}
 
@@ -582,14 +582,14 @@ Carefully packaged for safe shipping
 
 className="
 flex-1
-bg-white
-rounded-[40px]
+bg-[#EEE6D7]
+rounded-[0px]
 p-10
 "
 
 style={{
 
-transform:"translateX(-18px) translateY(0px)"
+transform:"translateX(px) translateY(0px)"
 
 }}
 
@@ -613,7 +613,7 @@ text-[#6B6B5E]
 
 style={{
 
-transform:"translateX(50px) translateY(20px)"
+transform:"translateX(170px) translateY(20px) scale(1.2)"
 
 }}
 
@@ -843,8 +843,10 @@ gap-5
 "
 
 style={{
+paddingLeft:"80px",
+ paddingRight:"80px",
 
-transform:"translateX(0px) translateY(0px)"
+transform:"translateX(190px) translateY(0px)"
 
 }}
 
@@ -873,7 +875,7 @@ px-7
 rounded-2xl
 border
 border-[#C8D1B8]
-bg-white
+bg-[#F7F3EA]
 flex
 items-center
 gap-3
@@ -881,9 +883,9 @@ text-lg
 font-medium
 "
 style={{
-paddingLeft:"20px",
-paddingRight:"20px",
-transform:"translateX(-120px) translateY(-180px)"
+paddingLeft:"40px",
+paddingRight:"40px",
+transform:"translateX(-60px) translateY(-180px)"
 }}
 >
 
@@ -900,7 +902,7 @@ absolute
 right-0
 top-16
 w-60
-bg-white
+bg-[#EEE6D7]
 rounded-2xl
 shadow-xl
 border
@@ -973,7 +975,7 @@ products.length === 0 ?
 className="
 mt-12
 text-center
-bg-[#FAF7F0]
+bg-[#EEE6D7]
 rounded-3xl
 p-10
 "
@@ -1025,7 +1027,7 @@ mt-10
 
 style={{
 
-transform:"translateX(10px) translateY(10px) scale(0.95)"
+transform:"translateX(-10px) translateY(10px) scale(0.9)"
 
 }}
 

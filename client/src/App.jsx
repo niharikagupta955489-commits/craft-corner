@@ -83,6 +83,7 @@ import OrderDetails from "./pages/admin-v2/OrderDetails";
 import EditProductV2 from "./pages/admin-v2/EditProduct";
 import AdminProfileV2 from "./pages/admin-v2/AdminProfile";
 import AnalyticsV2 from "./pages/admin-v2/Analytics";
+import Complaints from "./pages/admin-v2/Complaints";
 
 
 
@@ -244,10 +245,15 @@ element={<EditProductV2 />}
   element={<AddProductV2 />}
 />
 
+<Route
+  path="complaints"
+  element={<Complaints />}
+/>
         <Route
           path="orders"
           element={<Orders />}
         />
+
 <Route
 path="analytics"
 element={<AnalyticsV2/>}
