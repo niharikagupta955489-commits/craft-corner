@@ -428,1392 +428,814 @@ setLoading(false);
 
 
 return (
-
-
-<div
-
-className="
-min-h-screen
-bg-white
-p-8
-"
-
-style={{
-  width:"1800px",
-  minHeight:"800px",
-  transform:"translate(0px,0px)"
-}}
-
->
-
-
-<div
-
-className="
-max-w-7xl
-mx-auto
-"
-
-style={{
-transform:"translate(120px,40px)"
-}}
-
->
-
-
-
-<div
-
-className="
-flex
-justify-between
-items-center
-mb-8
-"
-
-style={{
-transform:"translate(18px,-10px)"
-}}
-
->
-
-
-
-<div
-
-style={{
-transform:"translate(-10px,0px)"
-}}
-
->
-
-
-<h1
-
-className="
-text-5xl
-font-black
-text-[#3D3023]
-"
-
-style={{
-transform:"translate(-50px,0px)scale(0.8)"
-}}
-
->
-
-My Profile
-
-</h1>
-
-
-
-
-<p
-
-className="
-text-[#7A6B59]
-mt-2
-"
-
-style={{
-transform:"translate(-6px,-5px) scale(0.99)"
-}}
-
->
-
-Manage your personal details and account information
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-<button
-
-onClick={updateProfile}
-
-className="
-bg-[#C98A3D]
-text-white
-px-8
-py-5
-rounded-2xl
-font-bold
-hover:scale-105
-transition
-"
-
-style={{
-
-paddingLeft:"20px",
-
-paddingRight:"20px",
-
-transform:"translate(-20px,0px)"
-
-}}
-
->
-
-{loading ? "Saving..." : "Update Profile"}
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div
-
-className="
-bg-white
-rounded-[35px]
-shadow-xl
-border
-border-[#E8DDCC]
-p-1
-w-full
-"
-
-style={{
-
-minHeight:"600px",
-
-transform:"translate(0px,10px)"
-
-}}
-
->
-
-
-
-
-
-<div
-
-className="
-flex
-items-center
-gap-8
-pb-8
-border-b
-border-[#E8DDCC]
-"
-
-style={{
-
-transform:"translate(10px,0px)"
-
-}}
-
->
-
-
-
-
-
-<div className="relative">
-
-
-
-<div
-
-className="
-h-32
-w-32
-rounded-full
-bg-[#F5E4C2]
-flex
-items-center
-justify-center
-overflow-hidden
-text-6xl
-font-bold
-text-[#C98A3D]
-"
-
-style={{
-
-transform:"translate(10px,0px) scale(0.65)"
-
-}}
-
->
-
-
-{
-
-user.avatar ?
-
-
-(
-
-<img
-
-src={user.avatar}
-
-alt="profile"
-
-className="
-h-full
-w-full
-object-cover
-"
-
-/>
-
-
-)
-
-:
-
-(
-
-<FaUser/>
-
-)
-
-}
-
-
-
-</div>
-
-
-
-
-
-
-
-<label
-
-className="
-absolute
-bottom-0
-right-0
-bg-[#C98A3D]
-text-white
-text-xs
-px-3
-py-2
-rounded-full
-cursor-pointer
-"
-
-style={{
-
-paddingLeft:"20px",
-
-paddingRight:"20px",
-
-transform:"translate(-10px,-5px) scale(0.7)"
-
-}}
-
->
-
-
-Change
-
-
-
-<input
-
-type="file"
-
-accept="image/*"
-
-hidden
-
-onChange={handleImageUpload}
-
-/>
-
-
-
-</label>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div
-
-style={{
-
-transform:"translate(-60px,0px) scale(0.7)"
-
-}}
-
->
-
-
-
-<h2
-
-className="
-text-4xl
-font-black
-text-[#3D3023]
-"
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
->
-
-
-{user.name || "User Name"}
-
-
-
-</h2>
-
-
-
-
-
-<p
-
-className="
-text-[#7A6B59]
-text-lg
-"
-
-style={{
-
-transform:"translate(0px,5px)"
-
-}}
-
->
-
-
-{user.email}
-
-
-</p>
-
-
-
-
-
-
-<span
-
-className="
-text-[#C98A3D]
-font-semibold
-"
-
-style={{
-
-transform:"translate(0px,5px)"
-
-}}
-
->
-
-
-User
-
-
-</span>
-
-
-
-</div>
-
-
-
-
-
-</div>
-
-
-{/* Personal Information */}
-
-<h2
-
-className="
-text-3xl
-font-black
-text-[#3D3023]
-mt-8
-mb-5
-"
-
-style={{
-transform:"translate(-100px,10px) scale(0.8)"
-}}
-
->
-
-Personal Information
-
-</h2>
-
-
-
-
-
-<div
-
-className="
-grid
-md:grid-cols-2
-gap-6
-"
-
-style={{
-transform:"translate(8px,15px)scale(0.95)"
-}}
-
->
-
-
-
-
-
-<div
-
-style={{
-
-transform:"translate(-5px,0px)"
-
-}}
-
->
-
-
-<label
-
-className="
-font-semibold
-text-[#3D3023]
-"
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
->
-
-Full Name
-
-</label>
-
-
-
-<div
-
-className="
-flex
-items-center
-gap-3
-border
-rounded-2xl
-px-5
-mt-2
-"
-
-style={{
-
-paddingLeft:"20px",
-
-paddingRight:"20px",
-
-transform:"translate(0px,5px)"
-
-}}
-
->
-
-
-<FaUser
-
-className="
-text-[#C98A3D]
-"
-
-style={{
-
-transform:"translate(-10px,0px)"
-
-}}
-
-/>
-
-
-
-
-<input
-
-name="name"
-
-value={user.name}
-
-onChange={handleChange}
-
-className="
-w-full
-py-4
-outline-none
-"
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
-/>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<div
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
->
-
-
-<label
-
-className="
-font-semibold
-text-[#3D3023]
-"
-
->
-
-Email Address
-
-</label>
-
-
-
-
-<div
-
-className="
-flex
-items-center
-gap-3
-border
-rounded-2xl
-px-5
-mt-2
-"
-
-style={{
-
-paddingLeft:"30px",
-
-paddingRight:"30px",
-
-transform:"translate(0px,5px)"
-
-}}
-
->
-
-
-<FaEnvelope
-
-className="
-text-[#C98A3D]
-"
-
-style={{
-
-transform:"translate(-20px,0px)"
-
-}}
-
-/>
-
-
-
-
-
-<input
-
-name="email"
-
-value={user.email}
-
-onChange={handleChange}
-
-className="
-w-full
-py-4
-outline-none
-"
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
-/>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<div
-
-style={{
-
-transform:"translate(-5px,5px)"
-
-}}
-
->
-
-
-<label
-
-className="
-font-semibold
-text-[#3D3023]
-"
-
->
-
-Mobile Number
-
-</label>
-
-
-
-
-
-<div
-
-className="
-flex
-items-center
-gap-3
-border
-rounded-2xl
-px-5
-mt-2
-"
-
-style={{
-
-paddingLeft:"30px",
-
-paddingRight:"30px",
-
-transform:"translate(0px,5px)"
-
-}}
-
->
-
-
-
-<FaPhone
-
-className="
-text-[#C98A3D]
-"
-
-style={{
-
-transform:"translate(-20px,0px)"
-
-}}
-
-/>
-
-
-
-
-<input
-
-name="phone"
-
-value={user.phone}
-
-onChange={handleChange}
-
-className="
-w-full
-py-4
-outline-none
-"
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
-/>
-
-
-</div>
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-{/* Security */}
-
-
-<h2
-
-className="
-text-3xl
-font-black
-text-[#3D3023]
-mt-10
-mb-5
-"
-
-style={{
-
-transform:"translate(-100px,40px) scale(0.8)"
-
-}}
-
->
-
-Security
-
-</h2>
-
-
-
-
-
-
-<div
-
-className="
-grid
-md:grid-cols-2
-gap-6
-"
-
-style={{
-
-transform:"translate(30px,25px)"
-
-}}
-
->
-
-
-
-<div
-
-className="
-grid
-md:grid-cols-2
-gap-6
-"
-
-style={{
-
-transform:"translate(0px,25px)"
-
-}}
-
->
-
-
-
-<div
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
->
-
-
-<label
-
-className="
-font-semibold
-text-[#3D3023]
-"
-
->
-
-New Password
-
-</label>
-
-
-
-
-
-<div
-
-className="
-flex
-items-center
-gap-3
-border
-rounded-2xl
-px-5
-mt-2
-"
-
-style={{
-
-paddingLeft:"20px",
-
-paddingRight:"20px",
-
-transform:"translate(0px,5px)"
-
-}}
-
->
-
-
-
-<FaLock
-
-className="
-text-[#C98A3D]
-"
-
-style={{
-
-transform:"translate(-10px,0px)"
-
-}}
-
-/>
-
-
-
-
-
-<input
-
-type="password"
-
-name="password"
-
-value={user.password}
-
-onChange={handleChange}
-
-placeholder="Enter new password"
-
-className="
-w-full
-py-4
-outline-none
-"
-
-style={{
-
-transform:"translate(10px,0px)"
-
-}}
-
-/>
-
-
-
-</div>
-
-
-</div>
-
-
-
-<div
-
-style={{
-
-transform:"translate(-5px,0px)"
-
-}}
-
->
-
-
-<label
-
-className="
-font-semibold
-text-[#3D3023]
-"
-
->
-
-Confirm Password
-
-</label>
-
-
-
-
-
-<div
-
-className="
-flex
-items-center
-gap-3
-border
-rounded-2xl
-px-5
-mt-2
-"
-
-style={{
-
-paddingLeft:"20px",
-
-paddingRight:"20px",
-
-transform:"translate(0px,5px)"
-
-}}
-
->
-
-
-
-<FaLock
-
-className="
-text-[#C98A3D]
-"
-
-style={{
-
-transform:"translate(-8px,0px)"
-
-}}
-
-/>
-
-
-
-
-
-<input
-
-type="password"
-
-name="confirmPassword"
-
-value={user.confirmPassword}
-
-onChange={handleChange}
-
-placeholder="Confirm password"
-
-className="
-w-full
-py-4
-outline-none
-"
-
-style={{
-
-transform:"translate(0px,0px)"
-
-}}
-
-/>
-
-
-
-</div>
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-{/* Address */}
-
-
-
-<h2
-
-className="
-text-3xl
-font-black
-text-[#3D3023]
-mt-10
-mb-5
-"
-
-style={{
-
-transform:"translate(-30px,-70px) scale(0.9)"
-
-}}
-
->
-
-Address
-
-</h2>
-
-
-
-
-
-
-<div
-
-className="
-flex
-items-start
-gap-3
-border
-rounded-2xl
-px-5
-"
-
-style={{
-
-transform:"translate(620px,-90px) scale(0.9)"
-
-}}
-
->
-
-
-<FaMapMarkerAlt
-
-className="
-text-[#C98A3D]
-mt-5
-"
-
-style={{
-
-transform:"translate(50px,40px)"
-
-}}
-
-/>
-
-
-
-
-
-<textarea
-
-name="address"
-
-value={user.address}
-
-onChange={handleChange}
-
-rows="4"
-
-placeholder="Enter your address"
-
-className="
-w-full
-py-4
-outline-none
-resize-none
-"
-
-style={{
-
-transform:"translate(50px,35px)"
-
-}}
-
-/>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<button
-
-onClick={() => navigate("/")}
-
-className="
-text-[#556B2F]
-text-lg
-font-semibold
-flex
-items-center
-gap-2
-mb-4
-relative
-z-50
-translate-x-2
-translate-y-3
-"
-
-style={{
-
-transform:"translate(-790px,-590px) scale(1)"
-
-}}
-
->
-
-← Back
-
-</button>
-
-
-
-
-
-
-
-
-
-{/* Crop Popup */}
-
-
-
-{showCrop && (
-
-
-
-<div
-
-className="
-fixed
-inset-0
-bg-black/0
-flex
-items-center
-justify-center
-z-50
-"
-style={{
-transform:"translate(-10px,-400px) scale(0.6)"
-}}
-
->
-
-
-<div
-
-className="
-bg-white
-rounded-3xl
-p-6
-w-[420px]
-"
-
->
-
-
-<div
-
-className="
-relative
-h-[350px]
-w-full
-"
-
->
-
-
-
-<Cropper
-  image={imageSrc}
-  crop={crop}
-  zoom={zoom}
-  aspect={1}
-  cropShape="round"
-  onCropChange={setCrop}
-  onZoomChange={setZoom}
-  onCropComplete={onCropComplete}
-  minZoom={0.3}
-  maxZoom={5}
-  restrictPosition={false}
-/>
-
-
-
-</div>
-
-
-
-
-<div className="flex flex-col items-center gap-4 mt-4">
-  <div className="flex items-center justify-center gap-3">
-    <button
-      type="button"
-      onClick={() => setZoom((prev) => Math.max(0.3, Number(prev) - 0.1))}
-      className="w-8 h-8 rounded-full bg-[#C98A3D] text-white text-xl font-bold flex items-center justify-center hover:bg-[#b07833] transition-colors"
-       style={{
-transform:"translate(0px,10px) scale(0.8)"
-}}
-      title="Zoom Out"
-    >
-      −
-    </button>
-
-    <input
-      type="range"
-      min="0.3"
-      max="5"
-      step="0.1"
-      value={zoom}
-      onChange={(e) => setZoom(Number(e.target.value))}
-      className="accent-[#C98A3D] cursor-pointer"
-      style={{
-transform:"translate(0px,10px) scale(1)"
-}}
-    />
-
-    <button
-      type="button"
-      onClick={() => setZoom((prev) => Math.min(5, Number(prev) + 0.1))}
-      className="w-8 h-8 rounded-full bg-[#C98A3D] text-white text-xl font-bold flex items-center justify-center hover:bg-[#b07833] transition-colors"
-       style={{
-transform:"translate(0px,10px) scale(0.8)"
-}}
-      title="Zoom In"
-    >
-      +
-    </button>
-  </div>
-
-  <button
-    onClick={uploadCroppedImage}
-    className="bg-[#C98A3D] text-white px-8 py-3 rounded-xl hover:bg-[#b07833] transition-colors font-medium"
+  <div
+    className="min-h-screen bg-[#F8F7F1] text-[#2F2B26]"
     style={{
-      
-paddingLeft:"20px",
-
-paddingRight:"20px",
-transform:"translate(0px,0px) scale(1)"
-}}
+      minHeight: "100vh",
+      padding: "28px 42px",
+      transform: "translate(0px,0px)"
+    }}
   >
-    Save Photo
-  </button>
-</div>
+    <div
+      className="mx-auto max-w-[1400px]"
+      style={{
+        padding: "0px 18px 42px",
+        transform: "translate(0px,0px)"
+      }}
+    >
 
+      <div
+        className="flex items-center justify-between"
+        style={{
+          padding: "0px 0px 26px",
+          transform: "translate(0px,0px)"
+        }}
+      >
+        <div>
+          <button
+            onClick={() => navigate("/")}
+            className="text-[#556B2F] font-semibold text-lg hover:opacity-75 transition"
+            style={{
+              padding: "4px 0px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            ← Back to Home
+          </button>
 
+          <div
+            className="flex items-center gap-3"
+            style={{
+              padding: "10px 0px 0px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <h1
+              className="text-5xl font-black tracking-tight text-[#2F2B26]"
+              style={{
+                margin: "0px",
+                padding: "0px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              My Profile
+            </h1>
 
+            <span
+              className="text-4xl text-[#556B2F]"
+              style={{
+                padding: "0px 4px",
+                transform: "rotate(-18deg) translate(0px,2px)"
+              }}
+            >
+              🍃
+            </span>
+          </div>
 
+          <p
+            className="text-[#756D63] text-lg"
+            style={{
+              margin: "6px 0px 0px",
+              padding: "0px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            Manage your personal details and account information
+          </p>
+        </div>
 
+        <button
+          onClick={updateProfile}
+          className="bg-[#6A8B3A] text-white rounded-full font-bold shadow-sm hover:scale-105 transition"
+          style={{
+            padding: "12px 25px",
+            transform: "translate(0px,0px)"
+          }}
+        >
+          {loading ? "Saving..." : "✎  Update Profile"}
+        </button>
+      </div>
 
+      {/* Profile header */}
+      <div
+        className="bg-white border border-[#E8E3D8] rounded-[28px] shadow-[0_12px_35px_rgba(65,75,40,0.08)]"
+        style={{
+          padding: "28px 30px",
+          transform: "translate(0px,0px)"
+        }}
+      >
+        <div
+          className="grid grid-cols-[1.2fr_1fr] items-center gap-8"
+          style={{
+            padding: "0px",
+            transform: "translate(0px,0px)"
+          }}
+        >
 
+          <div
+            className="flex items-center gap-6"
+            style={{
+              padding: "0px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <div
+              className="relative shrink-0"
+              style={{
+                padding: "0px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <div
+                className="h-32 w-32 rounded-full overflow-hidden border-[7px] border-white shadow-[0_5px_20px_rgba(0,0,0,0.10)] bg-[#EEF2E4] flex items-center justify-center text-5xl text-[#6A8B3A]"
+                style={{
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                {user.avatar ? (
+                  <img
+                    src={user.avatar}
+                    alt="profile"
+                    className="h-full w-full object-cover"
+                    style={{
+                      padding: "0px",
+                      transform: "translate(0px,0px)"
+                    }}
+                  />
+                ) : (
+                  <FaUser />
+                )}
+              </div>
 
+              <label
+                className="absolute bottom-1 right-0 bg-[#6A8B3A] text-white rounded-full cursor-pointer shadow-md text-sm"
+                style={{
+                  padding: "8px 12px",
+                  transform: "translate(4px,4px)"
+                }}
+              >
+                📷
+                <input
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={handleImageUpload}
+                />
+              </label>
+            </div>
 
+            <div
+              style={{
+                padding: "0px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <div
+                className="flex items-center gap-2"
+                style={{
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                <h2
+                  className="text-3xl font-black"
+                  style={{
+                    margin: "0px",
+                    padding: "0px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  {user.name || "User Name"}
+                </h2>
 
-</div>
+                <span
+                  className="text-[#6A8B3A] text-xl"
+                  style={{
+                    padding: "0px 2px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  ✔
+                </span>
+              </div>
 
+              <p
+                className="text-[#756D63] text-base"
+                style={{
+                  margin: "5px 0px 0px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                {user.email}
+              </p>
 
-</div>
+              <span
+                className="inline-block rounded-full bg-[#EEF2E4] text-[#556B2F] text-sm font-semibold"
+                style={{
+                  marginTop: "9px",
+                  padding: "5px 12px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                User
+              </span>
+            </div>
+          </div>
 
+          <div
+            className="grid grid-cols-3 border-l border-[#E8E3D8]"
+            style={{
+              padding: "8px 0px 8px 25px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            {[
+              ["🛍", "Total Orders"],
+              ["♡", "Wishlist Items"],
+              ["▣", "Member Since"]
+            ].map(([icon, label]) => (
+              <div
+                key={label}
+                className="text-center"
+                style={{
+                  padding: "0px 10px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                <div
+                  className="mx-auto rounded-full bg-[#F0F3E8] text-[#6A8B3A] text-2xl w-16 h-16 flex items-center justify-center"
+                  style={{
+                    padding: "0px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  {icon}
+                </div>
 
-)}
+                <p
+                  className="font-semibold text-sm"
+                  style={{
+                    margin: "10px 0px 0px",
+                    padding: "0px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  {label}
+                </p>
 
+                <p
+                  className="text-[#6A8B3A] text-2xl font-black"
+                  style={{
+                    margin: "3px 0px 0px",
+                    padding: "0px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  —
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
+      {/* Main columns */}
+      <div
+        className="grid grid-cols-[1.65fr_1fr] gap-6 items-start"
+        style={{
+          marginTop: "28px",
+          padding: "0px",
+          transform: "translate(0px,0px)"
+        }}
+      >
 
-</div>
+        <div
+          className="space-y-6"
+          style={{
+            padding: "0px",
+            transform: "translate(0px,0px)"
+          }}
+        >
 
+          {/* Personal Information */}
+          <div
+            className="bg-white rounded-[24px] border border-[#E8E3D8] shadow-[0_8px_25px_rgba(65,75,40,0.06)]"
+            style={{
+              padding: "26px 28px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <div
+              className="flex items-center gap-3"
+              style={{
+                padding: "0px 0px 20px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <span
+                className="bg-[#6A8B3A] text-white rounded-xl"
+                style={{
+                  padding: "10px 12px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                <FaUser />
+              </span>
 
-</div>
+              <h2
+                className="text-2xl font-black"
+                style={{
+                  margin: "0px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                Personal Information
+              </h2>
+            </div>
 
+            <div
+              className="grid grid-cols-2 gap-5"
+              style={{
+                padding: "0px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <div>
+                <label className="font-semibold text-sm">
+                  Full Name
+                </label>
 
-</div>
+                <div
+                  className="flex items-center gap-3 border border-[#D9D4C8] rounded-2xl"
+                  style={{
+                    marginTop: "7px",
+                    padding: "0px 15px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  <FaUser className="text-[#6A8B3A]" />
 
+                  <input
+                    name="name"
+                    value={user.name}
+                    onChange={handleChange}
+                    className="w-full outline-none bg-transparent"
+                    style={{
+                      padding: "13px 0px",
+                      transform: "translate(0px,0px)"
+                    }}
+                  />
+                </div>
+              </div>
 
-</div>
+              <div>
+                <label className="font-semibold text-sm">
+                  Email Address
+                </label>
 
+                <div
+                  className="flex items-center gap-3 border border-[#D9D4C8] rounded-2xl"
+                  style={{
+                    marginTop: "7px",
+                    padding: "0px 15px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  <FaEnvelope className="text-[#6A8B3A]" />
 
+                  <input
+                    name="email"
+                    value={user.email}
+                    onChange={handleChange}
+                    className="w-full outline-none bg-transparent"
+                    style={{
+                      padding: "13px 0px",
+                      transform: "translate(0px,0px)"
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="col-span-2">
+                <label className="font-semibold text-sm">
+                  Mobile Number
+                </label>
+
+                <div
+                  className="flex items-center gap-3 border border-[#D9D4C8] rounded-2xl"
+                  style={{
+                    marginTop: "7px",
+                    padding: "0px 15px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  <FaPhone className="text-[#6A8B3A]" />
+
+                  <input
+                    name="phone"
+                    value={user.phone}
+                    onChange={handleChange}
+                    className="w-full outline-none bg-transparent"
+                    style={{
+                      padding: "13px 0px",
+                      transform: "translate(0px,0px)"
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Security */}
+          <div
+            className="bg-white rounded-[24px] border border-[#E8E3D8] shadow-[0_8px_25px_rgba(65,75,40,0.06)]"
+            style={{
+              padding: "26px 28px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <div
+              className="flex items-center gap-3"
+              style={{
+                padding: "0px 0px 20px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <span
+                className="bg-[#F0F3E8] text-[#6A8B3A] rounded-xl"
+                style={{
+                  padding: "10px 12px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                <FaLock />
+              </span>
+
+              <h2
+                className="text-2xl font-black"
+                style={{
+                  margin: "0px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                Security
+              </h2>
+            </div>
+
+            <div
+              className="grid grid-cols-2 gap-5"
+              style={{
+                padding: "0px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <div>
+                <label className="font-semibold text-sm">
+                  New Password
+                </label>
+
+                <div
+                  className="flex items-center gap-3 border border-[#D9D4C8] rounded-2xl"
+                  style={{
+                    marginTop: "7px",
+                    padding: "0px 15px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  <FaLock className="text-[#6A8B3A]" />
+
+                  <input
+                    type="password"
+                    name="password"
+                    value={user.password}
+                    onChange={handleChange}
+                    placeholder="Enter new password"
+                    className="w-full outline-none"
+                    style={{
+                      padding: "13px 0px",
+                      transform: "translate(0px,0px)"
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="font-semibold text-sm">
+                  Confirm Password
+                </label>
+
+                <div
+                  className="flex items-center gap-3 border border-[#D9D4C8] rounded-2xl"
+                  style={{
+                    marginTop: "7px",
+                    padding: "0px 15px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  <FaLock className="text-[#6A8B3A]" />
+
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={user.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="Confirm password"
+                    className="w-full outline-none"
+                    style={{
+                      padding: "13px 0px",
+                      transform: "translate(0px,0px)"
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="mt-5 rounded-2xl bg-[#F2F4EA] text-[#4E5F31] text-sm font-medium"
+              style={{
+                padding: "13px 16px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              🛡️ For your security, use a strong password with at least 8 characters.
+            </div>
+          </div>
+        </div>
+
+        {/* Right column */}
+        <div
+          className="space-y-6"
+          style={{
+            padding: "0px",
+            transform: "translate(0px,0px)"
+          }}
+        >
+
+          {/* Address */}
+          <div
+            className="bg-white rounded-[24px] border border-[#E8E3D8] shadow-[0_8px_25px_rgba(65,75,40,0.06)]"
+            style={{
+              padding: "26px 28px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <div
+              className="flex items-center gap-3"
+              style={{
+                padding: "0px 0px 20px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <span
+                className="bg-[#F0F3E8] text-[#6A8B3A] rounded-xl"
+                style={{
+                  padding: "10px 12px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                <FaMapMarkerAlt />
+              </span>
+
+              <h2
+                className="text-2xl font-black"
+                style={{
+                  margin: "0px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                Address
+              </h2>
+            </div>
+
+            <div
+              className="rounded-2xl border-2 border-dashed border-[#C9D3B1] bg-[#FAFBF5]"
+              style={{
+                padding: "20px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <FaMapMarkerAlt
+                className="mx-auto text-[#6A8B3A] text-3xl"
+                style={{
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              />
+
+              <textarea
+                name="address"
+                value={user.address}
+                onChange={handleChange}
+                rows="6"
+                placeholder="Enter your address"
+                className="w-full text-center outline-none resize-none bg-transparent"
+                style={{
+                  marginTop: "12px",
+                  padding: "8px",
+                  transform: "translate(0px,0px)"
+                }}
+              />
+
+              {!user.address && (
+                <p
+                  className="text-center text-[#7B756D] text-sm"
+                  style={{
+                    margin: "0px",
+                    padding: "0px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  Add your address to make checkout easier
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Help */}
+          <div
+            className="rounded-[24px] border border-[#DCE4C9] bg-[#F4F6EA]"
+            style={{
+              padding: "25px 28px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <div
+              className="flex items-center gap-4"
+              style={{
+                padding: "0px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <div
+                className="rounded-full bg-[#6A8B3A] text-white text-2xl flex items-center justify-center shrink-0"
+                style={{
+                  width: "62px",
+                  height: "62px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                ♧
+              </div>
+
+              <div>
+                <h3
+                  className="text-xl font-black"
+                  style={{
+                    margin: "0px",
+                    padding: "0px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  Need Help?
+                </h3>
+
+                <p
+                  className="text-sm text-[#756D63]"
+                  style={{
+                    margin: "5px 0px 0px",
+                    padding: "0px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  If you face any issues, our support team is here to help you.
+                </p>
+
+                <button
+                  onClick={() => navigate("/contact")}
+                  className="border border-[#6A8B3A] text-[#556B2F] rounded-full font-semibold hover:bg-[#6A8B3A] hover:text-white transition"
+                  style={{
+                    marginTop: "14px",
+                    padding: "9px 18px",
+                    transform: "translate(0px,0px)"
+                  }}
+                >
+                  Contact Support →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Crop Popup */}
+    {showCrop && (
+      <div
+        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+        style={{
+          padding: "20px",
+          transform: "translate(0px,0px)"
+        }}
+      >
+        <div
+          className="bg-white rounded-3xl shadow-2xl"
+          style={{
+            padding: "24px",
+            width: "420px",
+            transform: "translate(0px,0px)"
+          }}
+        >
+          <div
+            className="relative h-[350px] w-full"
+            style={{
+              padding: "0px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <Cropper
+              image={imageSrc}
+              crop={crop}
+              zoom={zoom}
+              aspect={1}
+              cropShape="round"
+              onCropChange={setCrop}
+              onZoomChange={setZoom}
+              onCropComplete={onCropComplete}
+              minZoom={0.3}
+              maxZoom={5}
+              restrictPosition={false}
+            />
+          </div>
+
+          <div
+            className="flex flex-col items-center gap-4"
+            style={{
+              padding: "16px 0px 0px",
+              transform: "translate(0px,0px)"
+            }}
+          >
+            <div
+              className="flex items-center justify-center gap-3"
+              style={{
+                padding: "0px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              <button
+                type="button"
+                onClick={() =>
+                  setZoom((prev) => Math.max(0.3, Number(prev) - 0.1))
+                }
+                className="w-9 h-9 rounded-full bg-[#6A8B3A] text-white text-xl font-bold"
+                style={{
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                −
+              </button>
+
+              <input
+                type="range"
+                min="0.3"
+                max="5"
+                step="0.1"
+                value={zoom}
+                onChange={(e) => setZoom(Number(e.target.value))}
+                className="accent-[#6A8B3A] cursor-pointer"
+                style={{
+                  width: "190px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              />
+
+              <button
+                type="button"
+                onClick={() =>
+                  setZoom((prev) => Math.min(5, Number(prev) + 0.1))
+                }
+                className="w-9 h-9 rounded-full bg-[#6A8B3A] text-white text-xl font-bold"
+                style={{
+                  padding: "0px",
+                  transform: "translate(0px,0px)"
+                }}
+              >
+                +
+              </button>
+            </div>
+
+            <button
+              onClick={uploadCroppedImage}
+              className="bg-[#6A8B3A] text-white rounded-xl font-bold hover:scale-105 transition"
+              style={{
+                padding: "12px 28px",
+                transform: "translate(0px,0px)"
+              }}
+            >
+              Save Photo
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
 );
 
 }

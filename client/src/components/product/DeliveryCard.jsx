@@ -6,103 +6,86 @@ import {
 } from "react-icons/fa";
 
 export default function DeliveryCard() {
-
   const features = [
-
     {
       icon: <FaTruck />,
-      title: "Free Delivery",
-      subtitle: "Delivered within 3-5 business days",
+      title: "Free Shipping",
+      subtitle: "On orders above ₹499",
     },
-
     {
       icon: <FaShieldAlt />,
       title: "Secure Payment",
-      subtitle: "100% Safe & Secure Checkout",
+      subtitle: "100% safe checkout",
     },
-
     {
       icon: <FaUndoAlt />,
       title: "Easy Returns",
-      subtitle: "7 Days Return Policy",
+      subtitle: "7 days return policy",
     },
-
     {
       icon: <FaGift />,
-      title: "Handmade Product",
-      subtitle: "Crafted with love by artisans",
+      title: "Quality Assured",
+      subtitle: "Crafted with care",
     },
-
   ];
 
   return (
-
-    <div className="mt-10 space-y-5">
-
+    <div
+      className="grid grid-cols-2 gap-3"
+      style={{
+        padding: "0px",
+        transform: "translate(0px,0px)",
+      }}
+    >
       {features.map((item, index) => (
-
         <div
           key={index}
-          className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-5 flex items-center gap-5"
-          
-        >
-
-          <div className="
-
-          w-12
-
-          h-12
-
-          rounded-full
-
-          bg-[#E8F3D6]
-
-          text-[#556B2F]
-
-          flex
-
-          items-center
-
-          justify-center
-
-          text-xl
-
-          "
+          className="flex items-center gap-3 rounded-xl bg-[#F2F6E9] text-[#2F3A2D]"
           style={{
-  
-
-transform:"translate(10px,0px) scale(01)"
-
-}}
->
-
+            padding: "12px 13px",
+            transform: "translate(0px,0px)",
+          }}
+        >
+          <div
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#556B2F]"
+            style={{
+              padding: "0px",
+              transform: "translate(0px,0px)",
+            }}
+          >
             {item.icon}
-
           </div>
 
-          <div>
-
-            <h3 className="font-bold text-[#2F3A2D]">
-
+          <div
+            style={{
+              padding: "0px",
+              transform: "translate(0px,0px)",
+            }}
+          >
+            <h3
+              className="font-bold text-sm"
+              style={{
+                margin: "0px",
+                padding: "0px",
+                transform: "translate(0px,0px)",
+              }}
+            >
               {item.title}
-
             </h3>
 
-            <p className="text-sm text-gray-500">
-
+            <p
+              className="text-[11px] text-[#756D63]"
+              style={{
+                margin: "2px 0px 0px",
+                padding: "0px",
+                transform: "translate(0px,0px)",
+              }}
+            >
               {item.subtitle}
-
             </p>
-
           </div>
-
         </div>
-
       ))}
-
     </div>
-
   );
-
 }
-

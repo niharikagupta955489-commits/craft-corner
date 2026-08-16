@@ -15,6 +15,7 @@ import uploadRoutes from "./routes/uploadRoutes.js";
 import adminV2Routes from "./routes/adminV2Routes.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js";
 import complaintRoutes from "./routes/complaintRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 
 
 
@@ -107,7 +108,7 @@ app.use(
   "/api/home",
   homeRoutes
 );
-
+app.use("/api/reviews", reviewRoutes);
 
 app.use(
   "/api/upload",

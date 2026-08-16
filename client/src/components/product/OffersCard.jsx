@@ -5,101 +5,95 @@ import {
 } from "react-icons/fa";
 
 export default function OffersCard() {
-
   const offers = [
-
     {
       icon: <FaTag />,
       title: "10% Instant Discount",
       subtitle: "On all prepaid orders",
     },
-
     {
       icon: <FaGift />,
       title: "Free Gift Packing",
       subtitle: "Available on every handmade item",
     },
-
     {
       icon: <FaPercent />,
       title: "Buy 2 Get Extra 15% Off",
       subtitle: "Limited period offer",
     },
-
   ];
 
   return (
-
-    <div className="mt-10">
-
-      <h2 className="text-2xl font-bold text-[#2F3A2D] mb-5"
+    <div
+      className="rounded-2xl bg-[#FAF7F0]"
       style={{
-
-transform:"translate(0px,0px) scale(1)"
-
-}}
->
-
+        padding: "17px",
+        transform: "translate(0px,0px)",
+      }}
+    >
+      <h2
+        className="text-xl font-black text-[#2F3A2D]"
+        style={{
+          margin: "0px 0px 11px",
+          padding: "0px",
+          transform: "translate(0px,0px)",
+        }}
+      >
         Available Offers
-
       </h2>
 
-      <div className="space-y-4">
-
-        {offers.map((offer,index)=>(
-
+      <div
+        className="space-y-2"
+        style={{
+          padding: "0px",
+          transform: "translate(0px,0px)",
+        }}
+      >
+        {offers.map((offer, index) => (
           <div
             key={index}
-            className="bg-white rounded-xl shadow p-5 flex gap-4 items-start"
+            className="flex items-start gap-3"
             style={{
-
-transform:"translate(0px,0px) scale(01)"
-
-}}
+              padding: "7px 0px",
+              transform: "translate(0px,0px)",
+            }}
           >
-
-            <div className="text-[#556B2F] text-xl mt-1"
-            style={{
-
-transform:"translate(0px,0px) scale(01)"
-
-}}
->
-
+            <span
+              className="text-[#FF7A00]"
+              style={{
+                padding: "0px",
+                transform: "translate(0px,0px)",
+              }}
+            >
               {offer.icon}
-
-            </div>
+            </span>
 
             <div>
-
-              <h3 className="font-semibold"
-              style={{
-
-transform:"translate(0px,0px) scale(01)"
-
-}}
->
-
+              <h3
+                className="font-semibold text-[#3E3933]"
+                style={{
+                  margin: "0px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)",
+                }}
+              >
                 {offer.title}
-
               </h3>
 
-              <p className="text-sm text-gray-500">
-
+              <p
+                className="text-sm text-[#777066]"
+                style={{
+                  margin: "2px 0px 0px",
+                  padding: "0px",
+                  transform: "translate(0px,0px)",
+                }}
+              >
                 {offer.subtitle}
-
               </p>
-
             </div>
-
           </div>
-
         ))}
-
       </div>
-
     </div>
-
   );
-
 }
