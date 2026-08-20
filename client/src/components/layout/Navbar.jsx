@@ -63,9 +63,9 @@ export default function Navbar() {
 
   return (
     <>
-    <nav className="sticky top-0 z-50 bg-[#FAF7F0] border-b border-gray-200">
+    <nav className="site-navbar sticky top-0 z-50 bg-[#FAF7F0] border-b border-gray-200">
 
-      <div className="w-full h-16 px-6 lg:px-12 flex items-center gap-6">
+      <div className="site-navbar-inner w-full h-16 px-6 lg:px-12 flex items-center gap-6">
 
         <button
           type="button"

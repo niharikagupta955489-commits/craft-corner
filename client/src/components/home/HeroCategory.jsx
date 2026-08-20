@@ -47,10 +47,10 @@ fetchBanner();
 
 return(
 
-<section className="px-8 py-6 bg-[#FAF7F0]">
+<section className="home-hero-section px-8 py-6 bg-[#FAF7F0]">
 
 
-<div className="
+<div className="home-hero-card
 relative
 h-[320px]
 rounded-3xl
@@ -91,7 +91,7 @@ to-transparent
 
 
 
-<div className="
+<div className="home-hero-copy
 relative
 z-10
 p-12

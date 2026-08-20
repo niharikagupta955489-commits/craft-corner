@@ -63,6 +63,7 @@ return (
 
 <section
 className="
+home-popular-section
 bg-[#FAF7F0]
 px-12
 py-10

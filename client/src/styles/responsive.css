@@ -1,0 +1,495 @@
+/* =========================================================
+   Craft Corner - Global Responsive Layer
+   Keeps the existing desktop look while making the site
+   adapt cleanly to laptops, tablets and phones.
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+/* ---------- Smaller laptops / tablets ---------- */
+@media (max-width: 1200px) {
+  .site-navbar-inner {
+    gap: 14px !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .site-navbar-inner > .flex-1 {
+    min-width: 120px;
+  }
+
+  .site-navbar-inner > .flex.items-center.gap-6 {
+    gap: 14px !important;
+  }
+
+  .site-navbar .w-44 {
+    width: auto !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .home-hero-section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .home-popular-section {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+}
+
+/* ---------- Tablets ---------- */
+@media (max-width: 1024px) {
+  .site-navbar-inner {
+    height: 64px !important;
+    gap: 10px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .site-navbar-inner > .flex.items-center.gap-6 {
+    gap: 10px !important;
+  }
+
+  .site-navbar-inner .w-28 {
+    width: auto !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .site-navbar-inner > .flex-1 input {
+    padding-left: 44px !important;
+  }
+
+  /* Product page: remove the fixed 430px left column. */
+  .grid.grid-cols-\[430px_minmax\(0\,1fr\)\] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .gallery-container,
+  .main-gallery {
+    width: 100% !important;
+  }
+
+  .main-gallery {
+    height: min(430px, 55vw) !important;
+  }
+
+  /* Marketplace CSS layout */
+  .marketplace {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .categories {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  .products {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .hero {
+    padding-left: 40px !important;
+  }
+
+  /* Login */
+  .glass-card {
+    width: min(470px, calc(100vw - 40px)) !important;
+  }
+
+  /* Orders / wishlist */
+  .orders-back,
+  .wishlist-back {
+    transform: none !important;
+  }
+
+  .my-orders-page,
+  .wishlist-page {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden !important;
+  }
+
+  /* Navbar becomes compact instead of squeezing desktop controls. */
+  .site-navbar-inner {
+    height: 60px !important;
+    padding: 6px 10px !important;
+    gap: 8px !important;
+  }
+
+  .site-navbar-inner > a:first-of-type img {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .site-navbar-inner > button {
+    transform: none !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .site-navbar-inner > .flex-1 {
+    min-width: 0 !important;
+  }
+
+  .site-navbar-inner > .flex-1 input {
+    height: 40px !important;
+    padding-left: 38px !important;
+    padding-right: 10px !important;
+    font-size: 12px !important;
+  }
+
+  .site-navbar-inner > .flex.items-center.gap-6 {
+    gap: 8px !important;
+  }
+
+  .site-navbar-inner > a:not(:first-of-type) {
+    flex-shrink: 0;
+  }
+
+  .site-navbar .w-44,
+  .site-navbar .w-28 {
+    width: auto !important;
+  }
+
+  /* Keep only compact icons on very small screens. */
+  .site-navbar-inner .text-red-600 {
+    width: 40px !important;
+    padding: 8px !important;
+    font-size: 0 !important;
+  }
+
+  .site-navbar-inner .text-red-600 svg {
+    font-size: 18px !important;
+  }
+
+  /* Home hero */
+  .home-hero-section {
+    padding: 12px !important;
+  }
+
+  .home-hero-card {
+    height: 280px !important;
+    border-radius: 22px !important;
+  }
+
+  .home-hero-copy {
+    padding: 28px 22px !important;
+    max-width: 100% !important;
+  }
+
+  .home-hero-copy h1,
+  .home-hero-copy p,
+  .home-hero-copy button {
+    transform: none !important;
+  }
+
+  .home-hero-copy h1 {
+    font-size: clamp(28px, 8vw, 42px) !important;
+  }
+
+  .home-hero-copy p {
+    max-width: 290px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  .home-hero-copy button {
+    margin-top: 18px !important;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+  }
+
+  /* Popular categories */
+  .home-popular-section {
+    padding: 28px 14px !important;
+    transform: none !important;
+  }
+
+  .home-popular-section > h2 {
+    transform: none !important;
+    font-size: 28px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .home-popular-section .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .home-popular-section .grid > a > div:first-child {
+    height: 110px !important;
+  }
+
+  .home-popular-section .grid > a > div:last-child {
+    padding: 30px 8px 18px !important;
+  }
+
+  .home-popular-section h3,
+  .home-popular-section p {
+    transform: none !important;
+  }
+
+  .home-popular-section h3 {
+    font-size: 16px !important;
+  }
+
+  .home-popular-section p {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Services */
+  .services {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  /* Marketplace */
+  .marketplace {
+    padding: 16px 12px !important;
+  }
+
+  .market-nav {
+    padding: 14px !important;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .market-nav input {
+    width: 100%;
+  }
+
+  .categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .product-card {
+    padding: 10px !important;
+  }
+
+  .product-card img {
+    height: 150px !important;
+  }
+
+  .price {
+    font-size: 16px !important;
+  }
+
+  .services {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    padding: 18px 10px !important;
+    transform: none !important;
+  }
+
+  /* Product page */
+  .grid.grid-cols-\[430px_minmax\(0\,1fr\)\] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .main-gallery {
+    height: 330px !important;
+    border-radius: 20px !important;
+  }
+
+  .gallery-heart,
+  .gallery-zoom {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  /* Checkout */
+  .checkout-page {
+    padding: 16px !important;
+  }
+
+  .checkout-header {
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .checkout-header h1 {
+    font-size: 28px !important;
+  }
+
+  .checkout-card {
+    padding: 18px !important;
+    border-radius: 20px !important;
+  }
+
+  .address-grid,
+  .payment-options {
+    grid-template-columns: 1fr !important;
+  }
+
+  .textarea-box {
+    grid-column: auto !important;
+  }
+
+  /* Wishlist / orders */
+  .wishlist-page,
+  .my-orders-page {
+    padding: 14px !important;
+  }
+
+  .wishlist-container,
+  .my-orders-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .wishlist-back,
+  .orders-back {
+    transform: none !important;
+    margin-bottom: 10px !important;
+  }
+
+  .wishlist-card,
+  .order-box {
+    grid-template-columns: 1fr !important;
+  }
+
+  .wishlist-image img {
+    width: 100% !important;
+    height: 180px !important;
+  }
+
+  .order-id-section,
+  .status-section {
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  /* Login */
+  .right-panel {
+    padding: 20px 14px !important;
+  }
+
+  .glass-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 26px 18px !important;
+    border-radius: 22px !important;
+  }
+
+  .glass-card h1 {
+    font-size: 32px !important;
+  }
+
+  .left-panel {
+    padding: 28px 20px !important;
+  }
+
+  .feature-row {
+    gap: 12px !important;
+  }
+
+  /* Generic long forms/tables should scroll inside themselves,
+     rather than expanding the whole page beyond the viewport. */
+  table {
+    max-width: 100%;
+  }
+
+  [class*="overflow-x-auto"] {
+    max-width: 100% !important;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+}
+
+/* ---------- Extra-small phones ---------- */
+@media (max-width: 480px) {
+  .site-navbar-inner {
+    gap: 5px !important;
+  }
+
+  .site-navbar-inner > a:first-of-type img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .site-navbar-inner > button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .site-navbar-inner > .flex-1 input {
+    font-size: 11px !important;
+    padding-left: 34px !important;
+  }
+
+  .home-hero-card {
+    height: 250px !important;
+  }
+
+  .home-hero-copy {
+    padding: 22px 16px !important;
+  }
+
+  .home-hero-copy h1 {
+    font-size: 27px !important;
+  }
+
+  .home-hero-copy p {
+    max-width: 235px !important;
+    font-size: 12px !important;
+  }
+
+  .home-popular-section .grid {
+    gap: 9px !important;
+  }
+
+  .home-popular-section .grid > a > div:first-child {
+    height: 95px !important;
+  }
+
+  .products {
+    grid-template-columns: 1fr !important;
+  }
+
+  .categories {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .main-gallery {
+    height: 280px !important;
+  }
+}
